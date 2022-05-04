@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HumanInputControllerScript : MonoBehaviour
 {
-    public NewTankScript tankScript;
+    public TankScript tankScript;
 
     int[] controlBits = new int[2];
 

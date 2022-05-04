@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b51e149cef5b1d4cabd35acdc6b7b8a, type: 3}
+  m_Name: SomeCommonAsset
+  m_EditorClassIdentifier: 
+  SmokePrefab: {fileID: 7895424968239010217, guid: c536fc62dac47974d908dbe3234191b5,
+    type: 3}
+  WhiteFlagPrefab: {fileID: 1093767674789025785, guid: 3a29b3a8727573940bd843ebb0f2e163,
+    type: 3}
+  MuzzleFlashPrefab: {fileID: 8311641125568214051, guid: 281f1062895393b4e84c26b616de5763,
+    type: 3}
+  ProjectilePrefab: {fileID: 6472604771925686302, guid: 54f9315649e1b3244ad9553b99d087e5,
+    type: 3}
+  TANK_1: {fileID: 0}
+  TANK_2: {fileID: 0}
+  TANK_3: {fileID: 0}
+  TankShoot: {fileID: 8300000, guid: 19fd2e26f99eed4419a77d820195bbf2, type: 3}

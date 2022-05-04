@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - tag_opponent2
+  - tag_opponent1
+  - tag_projectile
   layers:
   - Default
   - TransparentFX
@@ -13,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Tank
+  - Obstacle
   - 
   - 
   - 
@@ -40,4 +43,28 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: layer_ground
+    uniqueID: 3427653987
+    locked: 0
+  - name: layer_armybase
+    uniqueID: 371677789
+    locked: 0
+  - name: layer_tanks
+    uniqueID: 2001096189
+    locked: 0
+  - name: layer_play
+    uniqueID: 4016065383
+    locked: 0
+  - name: layer_wrldui
+    uniqueID: 1478639821
+    locked: 0
+  - name: layer_projectile
+    uniqueID: 8507225
+    locked: 0
+  - name: layer_muzzlefx
+    uniqueID: 1467782019
+    locked: 0
+  - name: layer_debug
+    uniqueID: 706439319
     locked: 0
