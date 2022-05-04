@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SmokePrefab: {fileID: 7895424968239010217, guid: c536fc62dac47974d908dbe3234191b5,
     type: 3}
-  WhiteFlagPrefab: {fileID: 1093767674789025785, guid: 3a29b3a8727573940bd843ebb0f2e163,
+  WhiteFlagPrefab: {fileID: 6167122153067412877, guid: 8b50ae424afe1794486c26cb73c0e938,
     type: 3}
   MuzzleFlashPrefab: {fileID: 8311641125568214051, guid: 281f1062895393b4e84c26b616de5763,
     type: 3}
