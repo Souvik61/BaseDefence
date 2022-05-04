@@ -219,7 +219,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 287464840101141125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2316a39a766d79f408bba188df9746b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 854dd6224e6ed59469acef7773271baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
@@ -234,19 +234,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 287464840101141125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be8e6a605f5080942b3d4bc72e2544d2, type: 3}
+  m_Script: {fileID: 11500000, guid: f702408cbecc038468bd2f1d9e09ca8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  driveSpeed: 4
-  rotateSpeed: 45
-  muzzRotateSpeed: 45
-  shootDelay: 2
-  projectileSpeed: 20
+  tankProperty: {fileID: 0}
+  projectileSpeed: 0
   isDestroyed: 0
   tankBodyTransform: {fileID: 0}
   muzzleTransform: {fileID: 0}
-  firePoint: {fileID: 287464839166890679}
-  commonAsset: {fileID: 11400000, guid: 7d509f253fe5635458d61e66ed9a6adc, type: 2}
+  firePoint: {fileID: 0}
+  commonAsset: {fileID: 0}
 --- !u!114 &287464840101141126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,11 +253,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 287464840101141125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da2c6bcd0b265e748b6db7da4d6749f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 36905d151bccb024086a5e68a9d13897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetBase: {fileID: 0}
-  obsCheckScript: {fileID: 287464841014974641}
+  obsCheckScript: {fileID: 0}
   enemiesInSight: []
   currentStateName: 
 --- !u!1 &287464840196392283
@@ -333,7 +330,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -201594081
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 11f10fbbf8b946146a8d2e0b73b5af2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -416,7 +413,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -201594081
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 93b85b8a01ad639459af8afbd1dc2bca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -497,7 +494,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -201594081
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 2a642dd6bbc763646857faeb3d17469d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -550,14 +547,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 287464841014974647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6156236d6a548e34390a7962394a137b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8342514b202728142af66df2e0d25a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5.5
-  angle: 45
-  collisionChecksEverySec: 10
+  radius: 0
+  angle: 0
+  collisionChecksEverySec: 0
   targetMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   isObstaclesInRange: 0
   obstaclesInRange: []

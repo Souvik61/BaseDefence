@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -201594081
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6e0474e5150149044b1a9dbfaaf3dc3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -149,7 +149,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -201594081
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6e0474e5150149044b1a9dbfaaf3dc3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -235,7 +235,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -201594081
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2cfbe98ef07dae947ba0a164bf531929, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1229385802358818601}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2316a39a766d79f408bba188df9746b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 854dd6224e6ed59469acef7773271baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
@@ -421,21 +421,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1229385802358818601}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d07397dcf946a44d86673093d4448b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 215c2d6461c2c7248b0abcf0318a64c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 25
-  shootDelay: 2
-  muzzRotateSpeed: 45
-  firePoints:
-  - {fileID: 2819849152785034632}
-  - {fileID: 2819849152965637533}
-  - {fileID: 2819849151768283588}
-  - {fileID: 2819849152183268953}
-  muzzleTransform: {fileID: 1229385802280274779}
-  bodyTransform: {fileID: 1229385802568027893}
-  obsCheckScript: {fileID: 2819849151916754071}
-  commonAsset: {fileID: 11400000, guid: 7d509f253fe5635458d61e66ed9a6adc, type: 2}
+  projectileSpeed: 0
+  shootDelay: 0
+  muzzRotateSpeed: 0
+  firePoints: []
+  muzzleTransform: {fileID: 0}
+  bodyTransform: {fileID: 0}
+  obsCheckScript: {fileID: 0}
+  commonAsset: {fileID: 0}
   currentStateName: 
   enemiesInSight: []
 --- !u!1 &1229385802568027890
@@ -506,7 +502,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -201594081
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1629c013d6c9e4d4dbafcc8c78d1c53a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -587,7 +583,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -201594081
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: ff2a1544e457c214eb7c6bd9092fff86, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -668,7 +664,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -201594081
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: ff2a1544e457c214eb7c6bd9092fff86, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -751,15 +747,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2819849151916754069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6156236d6a548e34390a7962394a137b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8342514b202728142af66df2e0d25a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 7.5
-  angle: 80
-  collisionChecksEverySec: 2
+  radius: 0
+  angle: 0
+  collisionChecksEverySec: 0
   targetMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   isObstaclesInRange: 0
   obstaclesInRange: []
 --- !u!1 &2819849152183268934

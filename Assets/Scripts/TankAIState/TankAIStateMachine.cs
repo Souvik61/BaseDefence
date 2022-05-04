@@ -2,7 +2,7 @@
 
 public class TankAIStateMachine : StateMachine
 {
-    public TankAIStateMachine(TankAIScript_pt1 tankAIScript)
+    public TankAIStateMachine(TankAIScript tankAIScript)
     {
         stateDict.Add("NO_TARG", new NoTargetState(this, tankAIScript));
         stateDict.Add("APPR_BASE", new ApproachingBaseAndMuzzleAimState(this, tankAIScript));

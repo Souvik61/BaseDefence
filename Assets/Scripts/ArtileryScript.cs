@@ -12,13 +12,13 @@ public class ArtileryScript : MonoBehaviour
     [SerializeField]
     FOVObsCheckScript obsCheckScript;
     [SerializeField]
-    CommonAssetScrObj commonAsset;
+    CommonAssetSO commonAsset;
     AudioSource audioSrc;
 
     public string currentStateName;
 
     ArtileryStateMachine stateMachine;
-    public List<NewTankScript> enemiesInSight;
+    public List<TankScript> enemiesInSight;
     HealthScript healthScript;
     BoxCollider2D selfCollider;
 
@@ -76,10 +76,10 @@ public class ArtileryScript : MonoBehaviour
             {
                 if (item != null && item.layer == LayerMask.NameToLayer("Tank"))//If obstacles are enemy tanks
                 {
-                    if (item.GetComponent<NewTankScript>().GetHealthScript().currentHP > 0)
+                    if (item.GetComponent<TankScript>().GetHealthScript().currentHP > 0)
                     {
-                        if (!item.GetComponent<NewTankScript>().CompareTag(tag))//If target is not in our team
-                        { enemiesInSight.Add(item.GetComponent<NewTankScript>()); }
+                        if (!item.GetComponent<TankScript>().CompareTag(tag))//If target is not in our team
+                        { enemiesInSight.Add(item.GetComponent<TankScript>()); }
                     }
                 }
             }
