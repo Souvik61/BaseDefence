@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d937a78d29cff547a4010d69687333e, type: 3}
+  m_Name: tank_5_props
+  m_EditorClassIdentifier: 
+  tankName: Tank 5
+  driveSpeed: 7
+  rotateSpeed: 45
+  muzzRotateSpeed: 45
+  shootDelay: 2
+  shootDamage: 10
+  maxHealth: 100
