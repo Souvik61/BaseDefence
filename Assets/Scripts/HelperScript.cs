@@ -2,6 +2,12 @@
 
 public class HelperScript
 {
+    private static Vector2 RotateVectorBy(Vector2 inVec, float angle)
+    {
+        Matrix4x4 mat = new Matrix4x4(new Vector4(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0, 0), new Vector4(-Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad), 0, 0), Vector4.zero, Vector4.zero);
+        return mat * inVec;
+    }
+
     public static float Map(float x, float in_min, float in_max, float out_min, float out_max)
     {
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -89,33 +95,23 @@ public class HelperScript
 
     public static void DrawArrowDebug(Vector3 start, Vector3 end, Color color, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)
     {
-        Debug.DrawLine(start, end, color);
+        Debug.DrawLine(start, end, color);//Draw base line
 
         Vector2 a = new Vector2(1, 0);
         Vector2 b = new Vector2(1, 0);
 
-
-        float angle = Vector2.SignedAngle(Vector2.right, (end - start).normalized);
+        float angle = Vector2.SignedAngle(Vector2.right, (end - start).normalized);//Calculate angle
         a = RotateVectorBy(a, angle);
         b = RotateVectorBy(b, angle);
 
         a = RotateVectorBy(a, 180 + arrowHeadAngle);
         b = RotateVectorBy(b, 180 - arrowHeadAngle);
 
-
+        //Draw arrows
         Debug.DrawLine(end, (Vector2)end + a);
         Debug.DrawLine(end, (Vector2)end + b);
-
-        //Vector3 right = Quaternion.LookRotation(Vector3.forward, end - start) * Quaternion.Euler(0, arrowHeadAngle, 0) * new Vector2(0, 1);
-       // Vector3 left = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 180 - arrowHeadAngle, 0) * new Vector3(0, 0, 1);
-       // Debug.DrawRay(end, right * arrowHeadLength, Color.red);
-       // Debug.DrawRay(pos + direction, left * arrowHeadLength, color);
     }
 
-    static Vector2 RotateVectorBy(Vector2 inVec, float angle)
-    {
-        Matrix4x4 mat = new Matrix4x4(new Vector4(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0, 0), new Vector4(-Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad), 0, 0), Vector4.zero, Vector4.zero);
-        return mat * inVec;
-    }
+    
 
 }
