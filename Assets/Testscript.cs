@@ -21,7 +21,7 @@ public class Testscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //HelperScript.DrawArrowDebug(transform.position, endPoint.position, Color.green, arrowHeadLen, arrowHeadAngle);
-        HelperScript.DrawArrow(transform.position, endPoint.position, Color.green);
+        HelperScript.DrawArrowDebug(transform.position, endPoint.position, Color.green, arrowHeadLen, arrowHeadAngle);
+        //HelperScript.DrawArrow(transform.position, endPoint.position, Color.green);
     }
 }
