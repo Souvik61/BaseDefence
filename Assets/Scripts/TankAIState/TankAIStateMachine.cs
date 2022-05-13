@@ -15,8 +15,8 @@ public class TankAIStateMachine : StateMachine
 
 public class TankAIStateMachine2 : StateMachine
 {
-    public TankAIStateMachine2(TankAIScript tankAIScript)//State definitions
+    public TankAIStateMachine2(TankAIScript2 tankAIScript)//State definitions
     {
-        stateDict.Add("NO_TARG", new NoTargetState(this, tankAIScript));
+        stateDict.Add("APPR_BASE", new tank_ai_states2.ApproachingBaseState(this, tankAIScript));
     }
 }

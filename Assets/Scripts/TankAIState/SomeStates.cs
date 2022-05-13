@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using Pathfinding;
 
-//Tank behavoiur states
+//Tank behaviour states
 namespace tank_ai_states
 {
     /// <summary>
@@ -59,7 +61,7 @@ namespace tank_ai_states
                     //move forward?
                     if (dotProd > 0)
                     {
-                        tankController.Move(1, 0);
+                        tankController.Move(1);
                     }
                     //move backward?
                     else
@@ -67,11 +69,11 @@ namespace tank_ai_states
                         if (distanceToTarget > 2.5f)
                         {
                             //Too far to reverse
-                            tankController.Move(1, 0);
+                            tankController.Move(1);
                         }
                         else
                         {
-                            tankController.Move(-1, 0);
+                            tankController.Move(-1);
                         }
                     }
 
@@ -387,5 +389,152 @@ namespace tank_ai_states
 
     }
 
+}
+
+//Tank behavior using pathfinding
+namespace tank_ai_states2
+{
+    public class ApproachingBaseState : State
+    {
+
+        protected TankAIScript2 tankAIScript;
+        protected TankScript tankController;
+        protected Transform selfTransform;
+
+        float targetDistanceTolerance = 7;
+        Vector2 dirToTarget;
+        ArmyBaseScript targetBase;
+
+        public float nextWayPointDistance = 3;
+        
+        Path path;
+        int currWaypoint = 0;
+        bool hasReachedEndOfPath = false;
+
+        Seeker seeker;
+
+        float timer;
+        float pathUpdateRate;//path update every n secs.
+
+        public ApproachingBaseState(StateMachine machine, TankAIScript2 tankAIScript)
+        {
+            name = "APPR_BASE";
+            stateMachineInstance = machine;
+            this.tankAIScript = tankAIScript;
+            selfTransform = tankAIScript.transform;
+            tankController = tankAIScript.GetComponent<TankScript>();
+            targetBase = tankAIScript.targetBase;
+            pathUpdateRate = 1.0f;
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            seeker = tankAIScript.GetComponent<Seeker>();
+
+            timer = pathUpdateRate;
+
+            UpdatePath();
+            
+        }
+
+        public override void OnUpdate()
+        {
+            base.OnUpdate();
+            //Update path
+            if (timer <= 0)
+            {
+                UpdatePath();
+                timer = pathUpdateRate;
+            }
+            timer -= Time.deltaTime;
+
+
+            DriveTank();
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+        }
+
+        void UpdatePath()
+        {
+            if (seeker.IsDone())
+                seeker.StartPath(selfTransform.position, targetBase.transform.position, OnPathComplete);
+        }
+
+        void OnPathComplete(Path p)
+        {
+            if (!p.error)
+            {
+                path = p;
+                currWaypoint = 0;
+            }
+        
+        }
+
+        void DriveTank()
+        {
+            if (targetBase != null && path != null)//Check path and target not equal to null
+            {
+                //Check has reached end
+                if (currWaypoint >= path.vectorPath.Count)
+                {
+                    hasReachedEndOfPath = true;
+                    return;
+                }
+                else
+                {
+                    hasReachedEndOfPath = false;
+                
+                }
+
+
+                Vector2 dirToWP = (path.vectorPath[currWaypoint] - selfTransform.position).normalized;
+                float dist = Vector2.Distance(selfTransform.position, path.vectorPath[currWaypoint]);
+               
+
+                if (dist < nextWayPointDistance)
+                {
+                    currWaypoint++;
+                }
+
+                TryFaceTowardsDirection(dirToWP);
+
+                tankController.Move(1);
+
+            }
+        }
+
+        bool IsFacingDirection(Vector2 dir) 
+        {
+            float angle = Vector2.SignedAngle(dir, selfTransform.up);
+            if (Mathf.Abs(angle) > 7)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        void TryFaceTowardsDirection(Vector2 dir)
+        {
+            float angle = Vector2.SignedAngle(dir, selfTransform.up);
+            if (Mathf.Abs(angle) > 7)
+            {
+                if (angle > 0)
+                { tankController.Rotate(-1); }
+                else { tankController.Rotate(1); }
+            }
+        }
+
+    }
+
 
 }
+
+
+
+
+

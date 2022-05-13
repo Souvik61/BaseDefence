@@ -56,14 +56,19 @@ public class TankScript : MonoBehaviour
     /// <summary>
     /// forward 1 -> move forward, forward -1 -> movebackward,turn-> Rotate clockwise if -1 and counterclockwise if 1
     /// </summary>
-    public void Move(int forward, int turn)
+    public void Move(int forward)
     {
         if (!isDestroyed)
         {
             //rBody.MovePosition(transform.position+ (forward * driveSpeed * transform.up));
             nextPosition = transform.position + (forward * 0.01f * tankProperty.driveSpeed * transform.up);
-            nextRotation = rBody.rotation + turn * 0.01f * tankProperty.rotateSpeed;
         }
+    }
+
+    public void Rotate(int turn)
+    {
+        if (!isDestroyed)
+            nextRotation = rBody.rotation + turn * 0.01f * tankProperty.rotateSpeed;
     }
 
     /// <summary>

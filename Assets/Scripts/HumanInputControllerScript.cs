@@ -30,7 +30,8 @@ public class HumanInputControllerScript : MonoBehaviour
             controlBits[1] = 1;
         }
 
-        tankScript.Move(controlBits[0], controlBits[1]);
+        tankScript.Move(controlBits[0]);
+        tankScript.Rotate(controlBits[1]);
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
