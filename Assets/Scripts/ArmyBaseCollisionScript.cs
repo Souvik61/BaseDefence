@@ -7,8 +7,10 @@ public class ArmyBaseCollisionScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.CompareTag("tag_projectile");
-        Destroy(collision.gameObject);
-        armyScript.TakeDamage();
+        if (collision.CompareTag("tag_projectile"))
+        {
+            Destroy(collision.gameObject);
+            armyScript.TakeDamage();
+        }
     }
 }

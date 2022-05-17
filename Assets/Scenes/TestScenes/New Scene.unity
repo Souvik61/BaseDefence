@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04772ca2adaa4334fa5876db5a9f8667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowHeadLen: 2.2
+  arrowHeadLen: 0.4
   arrowHeadAngle: 25
   endPoint: {fileID: 1039118951}
 --- !u!1001 &6167122152826809785

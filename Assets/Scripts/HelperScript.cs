@@ -61,7 +61,7 @@ public class HelperScript
         Debug.DrawLine(C, D, color, time);
     }
 
-    public static void DrawArrow(Vector2 start, Vector2 end, Color color, float time = 0.25f)
+   /* public static void DrawArrow(Vector2 start, Vector2 end, Color color, float time = 0.25f)
     {
         Vector2 C = new Vector2(end.x - 0.1f, end.y + 0.1f);
         Vector2 D = new Vector2(end.x - 0.1f, end.y - 0.1f);
@@ -70,17 +70,7 @@ public class HelperScript
         Debug.DrawLine(C, end, color, time);
         Debug.DrawLine(D, end, color, time);
     }
-
-    public static void DrawArrowDebug(Vector3 pos, Vector3 direction, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)
-    {
-        Debug.DrawRay(pos, direction);
-
-        Vector3 right = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 180 + arrowHeadAngle, 0) * new Vector3(0, 0, 1);
-        Vector3 left = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 180 - arrowHeadAngle, 0) * new Vector3(0, 0, 1);
-        Debug.DrawRay(pos + direction, right * arrowHeadLength);
-        Debug.DrawRay(pos + direction, left * arrowHeadLength);
-    }
-    
+    */
     /*
     public static void DrawArrowDebug(Vector3 pos, Vector3 direction, Color color, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)
     {
@@ -97,8 +87,8 @@ public class HelperScript
     {
         Debug.DrawLine(start, end, color);//Draw base line
 
-        Vector2 a = new Vector2(1, 0);
-        Vector2 b = new Vector2(1, 0);
+        Vector2 a = new Vector2(1, 0) * arrowHeadLength;
+        Vector2 b = new Vector2(1, 0) * arrowHeadLength;
 
         float angle = Vector2.SignedAngle(Vector2.right, (end - start).normalized);//Calculate angle
         a = RotateVectorBy(a, angle);
@@ -108,10 +98,9 @@ public class HelperScript
         b = RotateVectorBy(b, 180 - arrowHeadAngle);
 
         //Draw arrows
-        Debug.DrawLine(end, (Vector2)end + a);
-        Debug.DrawLine(end, (Vector2)end + b);
+        Debug.DrawLine(end, (Vector2)end + a, color);
+        Debug.DrawLine(end, (Vector2)end + b, color);
     }
 
-    
 
 }

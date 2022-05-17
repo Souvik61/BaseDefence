@@ -405,7 +405,7 @@ namespace tank_ai_states2
         Vector2 dirToTarget;
         ArmyBaseScript targetBase;
 
-        public float nextWayPointDistance = 3;
+        public float nextWayPointDistance = 1;
         
         Path path;
         int currWaypoint = 0;
@@ -493,9 +493,11 @@ namespace tank_ai_states2
 
 
                 Vector2 dirToWP = (path.vectorPath[currWaypoint] - selfTransform.position).normalized;
+
+                HelperScript.DrawArrowDebug(selfTransform.position, selfTransform.position + (Vector3)dirToWP, Color.red);
+
                 float dist = Vector2.Distance(selfTransform.position, path.vectorPath[currWaypoint]);
                
-
                 if (dist < nextWayPointDistance)
                 {
                     currWaypoint++;
