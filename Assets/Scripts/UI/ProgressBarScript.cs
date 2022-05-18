@@ -7,12 +7,19 @@ public class ProgressBarScript : MonoBehaviour
     public Image barImg;
     public GameObject[] uiElements;
 
-    [SerializeField, Range(0, 1)]
-    public float barProgress;
+    private bool isVisible;
+    private float progress;
 
-    public bool isVisible;
+    public float barProgress {
+        get { return progress; }
+        set
+        {
+            progress = value;
+            barImg.fillAmount = progress;
+        }
+    } 
 
-    public bool IsBarVisible
+    public bool barVisible
     {
         get
         {
@@ -30,12 +37,7 @@ public class ProgressBarScript : MonoBehaviour
 
     private void Awake()
     {
-        isVisible = false;
-    }
-
-    private void Update()
-    {
-        barImg.fillAmount = barProgress;
+        barVisible = false;
     }
 
 }

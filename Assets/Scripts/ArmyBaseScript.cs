@@ -37,7 +37,7 @@ public class ArmyBaseScript : MonoBehaviour
 
     private void OnEnable()
     {
-        selfHealth.OnHealthDepleted += OnHealthZero;
+        selfHealth.OnHealthDepleted += OnHealthZero; 
         
     }
 
@@ -89,6 +89,7 @@ public class ArmyBaseScript : MonoBehaviour
         selfHealth.Decrement(20);
         // Debug.Log(selfHealth.currentHP);
         progressBar.barProgress = selfHealth.currentHP / (float)selfHealth.maxHP;
+        
     }
 
     void OnHealthZero()

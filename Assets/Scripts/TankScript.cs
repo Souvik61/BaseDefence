@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TankScript : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class TankScript : MonoBehaviour
     [SerializeField]
     Transform firePoint;
     [SerializeField]
+    ProgressBarScript healthBar;//Health bar
+    [SerializeField]
     protected CommonAssetSO commonAsset;
     protected AudioSource audioSrc;
 
@@ -23,6 +26,7 @@ public class TankScript : MonoBehaviour
     protected bool isShooting;
     Collider2D selfCollider;
     Rigidbody2D rBody;
+    bool isBeingAttacked;
 
     private void OnEnable()
     {
@@ -36,7 +40,8 @@ public class TankScript : MonoBehaviour
 
     private void Awake()
     {
-        tankBodyTransform = transform.GetChild(0);
+        isBeingAttacked = false;
+        tankBodyTransform = transform.Find("tank_body");
         muzzleTransform = transform.Find("tank_body/muzzle");
         healthScript = GetComponent<HealthScript>();
         audioSrc = GetComponent<AudioSource>();
@@ -45,6 +50,13 @@ public class TankScript : MonoBehaviour
 
         nextPosition = transform.position;
         nextRotation = rBody.rotation;
+
+    }
+
+    private void Start()
+    {
+        if (healthBar != null)
+            healthBar.barVisible = false;
     }
 
     private void FixedUpdate()
@@ -103,9 +115,16 @@ public class TankScript : MonoBehaviour
     public HealthScript GetHealthScript()
     { return healthScript; }
 
-    void TakeDamage()
+    void OnTakeDamage()
     {
         healthScript.Decrement(25);
+
+        if (healthBar != null)
+        {
+            healthBar.barProgress = healthScript.currentHP / (float)healthScript.maxHP;
+            if (!healthBar.barVisible)
+            { StartCoroutine(nameof(HealthbarShowRoutine)); }
+        }
     }
 
     void OnTankDestroyed()
@@ -117,6 +136,13 @@ public class TankScript : MonoBehaviour
             isDestroyed = true;
             StartCoroutine(nameof(DissolveRoutine));
         }
+    }
+
+    IEnumerator HealthbarShowRoutine()
+    {
+        healthBar.barVisible = true;
+        yield return new WaitForSeconds(2.5f);
+        healthBar.barVisible = false;
     }
 
     public virtual IEnumerator ShootRoutine()
@@ -162,7 +188,7 @@ public class TankScript : MonoBehaviour
         if (collision.CompareTag("tag_projectile"))
         {
             Destroy(collision.gameObject);//Destroy the projectile
-            TakeDamage();
+            OnTakeDamage();
         }
     }
 }
