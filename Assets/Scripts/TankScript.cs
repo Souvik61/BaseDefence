@@ -18,6 +18,8 @@ public class TankScript : MonoBehaviour
     [SerializeField]
     protected CommonAssetSO commonAsset;
     protected AudioSource audioSrc;
+    [SerializeField]
+    SpriteRenderer[] spriteRenderers;//Used to change to broken textures when tank is destroyed;
 
     //private
     Vector2 nextPosition;
@@ -138,6 +140,13 @@ public class TankScript : MonoBehaviour
             Instantiate(commonAsset.SmokePrefab, transform.position, Quaternion.identity, transform);
             selfCollider.enabled = false;
             isDestroyed = true;
+
+            //Set broken textures
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+                spriteRenderers[i].sprite = tankProperty.destroyedSpriteArray[i];
+            }
+
             StartCoroutine(nameof(DissolveRoutine));
         }
     }
