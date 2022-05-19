@@ -115,7 +115,7 @@ public class TankScript : MonoBehaviour
     public HealthScript GetHealthScript()
     { return healthScript; }
 
-    void OnTakeDamage()
+    void OnTakeDamage(Vector2 collisionPoint)
     {
         healthScript.Decrement(25);
 
@@ -125,6 +125,10 @@ public class TankScript : MonoBehaviour
             if (!healthBar.barVisible)
             { StartCoroutine(nameof(HealthbarShowRoutine)); }
         }
+
+        //Add hit explosion
+        GameObject gm = Instantiate(commonAsset.TankHitPrefab, collisionPoint, Quaternion.identity);
+        Destroy(gm, 3);
     }
 
     void OnTankDestroyed()
@@ -172,7 +176,7 @@ public class TankScript : MonoBehaviour
 
     IEnumerator DissolveRoutine()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         float scale = transform.localScale.x;
         while (scale > 0.001f)
         {
@@ -188,7 +192,7 @@ public class TankScript : MonoBehaviour
         if (collision.CompareTag("tag_projectile"))
         {
             Destroy(collision.gameObject);//Destroy the projectile
-            OnTakeDamage();
+            OnTakeDamage(collision.transform.position);
         }
     }
 }

@@ -10,6 +10,9 @@ public class TankPropertiesSO : ScriptableObject
     public float shootDelay;
     public float shootDamage;
     public uint maxHealth;
+
+    //Destroyed state sprites
+    public Sprite[] destroyedSpriteArray;
 }
 
 

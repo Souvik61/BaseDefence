@@ -20,6 +20,7 @@ MonoBehaviour:
     type: 3}
   ProjectilePrefab: {fileID: 6472604771925686302, guid: 54f9315649e1b3244ad9553b99d087e5,
     type: 3}
+  TankHitPrefab: {fileID: 100014, guid: a57a6829db3568c4d9bdc37e9e63c017, type: 3}
   TANK_1: {fileID: 0}
   TANK_2: {fileID: 0}
   TANK_3: {fileID: 0}

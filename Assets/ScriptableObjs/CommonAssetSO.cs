@@ -7,6 +7,7 @@ public class CommonAssetSO : ScriptableObject
     public GameObject WhiteFlagPrefab;
     public GameObject MuzzleFlashPrefab;
     public GameObject ProjectilePrefab;
+    public GameObject TankHitPrefab;
 
     //Tank prefabs
     public GameObject TANK_1;
