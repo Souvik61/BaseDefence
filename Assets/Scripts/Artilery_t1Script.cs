@@ -9,6 +9,8 @@ public class Artilery_t1Script : MonoBehaviour
     public float muzzRotateSpeed;
     [SerializeField]
     Transform[] firePoints;
+    [SerializeField]
+    ProgressBarScript healthBar;//Health bar
     public Transform muzzleTransform, bodyTransform;
     [SerializeField]
     FOVObsCheckScript obsCheckScript;
@@ -126,7 +128,7 @@ public class Artilery_t1Script : MonoBehaviour
     void OnTakeDamage(Vector2 collPoint)
     {
         healthScript.Decrement(25);
-        /*
+        
         //Decrease HP bar
         if (healthBar != null)
         {
@@ -134,7 +136,7 @@ public class Artilery_t1Script : MonoBehaviour
             if (!healthBar.barVisible)
             { StartCoroutine(nameof(HealthbarShowRoutine)); }
         }
-        */
+        
         //Add hit explosion
         GameObject gm = Instantiate(commonAsset.TankHitPrefab, collPoint, Quaternion.identity);
         Destroy(gm, 3);
@@ -245,6 +247,13 @@ public class Artilery_t1Script : MonoBehaviour
 
         isShooting = false;
 
+    }
+
+    IEnumerator HealthbarShowRoutine()
+    {
+        healthBar.barVisible = true;
+        yield return new WaitForSeconds(2.5f);
+        healthBar.barVisible = false;
     }
 
     IEnumerator DissolveRoutine()
