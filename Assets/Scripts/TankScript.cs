@@ -120,7 +120,7 @@ public class TankScript : MonoBehaviour
     void OnTakeDamage(Vector2 collisionPoint)
     {
         healthScript.Decrement(25);
-
+        //Decrease HP Bar
         if (healthBar != null)
         {
             healthBar.barProgress = healthScript.currentHP / (float)healthScript.maxHP;

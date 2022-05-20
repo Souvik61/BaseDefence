@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Artilery_t1Script : MonoBehaviour
 {
+    public ArtileryPropertiesSO artileryProperties;
     public float projectileSpeed;
-    public float shootDelay;
     public float muzzRotateSpeed;
     [SerializeField]
     Transform[] firePoints;
@@ -15,6 +15,8 @@ public class Artilery_t1Script : MonoBehaviour
     [SerializeField]
     CommonAssetSO commonAsset;
     AudioSource audioSrc;
+    [SerializeField]
+    SpriteRenderer[] spriteRenderers;//Used to change to broken textures when tank is destroyed
 
     public string currentStateName;
 
@@ -121,9 +123,21 @@ public class Artilery_t1Script : MonoBehaviour
         return healthScript;
     }
 
-    void TakeDamage()
+    void OnTakeDamage(Vector2 collPoint)
     {
         healthScript.Decrement(25);
+        /*
+        //Decrease HP bar
+        if (healthBar != null)
+        {
+            healthBar.barProgress = healthScript.currentHP / (float)healthScript.maxHP;
+            if (!healthBar.barVisible)
+            { StartCoroutine(nameof(HealthbarShowRoutine)); }
+        }
+        */
+        //Add hit explosion
+        GameObject gm = Instantiate(commonAsset.TankHitPrefab, collPoint, Quaternion.identity);
+        Destroy(gm, 3);
     }
 
     void OnArtDestroyed()
@@ -133,6 +147,13 @@ public class Artilery_t1Script : MonoBehaviour
             Instantiate(commonAsset.SmokePrefab, transform.position, Quaternion.identity, transform);
             selfCollider.enabled = false;
             isDestroyed = true;
+
+            //Set broken textures
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+                spriteRenderers[i].sprite = artileryProperties.destroyedSpriteArray[i];
+            }
+
             StartCoroutine(nameof(DissolveRoutine));
         }
     }
@@ -169,6 +190,14 @@ public class Artilery_t1Script : MonoBehaviour
     }
     */
 
+    /*
+    IEnumerator HealthbarShowRoutine()
+    {
+        healthBar.barVisible = true;
+        yield return new WaitForSeconds(2.5f);
+        healthBar.barVisible = false;
+    }
+    */
     IEnumerator ShootRoutine()
     {
         isShooting = true;
@@ -212,7 +241,7 @@ public class Artilery_t1Script : MonoBehaviour
             audioSrc.Play();
         }
 
-        yield return new WaitForSeconds(shootDelay + Random.Range(-1f, 1f));
+        yield return new WaitForSeconds(artileryProperties.shootDelay + Random.Range(-1f, 1f));
 
         isShooting = false;
 
@@ -220,7 +249,7 @@ public class Artilery_t1Script : MonoBehaviour
 
     IEnumerator DissolveRoutine()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         float scale = transform.localScale.x;
         while (scale > 0.001f)
         {
@@ -236,7 +265,7 @@ public class Artilery_t1Script : MonoBehaviour
         if (collision.CompareTag("tag_projectile"))
         {
             Destroy(collision.gameObject);//Destroy the projectile
-            TakeDamage();
+            OnTakeDamage(collision.transform.position);
         }
     }
 }

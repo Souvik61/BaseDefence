@@ -5,10 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(HealthScript))]
 public class ArtileryScript : MonoBehaviour
 {
+    public ArtileryPropertiesSO artileryProperties;
     public float projectileSpeed;
-    public float shootDelay;
     [SerializeField]
     Transform firePoint;
+    [SerializeField]
+    ProgressBarScript healthBar;//Health bar
     [SerializeField]
     FOVObsCheckScript obsCheckScript;
     [SerializeField]
@@ -102,9 +104,21 @@ public class ArtileryScript : MonoBehaviour
         return healthScript;  
     }
 
-    void TakeDamage()
-    { 
+    void OnTakeDamage(Vector2 collPoint)
+    {
         healthScript.Decrement(25);
+        
+        //Decrease HP bar
+        if (healthBar != null)
+        {
+            healthBar.barProgress = healthScript.currentHP / (float)healthScript.maxHP;
+            if (!healthBar.barVisible)
+            { StartCoroutine(nameof(HealthbarShowRoutine)); }
+        }
+        
+        //Add hit explosion
+        GameObject gm = Instantiate(commonAsset.TankHitPrefab, collPoint, Quaternion.identity);
+        Destroy(gm, 3);
     }
 
     void OnArtDestroyed()
@@ -118,7 +132,7 @@ public class ArtileryScript : MonoBehaviour
             //Set broken textures
             for (int i = 0; i < spriteRenderers.Length; i++)
             {
-               // spriteRenderers[i].sprite = tankProperty.destroyedSpriteArray[i];
+                spriteRenderers[i].sprite = artileryProperties.destroyedSpriteArray[i];
             }
 
             StartCoroutine(nameof(DissolveRoutine));
@@ -144,7 +158,7 @@ public class ArtileryScript : MonoBehaviour
         //play shoot audio
         audioSrc.Play();
         //wait before shooting again
-        yield return new WaitForSeconds(shootDelay + Random.Range(-1f, 1f));
+        yield return new WaitForSeconds(artileryProperties.shootDelay + Random.Range(-1f, 1f));
 
         isShooting = false;
 
@@ -163,12 +177,19 @@ public class ArtileryScript : MonoBehaviour
         Destroy(gameObject);//Self destroy 0 secs.
     }
 
+    IEnumerator HealthbarShowRoutine()
+    {
+        healthBar.barVisible = true;
+        yield return new WaitForSeconds(2.5f);
+        healthBar.barVisible = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("tag_projectile"))
         {
             Destroy(collision.gameObject);//Destroy the projectile
-            TakeDamage();
+            OnTakeDamage(collision.transform.position);
         }
     }
 

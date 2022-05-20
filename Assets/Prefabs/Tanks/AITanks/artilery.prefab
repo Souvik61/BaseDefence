@@ -431,11 +431,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b274d17c99ed74fadf2e2937b028ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  artileryProperties: {fileID: 11400000, guid: 186fdd3d49e97ee4c89c40f698d40ba3, type: 2}
   projectileSpeed: 20
-  shootDelay: 2
   firePoint: {fileID: 8864086495120851698}
   obsCheckScript: {fileID: 8864086496547446281}
   commonAsset: {fileID: 11400000, guid: f549b273dc8d0ae49955f8107ae97914, type: 2}
+  spriteRenderers:
+  - {fileID: 1425983420921356158}
+  - {fileID: 1425983420390128345}
+  - {fileID: 1425983420459385286}
   currentStateName: 
   enemiesInSight: []
 --- !u!1 &8864086495120851697
