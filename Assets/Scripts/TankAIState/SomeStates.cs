@@ -405,7 +405,7 @@ namespace tank_ai_states2
         Vector2 dirToTarget;
         ArmyBaseScript targetBase;
 
-        public float nextWayPointDistance = 1;
+        public float nextWayPointDistance = 5;
         
         Path path;
         int currWaypoint = 0;
