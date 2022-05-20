@@ -67,8 +67,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -201594081
-  m_SortingLayer: 0
+  m_SortingLayerID: 2001096189
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 3df148b580835454388c760910e62af0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148,8 +148,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -201594081
-  m_SortingLayer: 0
+  m_SortingLayerID: 2001096189
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: ac369805eb44a434daf46970948d428a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -231,8 +231,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -201594081
-  m_SortingLayer: 0
+  m_SortingLayerID: 2001096189
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9394c0117498ee34d9aa528322095010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -431,11 +431,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b274d17c99ed74fadf2e2937b028ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 0
-  shootDelay: 0
-  firePoint: {fileID: 0}
-  obsCheckScript: {fileID: 0}
-  commonAsset: {fileID: 0}
+  projectileSpeed: 20
+  shootDelay: 2
+  firePoint: {fileID: 8864086495120851698}
+  obsCheckScript: {fileID: 8864086496547446281}
+  commonAsset: {fileID: 11400000, guid: f549b273dc8d0ae49955f8107ae97914, type: 2}
   currentStateName: 
   enemiesInSight: []
 --- !u!1 &8864086495120851697
@@ -511,11 +511,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8342514b202728142af66df2e0d25a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  angle: 0
-  collisionChecksEverySec: 0
+  radius: 13
+  angle: 8.2
+  collisionChecksEverySec: 2
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   isObstaclesInRange: 0
   obstaclesInRange: []

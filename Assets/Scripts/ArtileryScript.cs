@@ -14,6 +14,10 @@ public class ArtileryScript : MonoBehaviour
     [SerializeField]
     CommonAssetSO commonAsset;
     AudioSource audioSrc;
+    [SerializeField]
+    SpriteRenderer[] spriteRenderers;//Used to change to broken textures when tank is destroyed
+
+
 
     public string currentStateName;
 
@@ -110,6 +114,13 @@ public class ArtileryScript : MonoBehaviour
             Instantiate(commonAsset.SmokePrefab, transform.position, Quaternion.identity, transform);
             selfCollider.enabled = false;
             isDestroyed = true;
+
+            //Set broken textures
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+               // spriteRenderers[i].sprite = tankProperty.destroyedSpriteArray[i];
+            }
+
             StartCoroutine(nameof(DissolveRoutine));
         }
     }

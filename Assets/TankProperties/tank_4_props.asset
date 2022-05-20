@@ -19,3 +19,6 @@ MonoBehaviour:
   shootDelay: 2
   shootDamage: 10
   maxHealth: 100
+  destroyedSpriteArray:
+  - {fileID: 21300000, guid: 85c3ef5f631ce9643a782b338d40145d, type: 3}
+  - {fileID: 21300000, guid: d6ab0d89cdc240542a16b950ffa23e3b, type: 3}
