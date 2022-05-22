@@ -5,40 +5,48 @@ using UnityEngine;
 namespace cmplx_statemachine
 {
 
-    public abstract class StateMachine
+    public abstract class CStateMachine : MonoBehaviour
     {
-        protected State currentState;
-        protected string currentStateName;
+        protected BaseState currentState;
+        public string currentStateName;
 
         /// <summary>
         /// Dictionary of all States permitted by this  state machine.
         /// </summary>
-        protected Dictionary<string, State> stateDict;
+        protected Dictionary<string, cmplx_statemachine.BaseState> stateDict;
 
 
-        public StateMachine()
+        bool initialized;
+
+        public CStateMachine()
         {
-            stateDict = new Dictionary<string, State>();
+            stateDict = new Dictionary<string, BaseState>();
         }
 
+        /// <summary>
+        /// State machine starts only after we call this method
+        /// </summary>
+        /// <param name="stateName"></param>
         public void Initialize(string stateName)
         {
             if (stateDict.ContainsKey(stateName))
             {
                 currentStateName = stateName;
                 currentState = stateDict[stateName];
+                initialized = true;
                 currentState.OnEnter();
             }
         }
 
-        public void Start()
+        protected virtual void Start()
         {
-
+            //currentState.OnEnter();
         }
 
-        public void Update()
+        protected virtual void Update()
         {
-            currentState.OnUpdate();
+            if (initialized)
+                currentState.OnUpdate();
         }
 
         public void Exit()
@@ -47,7 +55,7 @@ namespace cmplx_statemachine
         }
 
 
-        public void ChangeState(State newState)//Change state
+        public void ChangeState(BaseState newState)//Change state
         {
             if (currentState.GetType() != newState.GetType())
             {
@@ -61,10 +69,7 @@ namespace cmplx_statemachine
         {
             if (stateDict.ContainsKey(stateName) && stateName != currentStateName)
             {
-                currentState.OnExit();
-                currentStateName = stateName;
-                currentState = stateDict[stateName];
-                currentState.OnEnter();
+                ChangeState(stateDict[stateName]);
             }
         }
 

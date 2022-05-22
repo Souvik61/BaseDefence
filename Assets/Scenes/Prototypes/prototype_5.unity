@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 109657433}
   - component: {fileID: 109657432}
   - component: {fileID: 109657431}
+  - component: {fileID: 109657439}
   m_Layer: 8
   m_Name: Tank_1 AI
   m_TagString: tag_opponent1
@@ -236,7 +237,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 109657430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9166db8802ff3cf43b0a19f84a96cc32, type: 3}
+  m_Script: {fileID: 11500000, guid: f2214612b45243f43bbc13b9c00f04fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetBase: {fileID: 280781180}
@@ -465,6 +466,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &109657439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109657430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af6f301b3084f104fad84fa8d8cf9a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStateName: 
+  tankAIScript: {fileID: 109657431}
 --- !u!1 &152603461
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &152603462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,7 +691,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 1
-  m_Mass: 1.8934815
+  m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -2202,7 +2217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1863092954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2391,7 +2406,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 1
-  m_Mass: 1.8934815
+  m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0

@@ -7,9 +7,9 @@ namespace cmplx_statemachine
     public abstract class BaseState
     {
         public string stateName;
-        public cmplx_statemachine.StateMachine stateMachineInstance;
+        public cmplx_statemachine.CStateMachine stateMachineInstance;
 
-        public BaseState(StateMachine stateMachine)
+        public BaseState(CStateMachine stateMachine)
         {
             stateMachineInstance = stateMachine;
         }
