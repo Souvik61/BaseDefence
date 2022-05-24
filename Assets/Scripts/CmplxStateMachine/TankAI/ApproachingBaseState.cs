@@ -17,7 +17,7 @@ namespace cmplx_statemachine
 
         Transform pathStartPoint;
 
-        public float nextWayPointDistance = 5;
+        public float nextWayPointDistance = 0.7f;
 
         //Path seeker settings
         Path path;
@@ -47,7 +47,6 @@ namespace cmplx_statemachine
             timer = pathUpdateRate;
 
             UpdatePath();
-
         }
 
         public override void OnUpdate()
@@ -60,8 +59,10 @@ namespace cmplx_statemachine
             }
             timer -= Time.deltaTime;
 
-
             DriveTank();
+
+            //HelperScript.DrawPointDebug(path.vectorPath[currWaypoint], Color.blue);
+
         }
 
         public override void OnExit()
@@ -72,22 +73,34 @@ namespace cmplx_statemachine
         void UpdatePath()
         {
             if (seeker.IsDone())
-                seeker.StartPath(pathStartPoint.position, targetBase.transform.position, OnPathComplete);
+                seeker.StartPath((Vector2)selfTransform.position + tankAIScript.compass.startPoint, targetBase.transform.position, OnPathComplete);
         }
 
         void OnPathComplete(Path p)
         {
+            path = null;
             if (!p.error)
             {
                 path = p;
                 currWaypoint = 0;
-            }
 
+                //Debug draw waypoints
+                for (int i = 0; i < path.vectorPath.Count; i++)
+                {
+                    HelperScript.DrawPointDebug(path.vectorPath[i], Color.red, 1);
+                }
+            }
+            if (p.error)
+            {
+                Debug.Log("path blocked");
+            
+            }
         }
 
+        /*
         void DriveTank()
         {
-            if (targetBase != null && path != null)//Check path and target not equal to null
+            if (targetBase != null && path != null && !hasReachedEndOfPath)//Check path and target not equal to null
             {
                 //Check has reached end
                 if (currWaypoint >= path.vectorPath.Count)
@@ -101,29 +114,104 @@ namespace cmplx_statemachine
 
                 }
 
-
                 Vector2 dirToWP = (path.vectorPath[currWaypoint] - selfTransform.position).normalized;
-
+                //Draw debug arrow
                 HelperScript.DrawArrowDebug(selfTransform.position, selfTransform.position + (Vector3)dirToWP, Color.red);
+                //Draw current waypoint
+                HelperScript.DrawPointDebug(path.vectorPath[currWaypoint], Color.blue);
 
                 float dist = Vector2.Distance(selfTransform.position, path.vectorPath[currWaypoint]);
+
+
+                TryFaceTowardsDirection(dirToWP);
+
+                if (IsFacingDirection(dirToWP, 5))
+                {
+                    //tankController.Move(1);
+                }
 
                 if (dist < nextWayPointDistance)
                 {
                     currWaypoint++;
                 }
 
-                TryFaceTowardsDirection(dirToWP);
-
-                tankController.Move(1);
-
             }
+        }
+        */
+
+        void DriveTank()
+        {
+            if (path == null)
+            {
+                return;
+            }
+            // Check in a loop if we are close enough to the current waypoint to switch to the next one.
+            // We do this in a loop because many waypoints might be close to each other and we may reach
+            // several of them in the same frame.
+            hasReachedEndOfPath = false;
+            // The distance to the next waypoint in the path
+            float distanceToWaypoint;
+            while (true)
+            {
+                // If you want maximum performance you can check the squared distance instead to get rid of a
+                // square root calculation. But that is outside the scope of this tutorial.
+                distanceToWaypoint = Vector2.Distance(selfTransform.position, path.vectorPath[currWaypoint]);
+                if (distanceToWaypoint < nextWayPointDistance)
+                {
+                    // Check if there is another waypoint or if we have reached the end of the path
+                    if (currWaypoint + 1 < path.vectorPath.Count)
+                    {
+                        currWaypoint++;
+                    }
+                    else
+                    {
+                        // Set a status variable to indicate that the agent has reached the end of the path.
+                        // You can use this to trigger some special code if your game requires that.
+                        hasReachedEndOfPath = true;
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            // Direction to the next waypoint
+            // Normalize it so that it has a length of 1 world unit
+            Vector3 dir = (path.vectorPath[currWaypoint] - selfTransform.position).normalized;
+            float angle = Vector2.Angle(selfTransform.forward, dir);
+            HelperScript.DrawArrowDebug(selfTransform.position, selfTransform.position + dir, Color.yellow);
+
+            TryFaceTowardsDirection(dir);
+
+            if (angle < 20)
+            {
+
+                if (IsFacingDirection(dir, 7.5f))
+                {
+                    tankController.Move(1);
+                }
+            }
+
+
+
         }
 
         bool IsFacingDirection(Vector2 dir)
         {
             float angle = Vector2.SignedAngle(dir, selfTransform.up);
             if (Mathf.Abs(angle) > 7)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        bool IsFacingDirection(Vector2 dir,float tolerance)
+        {
+            float angle = Vector2.SignedAngle(dir, selfTransform.up);
+            if (Mathf.Abs(angle) < tolerance)
             {
                 return true;
             }

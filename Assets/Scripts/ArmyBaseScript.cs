@@ -54,7 +54,8 @@ public class ArmyBaseScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        progressBar.barProgress = selfHealth.currentHP;
+        if (progressBar)
+            progressBar.barProgress = selfHealth.currentHP;
 
         StartCoroutine(nameof(TroopsDeployRoutine));
     }

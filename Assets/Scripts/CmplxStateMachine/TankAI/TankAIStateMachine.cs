@@ -6,6 +6,7 @@ namespace cmplx_statemachine
 {
     public class TankAIStateMachine : CStateMachine
     {
+
         public TankAIScript3 tankAIScript;
 
         private void OnEnable()

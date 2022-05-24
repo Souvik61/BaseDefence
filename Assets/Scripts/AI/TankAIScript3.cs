@@ -17,6 +17,8 @@ public class TankAIScript3 : MonoBehaviour
 
     TankScript tankController;
 
+    public Compass compass;
+
     private void OnEnable()
     {
         AllEventsScript.OnGameOver += OnGameOver;
