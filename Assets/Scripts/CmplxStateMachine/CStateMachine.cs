@@ -61,6 +61,7 @@ namespace cmplx_statemachine
             {
                 currentState.OnExit();
                 currentState = newState;
+                currentStateName = newState.stateName;
                 newState.OnEnter();
             }
         }
@@ -70,7 +71,9 @@ namespace cmplx_statemachine
             if (stateDict.ContainsKey(stateName) && stateName != currentStateName)
             {
                 ChangeState(stateDict[stateName]);
+                return;
             }
+            Debug.Log("State does not exists");
         }
 
         public string GetCurrentStateName()

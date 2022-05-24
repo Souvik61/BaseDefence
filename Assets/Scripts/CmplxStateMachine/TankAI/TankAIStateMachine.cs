@@ -22,18 +22,18 @@ namespace cmplx_statemachine
         private void Awake()
         {
             stateDict.Add("APPR_BASE", new ApproachingBaseState(this, tankAIScript));
+            stateDict.Add("ATTK_ENEM", new AttackingEnemyState(this, tankAIScript));
+            stateDict.Add("REAC_BASE", new ReachedBaseState(this, tankAIScript));
         }
 
         protected override void Start()
         {
             base.Start();
-
         }
 
         protected override void Update()
         {
             base.Update();
-
         }
 
     }

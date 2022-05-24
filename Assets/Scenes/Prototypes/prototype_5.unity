@@ -169,7 +169,7 @@ MonoBehaviour:
   collisionChecksEverySec: 10
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   isObstaclesInRange: 0
   obstaclesInRange: []
 --- !u!1 &109657430
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   currentHP: 0
-  godMode: 0
+  godMode: 1
 --- !u!82 &109657435
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1410,7 +1410,7 @@ MonoBehaviour:
   collisionChecksEverySec: 10
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   isObstaclesInRange: 0
   obstaclesInRange: []
 --- !u!1 &506754194
@@ -1530,7 +1530,7 @@ MonoBehaviour:
   collisionChecksEverySec: 10
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   isObstaclesInRange: 0
   obstaclesInRange: []
 --- !u!4 &572343624
@@ -2035,7 +2035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &671245210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,7 +2290,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 1
-  m_Mass: 1.8934815
+  m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -2709,7 +2709,7 @@ MonoBehaviour:
   collisionChecksEverySec: 10
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   isObstaclesInRange: 0
   obstaclesInRange: []
 --- !u!4 &904034488
@@ -2835,7 +2835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &973203471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3090,7 +3090,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 1
-  m_Mass: 1.8934815
+  m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -3409,7 +3409,7 @@ MonoBehaviour:
   collisionChecksEverySec: 10
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   isObstaclesInRange: 0
   obstaclesInRange: []
 --- !u!4 &1068647378
@@ -5480,7 +5480,7 @@ MonoBehaviour:
   collisionChecksEverySec: 10
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   isObstaclesInRange: 0
   obstaclesInRange: []
 --- !u!1 &2033137837

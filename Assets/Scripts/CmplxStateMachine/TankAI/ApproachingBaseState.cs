@@ -61,13 +61,12 @@ namespace cmplx_statemachine
 
             DriveTank();
 
+            TryFaceMuzzleTowardsDirection(selfTransform.up);
+
+            CheckForTransition();
+
             //HelperScript.DrawPointDebug(path.vectorPath[currWaypoint], Color.blue);
 
-        }
-
-        public override void OnExit()
-        {
-           
         }
 
         void UpdatePath()
@@ -145,9 +144,6 @@ namespace cmplx_statemachine
             {
                 return;
             }
-            // Check in a loop if we are close enough to the current waypoint to switch to the next one.
-            // We do this in a loop because many waypoints might be close to each other and we may reach
-            // several of them in the same frame.
             hasReachedEndOfPath = false;
             // The distance to the next waypoint in the path
             float distanceToWaypoint;
@@ -176,7 +172,6 @@ namespace cmplx_statemachine
                     break;
                 }
             }
-
             // Direction to the next waypoint
             // Normalize it so that it has a length of 1 world unit
             Vector3 dir = (path.vectorPath[currWaypoint] - selfTransform.position).normalized;
@@ -195,6 +190,22 @@ namespace cmplx_statemachine
             }
 
 
+
+        }
+
+        void CheckForTransition()
+        {
+            if (tankAIScript.enemiesInSight.Count > 0)
+            {
+                stateMachineInstance.ChangeState("ATTK_ENEM");
+            }
+
+            float distance = Vector2.Distance(selfTransform.position, targetBase.transform.position);
+
+            if (distance < targetDistanceTolerance)
+            { 
+                stateMachineInstance.ChangeState("REAC_BASE");
+            }
 
         }
 
@@ -229,9 +240,15 @@ namespace cmplx_statemachine
             }
         }
 
-        public override void OnPhysicsUpdate()
+        void TryFaceMuzzleTowardsDirection(Vector2 dir)
         {
-            
+            float angle = Vector2.SignedAngle(selfTransform.up, tankController.muzzleTransform.up);
+            if (Mathf.Abs(angle) > 2)
+            {
+                if (angle > 0)
+                { tankController.MuzzleRotate(1); }
+                else { tankController.MuzzleRotate(-1); }
+            }
         }
     }
 }

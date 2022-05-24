@@ -18,8 +18,8 @@ namespace cmplx_statemachine
 
         public abstract void OnUpdate();
 
-        public abstract void OnPhysicsUpdate();
+        public virtual void OnPhysicsUpdate() { }
 
-        public abstract void OnExit();
+        public virtual void OnExit() { }
     }
 }
