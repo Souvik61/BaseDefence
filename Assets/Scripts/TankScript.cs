@@ -14,21 +14,21 @@ public class TankScript : MonoBehaviour
     [SerializeField]
     Transform firePoint;
     [SerializeField]
-    ProgressBarScript healthBar;//Health bar
+    protected ProgressBarScript healthBar;//Health bar
     [SerializeField]
     protected CommonAssetSO commonAsset;
     protected AudioSource audioSrc;
     [SerializeField]
-    SpriteRenderer[] spriteRenderers;//Used to change to broken textures when tank is destroyed;
+    protected SpriteRenderer[] spriteRenderers;//Used to change to broken textures when tank is destroyed;
 
     //private
-    Vector2 nextPosition;
-    float nextRotation;
-    HealthScript healthScript;
+    protected Vector2 nextPosition;
+    protected float nextRotation;
+    protected HealthScript healthScript;
     protected bool isShooting;
-    Collider2D selfCollider;
-    Rigidbody2D rBody;
-    bool isBeingAttacked;
+    protected Collider2D selfCollider;
+    protected Rigidbody2D rBody;
+    protected bool isBeingAttacked;
 
     private void OnEnable()
     {
@@ -55,13 +55,13 @@ public class TankScript : MonoBehaviour
 
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         if (healthBar != null)
             healthBar.barVisible = false;
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         rBody.MovePosition(nextPosition);
         rBody.MoveRotation(nextRotation);
@@ -70,7 +70,7 @@ public class TankScript : MonoBehaviour
     /// <summary>
     /// forward 1 -> move forward, forward -1 -> movebackward,turn-> Rotate clockwise if -1 and counterclockwise if 1
     /// </summary>
-    public void Move(int forward)
+    public virtual void Move(int forward)
     {
         if (!isDestroyed)
         {
@@ -79,7 +79,7 @@ public class TankScript : MonoBehaviour
         }
     }
 
-    public void Rotate(int turn)
+    public virtual void Rotate(int turn)
     {
         if (!isDestroyed)
             nextRotation = rBody.rotation + turn * 0.01f * tankProperty.rotateSpeed;
@@ -117,7 +117,7 @@ public class TankScript : MonoBehaviour
     public HealthScript GetHealthScript()
     { return healthScript; }
 
-    void OnTakeDamage(Vector2 collisionPoint)
+    protected void OnTakeDamage(Vector2 collisionPoint)
     {
         healthScript.Decrement(25);
         //Decrease HP Bar
@@ -196,7 +196,7 @@ public class TankScript : MonoBehaviour
         Destroy(gameObject);//Self destroy 0 secs.
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("tag_projectile"))
         {
@@ -204,6 +204,7 @@ public class TankScript : MonoBehaviour
             OnTakeDamage(collision.transform.position);
         }
     }
+
 }
 
 

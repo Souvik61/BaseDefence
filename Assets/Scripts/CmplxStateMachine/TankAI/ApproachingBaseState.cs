@@ -29,6 +29,8 @@ namespace cmplx_statemachine
         float timer;
         float pathUpdateRate;//path update every n secs.
 
+        Vector2 lastTimeCheckedPosition;
+
         public ApproachingBaseState(TankAIStateMachine stM,TankAIScript3 tankAIScript) : base(stM)
         {
             stateName = "APPR_BASE";
@@ -42,6 +44,7 @@ namespace cmplx_statemachine
 
         public override void OnEnter()
         {
+            lastTimeCheckedPosition = selfTransform.position;
             seeker = tankAIScript.GetComponent<Seeker>();
 
             timer = pathUpdateRate;
@@ -54,7 +57,7 @@ namespace cmplx_statemachine
             //Update path
             if (timer <= 0)
             {
-                UpdatePath();
+                TryUpdatePath();
                 timer = pathUpdateRate;
             }
             timer -= Time.deltaTime;
@@ -69,9 +72,14 @@ namespace cmplx_statemachine
 
         }
 
+        void TryUpdatePath()
+        {
+            if (CheckPositionChangedSinceLast())
+                UpdatePath();
+        }
         void UpdatePath()
         {
-            if (seeker.IsDone())
+            if (seeker.IsDone())//If position not changed since last dont update
                 seeker.StartPath((Vector2)selfTransform.position + tankAIScript.compass.startPoint, targetBase.transform.position, OnPathComplete);
         }
 
@@ -250,5 +258,14 @@ namespace cmplx_statemachine
                 else { tankController.MuzzleRotate(-1); }
             }
         }
+
+        bool CheckPositionChangedSinceLast() 
+        {
+            float delta = Vector2.Distance(selfTransform.position, lastTimeCheckedPosition);
+            lastTimeCheckedPosition = selfTransform.position;
+            return delta > 1.5f ? true : false;
+
+        }
+
     }
 }
