@@ -31,13 +31,13 @@ public class GameOverseerScript : MonoBehaviour
 
         AllEventsScript.OnGameOver?.Invoke();//Invoke on game over event
 
-        //Display game over panel
-        Transform gameWinTr = gameOverPanel.transform.Find("GameWinText");
-        gameWinTr.GetComponent<TMP_Text>().text = "Base " + Invert(destoyedBaseId) + " wins !";
-
-        gameOverPanel.SetActive(true);
-
-
+        if (gameOverPanel)//If game over panel available
+        {
+            //Display game over panel
+            Transform gameWinTr = gameOverPanel.transform.Find("GameWinText");
+            gameWinTr.GetComponent<TMP_Text>().text = "Base " + Invert(destoyedBaseId) + " wins !";
+            gameOverPanel.SetActive(true);
+        }
 
         currentGameState = GAMESTATE.OVER;
     }
@@ -50,8 +50,7 @@ public class GameOverseerScript : MonoBehaviour
 
     int Invert(int input)
     {
-        if (input == 0) return 1;
-        return 0;
+        return input == 0 ? 1 : 0;
     }
 
 }
