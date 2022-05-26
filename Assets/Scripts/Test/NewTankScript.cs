@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class NewTankScript : TankScript
 {
-    public float multiplier;
+    public float moveMultiplier;
+    public float rotateMultiplier;
 
     Vector2 forceBuff;
+    float torqueBuff;
     bool hasToMove;
 
     protected override void Start()
@@ -17,11 +19,11 @@ public class NewTankScript : TankScript
 
     protected override void FixedUpdate()
     {
-        //rBody.MovePosition(nextPosition);
-        //rBody.MoveRotation(nextRotation);
         rBody.AddForce(forceBuff, ForceMode2D.Impulse);
+        rBody.AddTorque(torqueBuff);
 
         forceBuff.Set(0, 0);
+        torqueBuff = 0;
     }
 
     /// <summary>
@@ -32,15 +34,16 @@ public class NewTankScript : TankScript
         if (!isDestroyed)
         {
             //rBody.MovePosition(transform.position+ (forward * driveSpeed * transform.up));
-            forceBuff = (forward * 0.01f * tankProperty.driveSpeed * transform.up);
+            forceBuff += (Vector2)(forward * moveMultiplier * tankProperty.driveSpeed * transform.up);
             //rBody.AddForce(force * multiplier, ForceMode2D.Impulse);
         }
     }
 
     public override void Rotate(int turn)
     {
-       // if (!isDestroyed)
-            
+        if (!isDestroyed)
+            torqueBuff += turn * tankProperty.rotateSpeed * rotateMultiplier;
+
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)
