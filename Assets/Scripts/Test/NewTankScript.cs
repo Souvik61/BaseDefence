@@ -27,7 +27,7 @@ public class NewTankScript : TankScript
     }
 
     /// <summary>
-    /// forward 1 -> move forward, forward -1 -> movebackward,turn-> Rotate clockwise if -1 and counterclockwise if 1
+    /// forward 1 -> move forward, forward -1 -> movebackward
     /// </summary>
     public override void Move(int forward)
     {

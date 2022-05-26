@@ -60,8 +60,7 @@ namespace cmplx_statemachine
         {
             ShowWayPoints();
             FollowWayPoints();
-
-
+            AvoidLocalObstacles();
         }
 
         //----------------------
@@ -132,8 +131,24 @@ namespace cmplx_statemachine
             HelperScript.DrawArrowDebug(selfTransform.position, selfTransform.position + dir, Color.blue);
 
 
-            tankController.Move(1);
-           
+            if (IsFacingDirection(dir, 7))
+            { tankController.Move(1); }
+
+            TryFaceTowardsDirection(dir);
+
+
+        }
+
+        void AvoidLocalObstacles()
+        {
+            sensorArray = selfTransform.GetComponentInChildren<SensorArrayScript>();
+
+            SensorArrayScript.CollisionStatus collisionStatus = sensorArray.CheckCollisionArray();
+
+            if (collisionStatus.isBlocked)
+            {
+                tankController.Move(-1);
+            }
 
         }
 
@@ -181,7 +196,7 @@ namespace cmplx_statemachine
 
         bool IsFacingDirection(Vector2 dir, float tolerance)
         {
-            float angle = Vector2.SignedAngle(dir, selfTransform.up);
+            float angle = Vector2.Angle(dir, selfTransform.up);
             if (Mathf.Abs(angle) < tolerance)
             {
                 return true;
@@ -224,9 +239,11 @@ namespace cmplx_statemachine
         //--------------------------
         void ShowWayPoints()
         {
-            for (int i = 0; i < path.vectorPath.Count; i++)
-            {
-                HelperScript.DrawPointDebug(path.vectorPath[i], Color.red);
+            if (path!= null) {
+                for (int i = 0; i < path.vectorPath.Count; i++)
+                {
+                    HelperScript.DrawPointDebug(path.vectorPath[i], Color.red);
+                }
             }
         
         }

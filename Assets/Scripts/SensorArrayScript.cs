@@ -36,7 +36,7 @@ public class SensorArrayScript : MonoBehaviour
     private void Update()
     {
        // DrawRays();
-       // CheckCollisionArray();
+        CheckCollisionArray();
     }
 
     private void DrawRays()
@@ -59,9 +59,9 @@ public class SensorArrayScript : MonoBehaviour
     public CollisionStatus CheckCollisionArray()
     {
         CollisionStatus status = new CollisionStatus();
-        Vector2 A = transform.up * rayDistance;
-        Vector2 RDir = Quaternion.AngleAxis(-rayAngle, Vector3.forward) * transform.up * rayDistance;
-        Vector2 LDir = Quaternion.AngleAxis(rayAngle, Vector3.forward) * transform.up * rayDistance;
+        Vector2 A = transform.up;
+        Vector2 RDir = Quaternion.AngleAxis(-rayAngle, Vector3.forward) * transform.up;
+        Vector2 LDir = Quaternion.AngleAxis(rayAngle, Vector3.forward) * transform.up;
 
         RaycastHit2D hit;
 
@@ -92,7 +92,7 @@ public class SensorArrayScript : MonoBehaviour
         //Angled raycasts
 
         //Left Angled raycast
-        hit = Physics2D.Raycast(rSensorStartPos.position, LDir, rayDistance,collLayers);
+        hit = Physics2D.Raycast(lSensorStartPos.position, LDir, rayDistance,collLayers);
         if (hit.collider != null)
         {
             status.LARay = true;
@@ -100,7 +100,7 @@ public class SensorArrayScript : MonoBehaviour
         }
 
         //Right Angled raycast
-        hit = Physics2D.Raycast(lSensorStartPos.position, RDir, rayDistance, collLayers);
+        hit = Physics2D.Raycast(rSensorStartPos.position, RDir, rayDistance, collLayers);
         if (hit.collider != null)
         {
             status.RARay = true;
