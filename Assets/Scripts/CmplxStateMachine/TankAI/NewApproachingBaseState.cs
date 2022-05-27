@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Pathfinding;
 
 namespace cmplx_statemachine
@@ -31,6 +32,8 @@ namespace cmplx_statemachine
 
         SensorArrayScript sensorArray;
 
+        int[] controlBits = new int[2];//Used to control tank movement
+
         public NewApproachingBaseState(TankAIStateMachine stM, TankAIScript3 tankAIScript) : base(stM)
         {
             stateName = "APPR_BASE1";
@@ -58,9 +61,15 @@ namespace cmplx_statemachine
 
         public override void OnUpdate()
         {
+            Array.Clear(controlBits, 0, 2);//Clear control bits
+
             ShowWayPoints();
             FollowWayPoints();
             AvoidLocalObstacles();
+
+            //Apply controlls
+            tankController.Move(controlBits[0]);
+            tankController.Rotate(controlBits[1]);
         }
 
         //----------------------
@@ -126,15 +135,18 @@ namespace cmplx_statemachine
                 }
             }
 
+            //Incase we skip a waypoint while local avoidance
+            if (HasSkippedCurrentWayPoint()) currWaypoint++;
+
             Vector3 dir = (path.vectorPath[currWaypoint] - selfTransform.position).normalized;
 
             HelperScript.DrawArrowDebug(selfTransform.position, selfTransform.position + dir, Color.blue);
 
 
             if (IsFacingDirection(dir, 7))
-            { tankController.Move(1); }
+            { controlBits[0] = 1; }
 
-            TryFaceTowardsDirection(dir);
+            SetControlBitsTowardsDir(dir, controlBits);
 
 
         }
@@ -145,9 +157,39 @@ namespace cmplx_statemachine
 
             SensorArrayScript.CollisionStatus collisionStatus = sensorArray.CheckCollisionArray();
 
+          //Control turn
+
+            if (collisionStatus.LRay)//if lSide hit
+            {
+                    controlBits[1] = -1;
+            }
+
+            if (collisionStatus.RRay)//if rSide hit
+            {
+              
+                    controlBits[1] = 1;
+            }
+
+            if (collisionStatus.almostBlocked)
+            {
+                controlBits[1] = 0;
+            }
+
+            //Control forward movement
+
+            if (collisionStatus.LARay || collisionStatus.RARay)
+            {
+                controlBits[0] = 1;
+            }
+
+            if (collisionStatus.RRay || collisionStatus.LRay)
+            {
+                controlBits[0] = 0;
+            }
+
             if (collisionStatus.isBlocked)
             {
-                tankController.Move(-1);
+                controlBits[0] = 0;
             }
 
         }
@@ -210,8 +252,19 @@ namespace cmplx_statemachine
             if (Mathf.Abs(angle) > 7)
             {
                 if (angle > 0)
-                { tankController.Rotate(-1); }
-                else { tankController.Rotate(1); }
+                { controlBits[1] = -1; }
+                else { controlBits[1] = 1; }
+            }
+        }
+
+        void SetControlBitsTowardsDir(Vector2 dir,int [] cBits)
+        {
+            float angle = Vector2.SignedAngle(dir, selfTransform.up);
+            if (Mathf.Abs(angle) > 7)
+            {
+                if (angle > 0)
+                { cBits[1] = -1; }
+                else { cBits[1] = 1; }
             }
         }
 
@@ -232,6 +285,11 @@ namespace cmplx_statemachine
             lastTimeCheckedPosition = selfTransform.position;
             return (delta > 1.5f);
 
+        }
+
+        bool HasSkippedCurrentWayPoint()
+        {
+            return selfTransform.position.x > path.vectorPath[currWaypoint].x;
         }
 
         //--------------------------
