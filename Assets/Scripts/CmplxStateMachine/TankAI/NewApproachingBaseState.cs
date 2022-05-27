@@ -16,7 +16,7 @@ namespace cmplx_statemachine
 
         Transform pathStartPoint;
 
-        public float nextWayPointDistance = 0.7f;
+        public float nextWayPointDistance = 1.5f;
 
         //Path seeker settings
         Path path;
@@ -136,7 +136,8 @@ namespace cmplx_statemachine
             }
 
             //Incase we skip a waypoint while local avoidance
-            if (HasSkippedCurrentWayPoint()) currWaypoint++;
+            if (HasSkippedCurrentWayPointNew()) currWaypoint++;
+
 
             Vector3 dir = (path.vectorPath[currWaypoint] - selfTransform.position).normalized;
 
@@ -295,6 +296,22 @@ namespace cmplx_statemachine
         bool HasSkippedCurrentWayPoint()
         {
             return selfTransform.position.x > path.vectorPath[currWaypoint].x;
+        }
+
+        bool HasSkippedCurrentWayPointNew()
+        {
+            Vector2 dir = (path.vectorPath[currWaypoint + 1] - path.vectorPath[currWaypoint]).normalized;
+            float a = Vector2.Dot(dir, Vector2.right);
+
+            if (a > 0)//Facing right
+            {
+                return selfTransform.position.x > path.vectorPath[currWaypoint].x;
+            }
+            else if (a < 0)//Facing left
+            {
+                return selfTransform.position.x < path.vectorPath[currWaypoint].x;
+            }
+            return false;
         }
 
         //--------------------------
