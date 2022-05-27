@@ -177,17 +177,22 @@ namespace cmplx_statemachine
 
             //Control forward movement
 
-            if (collisionStatus.LARay || collisionStatus.RARay)
-            {
-                controlBits[0] = 1;
-            }
-
             if (collisionStatus.RRay || collisionStatus.LRay)
             {
                 controlBits[0] = 0;
             }
 
-            if (collisionStatus.isBlocked)
+            if (collisionStatus.LARay || collisionStatus.RARay)
+            {
+                controlBits[0] = 1;
+            }
+
+            if (collisionStatus.MRay && (collisionStatus.LRay || collisionStatus.RRay))
+            {
+                controlBits[0] = 0;
+            }
+
+            if (collisionStatus.isFullyBlocked)
             {
                 controlBits[0] = 0;
             }

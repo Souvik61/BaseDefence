@@ -19,7 +19,7 @@ public class SensorArrayScript : MonoBehaviour
                 return (LARay || LRay || MRay || RRay || RARay);
             }
         }
-        public bool isBlocked
+        public bool isFullyBlocked
         {
             get { return (LARay && LRay && MRay && RRay && RARay); }
         }
