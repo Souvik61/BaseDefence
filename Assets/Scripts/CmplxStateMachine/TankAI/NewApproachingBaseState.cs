@@ -70,6 +70,9 @@ namespace cmplx_statemachine
             //Apply controlls
             tankController.Move(controlBits[0]);
             tankController.Rotate(controlBits[1]);
+
+            CheckForStateTransition();
+
         }
 
         //----------------------
@@ -216,7 +219,7 @@ namespace cmplx_statemachine
 
         }
 
-        void CheckForTransition()
+        void CheckForStateTransition()
         {
             if (tankAIScript.enemiesInSight.Count > 0)
             {

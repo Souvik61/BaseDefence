@@ -21,8 +21,8 @@ namespace cmplx_statemachine
 
         private void Awake()
         {
-            stateDict.Add("APPR_BASE", new ApproachingBaseState(this, tankAIScript));
-            stateDict.Add("APPR_BASE1", new NewApproachingBaseState(this, tankAIScript));
+            stateDict.Add("APPR_BASE1", new ApproachingBaseState(this, tankAIScript));
+            stateDict.Add("APPR_BASE", new NewApproachingBaseState(this, tankAIScript));
             stateDict.Add("ATTK_ENEM", new AttackingEnemyState(this, tankAIScript));
             stateDict.Add("REAC_BASE", new ReachedBaseState(this, tankAIScript));
             stateDict.Add("GAME_OVER", new GameOverState(this, tankAIScript));

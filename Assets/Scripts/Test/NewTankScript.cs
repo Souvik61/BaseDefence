@@ -48,12 +48,17 @@ public class NewTankScript : TankScript
 
     public override void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        // Debug.Log("Trigger Enter");
+        if (collision.CompareTag("tag_projectile"))
+        {
+            Destroy(collision.gameObject);//Destroy the projectile
+            OnTakeDamage(collision.transform.position);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        //Debug.Log("Collision Enter");
     }
 
 }
