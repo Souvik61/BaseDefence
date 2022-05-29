@@ -1,25 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TouchInputScript : MonoBehaviour
 {
     public Transform target;
 
-    public float lerpModifier;
-    public float maxInertia;
     public float camPositiveXClampVal;
     public float camNegativeXClampVal;
 
-    float xVel;
-    float yVel;
-
     Vector3 dragOrigin;
-  
-    private void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()

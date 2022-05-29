@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankAIScript : MonoBehaviour
-{
-    public ArmyBaseScript targetBase;
 
+[RequireComponent(typeof(HealthScript))]
+public class WatchTowerAIScript : MonoBehaviour
+{
     [SerializeField]
     FOVObsCheckScript obsCheckScript;
 
-    TankAIStateMachine stateMachine;
+    cmplx_statemachine.WatchTowerStateMachine stateMachine;
     public List<GameObject> enemiesInSight;
 
     public string currentStateName;
-
-    TankScript tankController;
 
     private void OnEnable()
     {
@@ -28,7 +26,7 @@ public class TankAIScript : MonoBehaviour
 
     private void Awake()
     {
-
+        stateMachine = GetComponent<cmplx_statemachine.WatchTowerStateMachine>();
     }
 
     private void Start()
@@ -38,12 +36,7 @@ public class TankAIScript : MonoBehaviour
 
     private void Update()
     {
-        CalculateState();
         CalculateTargetProperties();
-
-        currentStateName = stateMachine.GetCurrentStateName();
-
-        stateMachine.Update();
     }
 
     private void OnDestroy()
@@ -51,29 +44,6 @@ public class TankAIScript : MonoBehaviour
         //stateMachine.Exit();
     }
 
-    /*
-    private void CalculateTargetProperties()
-    {
-        enemiesInSight.Clear();//Clear enemy list
-        //Add enemies to enemy list from obstacle check script
-        if (obsCheckScript.isObstaclesInRange)//If obstacles in range
-        {
-            foreach (var item in obsCheckScript.obstaclesInRange)
-            {
-                if (item != null && item.layer == LayerMask.NameToLayer("Tank"))//If obstacles are enemy tanks
-                {
-
-
-                    if (item.GetComponent<NewTankScript>().GetHealthScript().currentHP > 0)
-                    {
-                        if (!item.GetComponent<NewTankScript>().CompareTag(tag))//If target is not in our team
-                        { enemiesInSight.Add(item.GetComponent<NewTankScript>()); }
-                    }
-                }
-            }
-        }
-    }
-    */
     void CalculateTargetProperties()
     {
         enemiesInSight.Clear();//Clear enemy list
@@ -108,8 +78,8 @@ public class TankAIScript : MonoBehaviour
                 }
 
             }
-            else//If it is an artilery
-            {
+            else { }//If it is an artilery
+            /*
                 if (item.GetComponent<ArtileryScript>() != null)//If artilery type 1
                 {
                     if (item.GetComponent<ArtileryScript>().GetHealthScript().currentHP > 0)
@@ -133,28 +103,20 @@ public class TankAIScript : MonoBehaviour
                 }
             }
         }
+                */
+        }
         return false;
-    }
-
-    void CalculateState()
-    {
-
-
     }
 
     void InitStateMachine()
     {
-        stateMachine = new TankAIStateMachine(this);
-
-        stateMachine.Initialize("NO_TARG");
-
-        stateMachine.Start();
-
+        stateMachine.Initialize("IDLE");
     }
 
     void OnGameOver()
     {
-        stateMachine.ChangeState("GAME_OVR");
+        //stateMachine.ChangeState("GAME_OVR");
     }
-
 }
+
+

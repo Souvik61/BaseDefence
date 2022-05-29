@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class TankAIScript2 : MonoBehaviour
 {
     public ArmyBaseScript targetBase;
@@ -135,3 +136,4 @@ public class TankAIScript2 : MonoBehaviour
     }
 
 }
+*/

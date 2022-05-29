@@ -41,7 +41,7 @@ public class TankAIScript3 : MonoBehaviour
 
     private void Update()
     {
-        CalculateState();
+        //CalculateState();
         CalculateTargetProperties();
     }
 
@@ -84,8 +84,8 @@ public class TankAIScript3 : MonoBehaviour
                 }
 
             }
-            else//If it is an artilery
-            {
+            else { }//If it is an artilery
+            /*
                 if (item.GetComponent<ArtileryScript>() != null)//If artilery type 1
                 {
                     if (item.GetComponent<ArtileryScript>().GetHealthScript().currentHP > 0)
@@ -109,13 +109,9 @@ public class TankAIScript3 : MonoBehaviour
                 }
             }
         }
+                */
+        }   
         return false;
-    }
-
-    void CalculateState()
-    {
-
-
     }
 
     void InitStateMachine()

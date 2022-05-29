@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+/*
+
 //-----------------------------------
 //Artilery type 1 state machine
 //-----------------------------------
@@ -151,3 +153,4 @@ public class Artilery_t1AttackingState : State
 
 
 }
+*/

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 [RequireComponent(typeof(HealthScript))]
 public class ArtileryScript : MonoBehaviour
 {
@@ -194,3 +195,4 @@ public class ArtileryScript : MonoBehaviour
     }
 
 }
+*/
