@@ -678,7 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 550253887211811909}
-  startPoint: {x: -1.0950054, y: 0.10470599}
+  startPoint: {x: -0, y: 0}
   scale: 0
 --- !u!4 &198810261
 Transform:
@@ -775,6 +775,95 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &212308845
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1920912401840418937, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_Name
+      value: Watch Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920912401840418937, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_TagString
+      value: tag_opponent2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504133198740621991, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504133198740621991, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504133198740621991, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693877286703556423, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693877286703556423, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693877286703556423, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693877286703556423, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693877286703556423, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693877286703556423, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693877286703556423, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693877286703556423, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693877286703556423, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693877286703556423, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693877286703556423, guid: b75c4e68a908d9449a86a51de6b2246c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b75c4e68a908d9449a86a51de6b2246c, type: 3}
 --- !u!4 &218981142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6872063107297337629, guid: f97296fe012f0634e8fd89710dd92810,
@@ -1118,7 +1207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 550253887211811909}
-  startPoint: {x: -1.0999448, y: 0.011014561}
+  startPoint: {x: -0, y: 0}
   scale: 0
 --- !u!4 &376738798
 Transform:
@@ -1410,7 +1499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 550253887211811909}
-  startPoint: {x: -1.0785407, y: 0.21621789}
+  startPoint: {x: -0, y: 0}
   scale: 0
 --- !u!4 &519871134
 Transform:
@@ -1683,7 +1772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &633960256
 Transform:
   m_ObjectHideFlags: 0
@@ -2029,7 +2118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &795145560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3728,7 +3817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 415460806}
-  startPoint: {x: 1.0983844, y: -0.05959763}
+  startPoint: {x: 0, y: -0}
   scale: 0
 --- !u!1 &1437511496
 GameObject:
@@ -3956,7 +4045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 550253887211811909}
-  startPoint: {x: -1.0582622, y: 0.30013523}
+  startPoint: {x: -0, y: 0}
   scale: 0
 --- !u!4 &1470167517
 Transform:
@@ -3995,7 +4084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1516760635
 MonoBehaviour:
   m_ObjectHideFlags: 0

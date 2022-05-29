@@ -151,15 +151,9 @@ public class WatchTowerAIScript : MonoBehaviour
 
         //Instantiate projectile 
         GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoint.position, Quaternion.identity);
+        proj.layer = LayerMask.NameToLayer("~WatchTower");
         proj.GetComponent<Rigidbody2D>().velocity = dir * 20;
         Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
-
-        //Instantiate muzzle flash
-        Quaternion rot = firePoint.rotation * Quaternion.Euler(new Vector3(0, 0, 90));
-        GameObject mzlFlash = Instantiate(commonAsset.MuzzleFlashPrefab, firePoint.position, rot);
-        float size = Random.Range(0.6f, 0.9f);
-        mzlFlash.transform.localScale = new Vector2(size, size);
-        Destroy(mzlFlash, 0.05f);
 
         //play shoot audio
         //audioSrc.Play();
