@@ -19,7 +19,7 @@ namespace cmplx_statemachine {
 
         private void Awake()
         {
-            stateDict.Add("IDLE", new WT_IDLEState(this));
+            stateDict.Add("IDLE", new WT_IDLEState(this, towerAIScript));
             stateDict.Add("ATTK", new WT_ATTACKState(this, towerAIScript));
         }
 

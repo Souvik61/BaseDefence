@@ -6,13 +6,28 @@ using UnityEngine;
 [RequireComponent(typeof(HealthScript))]
 public class WatchTowerAIScript : MonoBehaviour
 {
+    public float shootDelay;
+    [SerializeField]
+    HealthScript healthScript;
+    [SerializeField]
+    Transform firePoint;
+    [SerializeField]
+    CommonAssetSO commonAsset;
     [SerializeField]
     FOVObsCheckScript obsCheckScript;
+    [SerializeField]
+    ProgressBarScript healthBar;
 
+    public bool isDestroyed;
+    
     cmplx_statemachine.WatchTowerStateMachine stateMachine;
     public List<GameObject> enemiesInSight;
 
     public string currentStateName;
+
+    bool isShooting;
+
+    //Unity methods
 
     private void OnEnable()
     {
@@ -26,7 +41,9 @@ public class WatchTowerAIScript : MonoBehaviour
 
     private void Awake()
     {
+        healthScript = GetComponent<HealthScript>();
         stateMachine = GetComponent<cmplx_statemachine.WatchTowerStateMachine>();
+        obsCheckScript = GetComponentInChildren<FOVObsCheckScript>();   
     }
 
     private void Start()
@@ -39,10 +56,17 @@ public class WatchTowerAIScript : MonoBehaviour
         CalculateTargetProperties();
     }
 
-    private void OnDestroy()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //stateMachine.Exit();
+        if (collision.CompareTag("tag_projectile"))
+        {
+            Destroy(collision.gameObject);
+            TakeDamage(collision.transform.position);
+        }
     }
+
+
+    //Other methods
 
     void CalculateTargetProperties()
     {
@@ -113,10 +137,64 @@ public class WatchTowerAIScript : MonoBehaviour
         stateMachine.Initialize("IDLE");
     }
 
+    public void Shoot(Transform target)
+    {
+        if (!isShooting && !isDestroyed)
+        { StartCoroutine(nameof(ShootRoutine), target); }
+    }
+
+    protected virtual IEnumerator ShootRoutine(Transform target)
+    {
+        Vector2 dir = (target.transform.position - transform.position).normalized;
+
+        isShooting = true;
+
+        //Instantiate projectile 
+        GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoint.position, Quaternion.identity);
+        proj.GetComponent<Rigidbody2D>().velocity = dir * 20;
+        Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
+
+        //Instantiate muzzle flash
+        Quaternion rot = firePoint.rotation * Quaternion.Euler(new Vector3(0, 0, 90));
+        GameObject mzlFlash = Instantiate(commonAsset.MuzzleFlashPrefab, firePoint.position, rot);
+        float size = Random.Range(0.6f, 0.9f);
+        mzlFlash.transform.localScale = new Vector2(size, size);
+        Destroy(mzlFlash, 0.05f);
+
+        //play shoot audio
+        //audioSrc.Play();
+        //wait before shooting again
+        yield return new WaitForSeconds(shootDelay + Random.Range(-1f, 1f));
+
+        isShooting = false;
+
+    }
+
+    void TakeDamage(Vector2 collPoint)
+    {
+
+        healthScript.Decrement(25);
+        /*
+        //Decrease HP Bar
+        if (healthBar != null)
+        {
+            healthBar.barProgress = healthScript.currentHP / (float)healthScript.maxHP;
+            if (!healthBar.barVisible)
+            { StartCoroutine(nameof(HealthbarShowRoutine)); }
+        }
+        */
+        //Add hit explosion
+        GameObject gm = Instantiate(commonAsset.TankHitPrefab, collPoint, Quaternion.identity);
+        Destroy(gm, 3);
+    }
+
     void OnGameOver()
     {
         //stateMachine.ChangeState("GAME_OVR");
     }
+
+
+
 }
 
 

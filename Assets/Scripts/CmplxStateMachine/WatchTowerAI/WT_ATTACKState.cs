@@ -34,13 +34,24 @@ namespace cmplx_statemachine
                 Transform currTarget = towerAI.enemiesInSight[0].transform;
                 dirToTarget = (currTarget.transform.position - selfTransform.position).normalized;
                 
-                TryShoot();
+                TryShoot(currTarget);
             }
+
+            CheckTransition();
         }
 
-        void TryShoot()
+        void TryShoot(Transform targ)
         {
             //Shoot!
+            towerAI.Shoot(targ);
+        }
+
+        void CheckTransition()
+        {
+            if (towerAI.enemiesInSight.Count == 0)
+            {
+                stateMachineInstance.ChangeState("IDLE");
+            }
         }
     }
 }
