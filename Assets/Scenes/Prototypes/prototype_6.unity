@@ -199,11 +199,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2214612b45243f43bbc13b9c00f04fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetBase: {fileID: 0}
+  targetBase: {fileID: 1650240651}
   obsCheckScript: {fileID: 2145411549}
   enemiesInSight: []
   currentStateName: 
   compass: {fileID: 198810260}
+  pathSeeker: {fileID: 1085731321}
 --- !u!114 &20894396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   currentHP: 0
-  godMode: 0
+  godMode: 1
 --- !u!82 &20894398
 AudioSource:
   m_ObjectHideFlags: 0
@@ -383,7 +384,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3177454, y: 3.267799}
+  m_Size: {x: 2.0398035, y: 3.267799}
   m_EdgeRadius: 0
 --- !u!4 &20894401
 Transform:
@@ -399,9 +400,22 @@ Transform:
   - {fileID: 983006385}
   - {fileID: 198810261}
   - {fileID: 1519178883}
+  - {fileID: 1085731320}
   m_Father: {fileID: 633960256}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &25260238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 25260238, guid: f97296fe012f0634e8fd89710dd92810,
+    type: 3}
+  m_PrefabInstance: {fileID: 6872063107515744779}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64ad32d79c95f74aa1dcb326ab4d842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &33431760
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +497,18 @@ MonoBehaviour:
     m_Bits: 256
   isObstaclesInRange: 0
   obstaclesInRange: []
+--- !u!114 &146136890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1920912401840418942, guid: b75c4e68a908d9449a86a51de6b2246c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2504133197545919234}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10ff8245b028dd45b12eb4bb6a64405, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &163407257
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,9 +703,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc98004b83dcdf64f919657c57df47f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 550253887211811909}
-  startPoint: {x: -0, y: 0}
-  scale: 0
+  target: {fileID: 218981142}
+  startPoint: {x: -1.1985404, y: -0.059167705}
+  scale: 1.2
 --- !u!4 &198810261
 Transform:
   m_ObjectHideFlags: 0
@@ -1198,9 +1224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc98004b83dcdf64f919657c57df47f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 550253887211811909}
-  startPoint: {x: -0, y: 0}
-  scale: 0
+  target: {fileID: 218981142}
+  startPoint: {x: -1.1912948, y: -0.14428055}
+  scale: 1.2
 --- !u!4 &376738798
 Transform:
   m_ObjectHideFlags: 0
@@ -1845,7 +1871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &633960256
 Transform:
   m_ObjectHideFlags: 0
@@ -2219,7 +2245,7 @@ Transform:
   - {fileID: 658395243}
   - {fileID: 1283211398}
   m_Father: {fileID: 1757558771}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &778753248
 MonoBehaviour:
@@ -2407,6 +2433,7 @@ MonoBehaviour:
   enemiesInSight: []
   currentStateName: 
   compass: {fileID: 519871133}
+  pathSeeker: {fileID: 0}
 --- !u!114 &795145563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2746,6 +2773,50 @@ Transform:
   m_Father: {fileID: 222217638}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &909884000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 909884001}
+  - component: {fileID: 909884002}
+  m_Layer: 8
+  m_Name: pathseeker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &909884001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909884000}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1757558771}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &909884002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909884000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4d830c5d1a52a46a321b46ea1ec980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeker: {fileID: 1757558763}
 --- !u!1 &954251208
 GameObject:
   m_ObjectHideFlags: 0
@@ -3077,6 +3148,50 @@ Transform:
   m_Father: {fileID: 1978162982}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1085731319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085731320}
+  - component: {fileID: 1085731321}
+  m_Layer: 8
+  m_Name: pathseeker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1085731320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085731319}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 20894401}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1085731321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085731319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4d830c5d1a52a46a321b46ea1ec980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeker: {fileID: 20894393}
 --- !u!1 &1108887582
 GameObject:
   m_ObjectHideFlags: 0
@@ -4371,6 +4486,18 @@ Transform:
   m_Father: {fileID: 1516760643}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1484341150 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1920912401840418942, guid: b75c4e68a908d9449a86a51de6b2246c,
+    type: 3}
+  m_PrefabInstance: {fileID: 753225104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10ff8245b028dd45b12eb4bb6a64405, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1516760634
 GameObject:
   m_ObjectHideFlags: 0
@@ -4454,6 +4581,7 @@ MonoBehaviour:
   enemiesInSight: []
   currentStateName: 
   compass: {fileID: 1470167516}
+  pathSeeker: {fileID: 0}
 --- !u!114 &1516760638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4836,6 +4964,7 @@ MonoBehaviour:
   enemiesInSight: []
   currentStateName: 
   compass: {fileID: 583205551}
+  pathSeeker: {fileID: 0}
 --- !u!114 &1530805802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5259,9 +5388,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1650240650}
+  - component: {fileID: 1650240651}
+  - component: {fileID: 1650240652}
   m_Layer: 0
   m_Name: Army Base 1
-  m_TagString: Untagged
+  m_TagString: tag_opponent1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5288,6 +5419,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1650240651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650240649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7703689a330444b8ca6ff7190f3944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseId: 0
+  selfTag: tag_opponent1
+  targetBase: {fileID: 280781180}
+  troopDeployActive: 0
+  troopDeployPerSec: 1
+  spawnPoints: []
+  selfHealth: {fileID: 1650240652}
+  frontFaceTransform: {fileID: 0}
+  progressBar: {fileID: 0}
+  armyBaseRenderer: {fileID: 0}
+  armyBaseDestroyedSp: {fileID: 0}
+  tankPrefab: {fileID: 0}
+  commAsset: {fileID: 11400000, guid: f549b273dc8d0ae49955f8107ae97914, type: 2}
+  tanksList: []
+  isDestroyed: 0
+  watchTowers:
+  - {fileID: 146136890}
+  - {fileID: 1484341150}
+  commandCenter: {fileID: 25260238}
+--- !u!114 &1650240652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650240649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854dd6224e6ed59469acef7773271baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  currentHP: 0
+  godMode: 0
 --- !u!1 &1696177178
 GameObject:
   m_ObjectHideFlags: 0
@@ -5396,11 +5573,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2214612b45243f43bbc13b9c00f04fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetBase: {fileID: 0}
+  targetBase: {fileID: 1650240651}
   obsCheckScript: {fileID: 1226721534}
   enemiesInSight: []
   currentStateName: 
   compass: {fileID: 376738797}
+  pathSeeker: {fileID: 909884002}
 --- !u!114 &1757558766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5438,7 +5616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   currentHP: 0
-  godMode: 0
+  godMode: 1
 --- !u!82 &1757558768
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5580,7 +5758,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3177454, y: 3.267799}
+  m_Size: {x: 1.9903035, y: 3.267799}
   m_EdgeRadius: 0
 --- !u!4 &1757558771
 Transform:
@@ -5595,6 +5773,7 @@ Transform:
   m_Children:
   - {fileID: 1565993631}
   - {fileID: 376738798}
+  - {fileID: 909884001}
   - {fileID: 778753247}
   m_Father: {fileID: 633960256}
   m_RootOrder: 0
@@ -5729,6 +5908,7 @@ MonoBehaviour:
   enemiesInSight: []
   currentStateName: 
   compass: {fileID: 447833696}
+  pathSeeker: {fileID: 0}
 --- !u!114 &1789166576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6510,6 +6690,7 @@ MonoBehaviour:
   enemiesInSight: []
   currentStateName: 
   compass: {fileID: 1420358835}
+  pathSeeker: {fileID: 0}
 --- !u!114 &2016942366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6736,7 +6917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2033137838
 Transform:
   m_ObjectHideFlags: 0

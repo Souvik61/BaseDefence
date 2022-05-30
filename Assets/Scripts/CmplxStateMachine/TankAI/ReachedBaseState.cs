@@ -32,6 +32,9 @@ namespace cmplx_statemachine
 
             TryShootAtBase();
 
+            //Attack units
+            //Attack base
+
         }
 
         void TryShootAtBase()

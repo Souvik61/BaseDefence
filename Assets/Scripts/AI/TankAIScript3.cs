@@ -19,6 +19,8 @@ public class TankAIScript3 : MonoBehaviour
 
     public Compass compass;
 
+    public PathSeekerScript pathSeeker;
+
     private void OnEnable()
     {
         AllEventsScript.OnGameOver += OnGameOver;
