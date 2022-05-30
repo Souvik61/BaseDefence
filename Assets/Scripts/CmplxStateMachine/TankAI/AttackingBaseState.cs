@@ -30,12 +30,8 @@ namespace cmplx_statemachine
         }
 
         public override void OnEnter()
-        {
-            //Destroy Watchtowers
-            //Destroy Artilery if any
-            //Finally Destroy Command Center
-            tankAIScript.StartCoroutine(DestroyWatchTowers());
-            
+        { 
+            tankAIScript.StartCoroutine(MasterCoroutine());
             
         }
 
@@ -43,13 +39,24 @@ namespace cmplx_statemachine
         //Complex Coroutines
         //------------------------
 
-        IEnumerator DestroyWatchTowers()
+        IEnumerator MasterCoroutine()
+        {
+            //Destroy Watchtowers
+            yield return tankAIScript.StartCoroutine(DestroyWatchTowers());
+            //Destroy Artilery if any
+            //Finally Destroy Command Center
+            yield return tankAIScript.StartCoroutine(DestroyCommCenter());
+        }
+
+        public IEnumerator DestroyWatchTowers()
         {
             List<WatchTowerAIScript> watchTowers = ((NewArmyBaseScript)tankAIScript.targetBase).watchTowers;
 
-            while (watchTowers.Count != 0)
+            while (true)
             {
                 watchTowers = PickAliveWatchTowers(watchTowers);
+
+                if (watchTowers.Count == 0) break;
 
                 var nearest = FindNearestWatchTower(watchTowers);
 
@@ -61,16 +68,28 @@ namespace cmplx_statemachine
                 {
                     tankController.Shoot();
                 }
-               
+
                 yield return null;//Pause here.
             }
-
-            yield return null;
         }
 
         IEnumerator DestroyCommCenter()
         {
-            yield return null;
+            Transform ccT = ((NewArmyBaseScript)tankAIScript.targetBase).commandCenter.transform;
+
+            while (ccT.GetComponent<HealthScript>().currentHP > 0)
+            {
+                dirToTarget = (ccT.position - selfTransform.position).normalized;
+
+                TryFaceTowardsDirection();
+
+                if (IsFacingTarget(ccT))
+                {
+                    tankController.Shoot();
+                }
+
+                yield return null;//Pause here.
+            }
         }
 
         WatchTowerAIScript FindNearestWatchTower(List<WatchTowerAIScript> list)
@@ -127,7 +146,5 @@ namespace cmplx_statemachine
             }
             return output;
         }
-
-
     }
 }
