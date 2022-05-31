@@ -89,8 +89,10 @@ namespace cmplx_statemachine
 
         void UpdatePath()
         {
+            Transform a = PickRandomEnemyLandingZone();
+
             if (seeker.IsDone())
-                seeker.StartPath((Vector2)selfTransform.position + tankAIScript.compass.startPoint, targetBase.transform.position, OnPathComplete);
+                seeker.StartPath((Vector2)selfTransform.position + tankAIScript.compass.startPoint, a.position, OnPathComplete);
         }
 
         void OnPathComplete(Path p)
@@ -138,21 +140,23 @@ namespace cmplx_statemachine
                 }
             }
 
-            //Incase we skip a waypoint while local avoidance
-            if (HasSkippedCurrentWayPointNew()) currWaypoint++;
+            if (!hasReachedEndOfPath)
+            {
+                //Incase we skip a waypoint while local avoidance
+                if (HasSkippedCurrentWayPointNew() && !hasReachedEndOfPath) currWaypoint++;
 
 
-            Vector3 dir = (path.vectorPath[currWaypoint] - selfTransform.position).normalized;
+                Vector3 dir = (path.vectorPath[currWaypoint] - selfTransform.position).normalized;
 
-            HelperScript.DrawArrowDebug(selfTransform.position, selfTransform.position + dir, Color.blue);
-
-
-            if (IsFacingDirection(dir, 7))
-            { controlBits[0] = 1; }
-
-            SetControlBitsTowardsDir(dir, controlBits);
+                HelperScript.DrawArrowDebug(selfTransform.position, selfTransform.position + dir, Color.blue);
 
 
+                if (IsFacingDirection(dir, 7))
+                { controlBits[0] = 1; }
+
+                SetControlBitsTowardsDir(dir, controlBits);
+
+            }
         }
 
         void AvoidLocalObstacles()
@@ -303,18 +307,27 @@ namespace cmplx_statemachine
 
         bool HasSkippedCurrentWayPointNew()
         {
-            Vector2 dir = (path.vectorPath[currWaypoint + 1] - path.vectorPath[currWaypoint]).normalized;
-            float a = Vector2.Dot(dir, Vector2.right);
+            if (currWaypoint < path.vectorPath.Count-1)
+            {
+                Vector2 dir = (path.vectorPath[currWaypoint + 1] - path.vectorPath[currWaypoint]).normalized;
+                float a = Vector2.Dot(dir, Vector2.right);
 
-            if (a > 0)//Facing right
-            {
-                return selfTransform.position.x > path.vectorPath[currWaypoint].x;
-            }
-            else if (a < 0)//Facing left
-            {
-                return selfTransform.position.x < path.vectorPath[currWaypoint].x;
+                if (a > 0)//Facing right
+                {
+                    return selfTransform.position.x > path.vectorPath[currWaypoint].x;
+                }
+                else if (a < 0)//Facing left
+                {
+                    return selfTransform.position.x < path.vectorPath[currWaypoint].x;
+                }
             }
             return false;
+        }
+
+        Transform PickRandomEnemyLandingZone()
+        {
+            int a = UnityEngine.Random.Range(0, 3);
+            return ((NewArmyBaseScript)targetBase).enemyLandingZones[a];
         }
 
         //--------------------------

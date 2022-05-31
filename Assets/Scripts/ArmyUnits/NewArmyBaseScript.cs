@@ -5,5 +5,5 @@ public class NewArmyBaseScript : ArmyBaseScript
 {
     public List<WatchTowerAIScript> watchTowers;
     public CommandCenterScript commandCenter;
-
+    public List<Transform> enemyLandingZones;
 }
