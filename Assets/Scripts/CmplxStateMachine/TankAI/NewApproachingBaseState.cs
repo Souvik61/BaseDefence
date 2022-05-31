@@ -32,6 +32,8 @@ namespace cmplx_statemachine
 
         SensorArrayScript sensorArray;
 
+        Transform landingZoneTarget;
+
         int[] controlBits = new int[2];//Used to control tank movement
 
         public NewApproachingBaseState(TankAIStateMachine stM, TankAIScript3 tankAIScript) : base(stM)
@@ -89,10 +91,10 @@ namespace cmplx_statemachine
 
         void UpdatePath()
         {
-            Transform a = PickRandomEnemyLandingZone();
+            landingZoneTarget = PickRandomEnemyLandingZone();
 
             if (seeker.IsDone())
-                seeker.StartPath((Vector2)selfTransform.position + tankAIScript.compass.startPoint, a.position, OnPathComplete);
+                seeker.StartPath((Vector2)selfTransform.position + tankAIScript.compass.startPoint, landingZoneTarget.position, OnPathComplete);
         }
 
         void OnPathComplete(Path p)
@@ -230,13 +232,16 @@ namespace cmplx_statemachine
                 stateMachineInstance.ChangeState("ATTK_ENEM");
             }
 
-            float distance = Vector2.Distance(selfTransform.position, targetBase.transform.position);
+            //float distance = Vector2.Distance(selfTransform.position, .position);
 
-            if (distance < targetDistanceTolerance)
+            //if (distance < targetDistanceTolerance)
+            //{
+            //    stateMachineInstance.ChangeState("REAC_BASE");
+            //}
+            if (hasReachedEndOfPath)
             {
-                stateMachineInstance.ChangeState("REAC_BASE");
+                stateMachineInstance.ChangeState("REAC_BASE"); 
             }
-
         }
 
         bool IsFacingDirection(Vector2 dir)

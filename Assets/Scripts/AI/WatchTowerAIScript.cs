@@ -17,6 +17,8 @@ public class WatchTowerAIScript : MonoBehaviour
     FOVObsCheckScript obsCheckScript;
     [SerializeField]
     ProgressBarScript healthBar;
+    [SerializeField]
+    Collider2D selfCollider;
 
     public bool isDestroyed;
     
@@ -31,11 +33,13 @@ public class WatchTowerAIScript : MonoBehaviour
 
     private void OnEnable()
     {
+        healthScript.OnHealthDepleted += OnHealthZero;
         AllEventsScript.OnGameOver += OnGameOver;
     }
 
     private void OnDisable()
     {
+        healthScript.OnHealthDepleted -= OnHealthZero;
         AllEventsScript.OnGameOver -= OnGameOver;
     }
 
@@ -43,7 +47,8 @@ public class WatchTowerAIScript : MonoBehaviour
     {
         healthScript = GetComponent<HealthScript>();
         stateMachine = GetComponent<cmplx_statemachine.WatchTowerStateMachine>();
-        obsCheckScript = GetComponentInChildren<FOVObsCheckScript>();   
+        obsCheckScript = GetComponentInChildren<FOVObsCheckScript>();
+        selfCollider = GetComponent<Collider2D>();
     }
 
     private void Start()
@@ -182,12 +187,20 @@ public class WatchTowerAIScript : MonoBehaviour
         Destroy(gm, 3);
     }
 
+    void OnHealthZero()
+    {
+        if (!isDestroyed)
+        {
+            Instantiate(commonAsset.SmokePrefab, transform.position, Quaternion.identity, transform);
+            selfCollider.enabled = false;
+            isDestroyed = true;  
+        }
+    }
+
     void OnGameOver()
     {
         //stateMachine.ChangeState("GAME_OVR");
     }
-
-
 
 }
 

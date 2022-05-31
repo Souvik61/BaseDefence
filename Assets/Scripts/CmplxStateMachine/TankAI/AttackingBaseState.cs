@@ -101,7 +101,7 @@ namespace cmplx_statemachine
 
             for (int i = 1; i < list.Count; i++)
             {
-                float dist = Vector2.Distance(nearest.transform.position, list[i].transform.position);//Find nearest distance
+                float dist = Vector2.Distance(selfTransform.position, nearest.transform.position);//Find nearest distance
                 float distA = Vector2.Distance(selfTransform.position, list[i].transform.position);//Find current distance
 
                 if (distA < dist)

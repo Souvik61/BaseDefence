@@ -918,36 +918,6 @@ MonoBehaviour:
   sensorStartPos: {fileID: 1758775938}
   rSensorStartPos: {fileID: 889580531}
   lSensorStartPos: {fileID: 1523291329}
---- !u!1 &237011991
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 237011992}
-  m_Layer: 0
-  m_Name: landzone 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &237011992
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237011991}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.41, y: 4.68, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1275791761}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &278219209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,36 +1817,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &717318157
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 717318158}
-  m_Layer: 0
-  m_Name: landzone 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &717318158
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717318157}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.41, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1275791761}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &769548268
 GameObject:
   m_ObjectHideFlags: 0
@@ -3121,39 +3061,6 @@ MonoBehaviour:
   sensorStartPos: {fileID: 1322059354}
   rSensorStartPos: {fileID: 1464811197}
   lSensorStartPos: {fileID: 447660734}
---- !u!1 &1275791760
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1275791761}
-  m_Layer: 0
-  m_Name: EnemyLandingZones
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1275791761
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275791760}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 717318158}
-  - {fileID: 237011992}
-  - {fileID: 1519727032}
-  m_Father: {fileID: 1650240650}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1283211397
 GameObject:
   m_ObjectHideFlags: 0
@@ -4492,36 +4399,6 @@ MonoBehaviour:
   sensorStartPos: {fileID: 1205295556}
   rSensorStartPos: {fileID: 1189007595}
   lSensorStartPos: {fileID: 33431761}
---- !u!1 &1519727031
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1519727032}
-  m_Layer: 0
-  m_Name: landzone 3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1519727032
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1519727031}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.41, y: -4.58, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1275791761}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1523291328
 GameObject:
   m_ObjectHideFlags: 0
@@ -4986,12 +4863,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63dae31ef908f1c4bb3bfe121ed03128, type: 3}
---- !u!4 &1650240650 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 809146761811460069, guid: b7cdce7652171de48b13265d9f529a03,
-    type: 3}
-  m_PrefabInstance: {fileID: 809146761304167279}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1650240651 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 809146761811460068, guid: b7cdce7652171de48b13265d9f529a03,
@@ -6627,21 +6498,6 @@ PrefabInstance:
       propertyPath: targetBase
       value: 
       objectReference: {fileID: 280781180}
-    - target: {fileID: 809146761811460068, guid: b7cdce7652171de48b13265d9f529a03,
-        type: 3}
-      propertyPath: enemyLandingZones.Array.data[0]
-      value: 
-      objectReference: {fileID: 717318158}
-    - target: {fileID: 809146761811460068, guid: b7cdce7652171de48b13265d9f529a03,
-        type: 3}
-      propertyPath: enemyLandingZones.Array.data[1]
-      value: 
-      objectReference: {fileID: 237011992}
-    - target: {fileID: 809146761811460068, guid: b7cdce7652171de48b13265d9f529a03,
-        type: 3}
-      propertyPath: enemyLandingZones.Array.data[2]
-      value: 
-      objectReference: {fileID: 1519727032}
     - target: {fileID: 809146761811460069, guid: b7cdce7652171de48b13265d9f529a03,
         type: 3}
       propertyPath: m_RootOrder
@@ -6702,6 +6558,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Army Base 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6081216628009935274, guid: b7cdce7652171de48b13265d9f529a03,
+        type: 3}
+      propertyPath: commonAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f549b273dc8d0ae49955f8107ae97914,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7cdce7652171de48b13265d9f529a03, type: 3}
 --- !u!1001 &3691621555860182195
