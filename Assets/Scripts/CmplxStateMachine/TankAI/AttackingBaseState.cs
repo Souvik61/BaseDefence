@@ -20,6 +20,8 @@ namespace cmplx_statemachine
 
         bool isLocalTargetCoroutineRunning;
 
+        int[] controlBits;
+
         public AttackingBaseState(CStateMachine sTM,TankAIScript3 tankAI):base(sTM)
         {
             stateName = "ATTK_BASE";
@@ -27,6 +29,7 @@ namespace cmplx_statemachine
             tankController = tankAI.GetComponent<NewTankScript>();
             selfTransform = tankAI.GetComponent<Transform>();
             isLocalTargetCoroutineRunning = false;
+            controlBits = new int[2];
         }
 
         public override void OnEnter()
@@ -45,9 +48,14 @@ namespace cmplx_statemachine
             yield return tankAIScript.StartCoroutine(DestroyWatchTowers());
             //Destroy Artilery if any
             //Finally Destroy Command Center
+            yield return tankAIScript.StartCoroutine(ApproachNearCC());
             yield return tankAIScript.StartCoroutine(DestroyCommCenter());
         }
 
+        /// <summary>
+        /// Destroy Watch towers
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator DestroyWatchTowers()
         {
             List<WatchTowerAIScript> watchTowers = ((NewArmyBaseScript)tankAIScript.targetBase).watchTowers;
@@ -73,6 +81,25 @@ namespace cmplx_statemachine
             }
         }
 
+        public IEnumerator ApproachNearCC()
+        {
+            Transform a = ((NewArmyBaseScript)tankAIScript.targetBase).nearCCLandingZone;
+            float distance = 0;
+            do
+            { 
+                distance = Vector2.Distance(selfTransform.position, a.position);
+
+                FollowWayPoints(a);
+                AvoidLocalObstacles();
+
+                //Apply controlls
+                tankController.Move(controlBits[0]);
+                tankController.Rotate(controlBits[1]);
+
+                yield return null;
+            } while (distance > 2);
+        }
+
         IEnumerator DestroyCommCenter()
         {
             Transform ccT = ((NewArmyBaseScript)tankAIScript.targetBase).commandCenter.transform;
@@ -89,6 +116,96 @@ namespace cmplx_statemachine
                 }
 
                 yield return null;//Pause here.
+            }
+        }
+
+        //---------------------------
+        //Update functions
+        //---------------------------
+
+        void FollowWayPoints(Transform target)
+        {
+            //Local functions :-O
+            bool IsFacingDirection(Vector2 dir, float tolerance)
+            {
+                float angle = Vector2.Angle(dir, selfTransform.up);
+                if (Mathf.Abs(angle) < tolerance)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            Vector2 dirT = (target.position - selfTransform.position).normalized;
+
+
+            if (IsFacingDirection(dirT, 7))
+            { controlBits[0] = 1; }
+
+            SetControlBitsTowardsDir(dirT, controlBits);
+
+        }
+
+        void AvoidLocalObstacles()
+        {
+            SensorArrayScript sensorArray = selfTransform.GetComponentInChildren<SensorArrayScript>();
+
+            SensorArrayScript.CollisionStatus collisionStatus = sensorArray.CheckCollisionArray();
+
+            //Control turn
+
+            if (collisionStatus.LRay)//if lSide hit
+            {
+                controlBits[1] = -1;
+            }
+
+            if (collisionStatus.RRay)//if rSide hit
+            {
+
+                controlBits[1] = 1;
+            }
+
+            if (collisionStatus.almostBlocked)
+            {
+                controlBits[1] = 0;
+            }
+
+            //Control forward movement
+
+            if (collisionStatus.RRay || collisionStatus.LRay)
+            {
+                controlBits[0] = 0;
+            }
+
+            if (collisionStatus.LARay || collisionStatus.RARay)
+            {
+                controlBits[0] = 1;
+            }
+
+            if (collisionStatus.MRay && (collisionStatus.LRay || collisionStatus.RRay))
+            {
+                controlBits[0] = 0;
+            }
+
+            if (collisionStatus.isFullyBlocked)
+            {
+                controlBits[0] = 0;
+            }
+
+        }
+
+        //-----------------
+        //Misc.
+        //-----------------
+
+        void SetControlBitsTowardsDir(Vector2 dir, int[] cBits)
+        {
+            float angle = Vector2.SignedAngle(dir, selfTransform.up);
+            if (Mathf.Abs(angle) > 7)
+            {
+                if (angle > 0)
+                { cBits[1] = -1; }
+                else { cBits[1] = 1; }
             }
         }
 

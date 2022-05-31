@@ -17,6 +17,9 @@ public class CommonAssetSO : ScriptableObject
     //Audio clips
     public AudioClip TankShoot;
 
+    //Miscelleneous
+    public GameObject RedCross;
+
     public AudioClip GenerateRandomTankShootSfx()
     {
         return TankShoot;

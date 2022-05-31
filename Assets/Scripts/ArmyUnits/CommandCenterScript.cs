@@ -9,6 +9,8 @@ public class CommandCenterScript : MonoBehaviour
     [SerializeField]
     CommonAssetSO commonAsset;
 
+    bool isDestroyed;
+
     private void OnEnable()
     {
         healthScript.OnHealthDepleted += this.OnHealthZero;
@@ -55,6 +57,11 @@ public class CommandCenterScript : MonoBehaviour
     {
         //Do someting
         Debug.Log("Command center destroyed");
+        if (!isDestroyed)
+        {
+            Instantiate(commonAsset.RedCross, transform.position, Quaternion.identity, transform);
+            isDestroyed = true;
+        }
     }
 
     void OnGameOver()
