@@ -93,7 +93,7 @@ public class ArmyBaseScript : MonoBehaviour
         
     }
 
-    void OnHealthZero()
+    protected virtual void OnHealthZero()
     {
         if (!isDestroyed)
         {
