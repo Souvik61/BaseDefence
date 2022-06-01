@@ -2,6 +2,7 @@
 
 public class SensorArrayScript : MonoBehaviour
 {
+    public bool viewRays;
     public float rayDistance;
     public float rayAngle;
     public LayerMask collLayers;
@@ -33,7 +34,8 @@ public class SensorArrayScript : MonoBehaviour
 
     private void Update()
     {
-        //DrawRays();
+        if (viewRays)
+            DrawRays();
         //CheckCollisionArray();
     }
 
