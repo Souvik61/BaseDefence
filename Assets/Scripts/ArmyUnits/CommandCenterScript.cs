@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CommandCenterScript : MonoBehaviour
 {
+    public int baseID;
     [SerializeField]
     HealthScript healthScript;
     [SerializeField]
@@ -61,6 +62,7 @@ public class CommandCenterScript : MonoBehaviour
         {
             Instantiate(commonAsset.RedCross, transform.position, Quaternion.identity, transform);
             isDestroyed = true;
+            AllEventsScript.OnBaseDestroyed?.Invoke(baseID);
         }
     }
 
