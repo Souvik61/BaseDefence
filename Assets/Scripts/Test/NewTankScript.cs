@@ -34,7 +34,7 @@ public class NewTankScript : TankScript
         if (!isDestroyed)
         {
             //rBody.MovePosition(transform.position+ (forward * driveSpeed * transform.up));
-            forceBuff += (Vector2)(forward * moveMultiplier * tankProperty.driveSpeed * transform.up);
+            forceBuff = (Vector2)(forward * moveMultiplier * tankProperty.driveSpeed * transform.up);
             //rBody.AddForce(force * multiplier, ForceMode2D.Impulse);
         }
     }

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6872063107297337629}
-  - component: {fileID: 25260237}
   - component: {fileID: 25260236}
+  - component: {fileID: 25260237}
   - component: {fileID: 25260238}
   m_Layer: 0
   m_Name: CommandCenter
@@ -35,21 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &25260237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6872063107297337630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 854dd6224e6ed59469acef7773271baa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 100
-  currentHP: 0
-  godMode: 0
 --- !u!60 &25260236
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -86,6 +71,21 @@ PolygonCollider2D:
       - {x: 1.8580589, y: 1.2256513}
       - {x: 2.2752419, y: 1.2612593}
       - {x: 2.2424002, y: 2.3201308}
+--- !u!114 &25260237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6872063107297337630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854dd6224e6ed59469acef7773271baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  currentHP: 0
+  godMode: 0
 --- !u!114 &25260238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64ad32d79c95f74aa1dcb326ab4d842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseID: 0
+  healthScript: {fileID: 0}
+  commonAsset: {fileID: 0}
 --- !u!1 &6872063107557850064
 GameObject:
   m_ObjectHideFlags: 0

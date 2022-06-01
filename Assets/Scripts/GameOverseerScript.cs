@@ -29,6 +29,8 @@ public class GameOverseerScript : MonoBehaviour
     {
         Debug.Log(destoyedBaseId);
 
+        currentGameState = GAMESTATE.OVER;
+
         AllEventsScript.OnGameOver?.Invoke();//Invoke on game over event
 
         if (gameOverPanel)//If game over panel available
@@ -39,7 +41,7 @@ public class GameOverseerScript : MonoBehaviour
             gameOverPanel.SetActive(true);
         }
 
-        currentGameState = GAMESTATE.OVER;
+        
     }
 
     void OnABaseDestroyed(int id)
