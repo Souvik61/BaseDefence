@@ -51,11 +51,6 @@ public class TankAIScript3 : MonoBehaviour
         CalculateTargetProperties();
     }
 
-    private void OnDestroy()
-    {
-        //stateMachine.Exit();
-    }
-
     void CalculateTargetProperties()
     {
         enemiesInSight.Clear();//Clear enemy list

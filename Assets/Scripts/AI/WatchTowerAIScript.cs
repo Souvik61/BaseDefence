@@ -25,9 +25,9 @@ public class WatchTowerAIScript : MonoBehaviour
     cmplx_statemachine.WatchTowerStateMachine stateMachine;
     public List<GameObject> enemiesInSight;
 
-    public string currentStateName;
-
     bool isShooting;
+
+    GameObject prev0thEnemy;
 
     //Unity methods
 
@@ -81,58 +81,40 @@ public class WatchTowerAIScript : MonoBehaviour
         {
             foreach (var item in obsCheckScript.obstaclesInRange)
             {
-                if (CheckIfAnObsIsEnemy(item))//If item is an enemy add to enemy list
+                if (CheckIfObsIsAnActiveEnemy(item))//If item is an enemy add to enemy list
                 {
                     enemiesInSight.Add(item);
                 }
             }
         }
+        //Check with previous enemies
+        //Place common enemy in 0th position
+        if (prev0thEnemy == null) return;
 
+        int index = enemiesInSight.IndexOf(prev0thEnemy);
+
+        if (index != -1)//If 0th enemy already exists in array
+        {
+            var gm = enemiesInSight[0];
+            enemiesInSight[0] = enemiesInSight[index];//Swap with current
+            enemiesInSight[index] = gm;
+        }
+        prev0thEnemy = enemiesInSight[0];
     }
 
-    bool CheckIfAnObsIsEnemy(GameObject item)
+    bool CheckIfObsIsAnActiveEnemy(GameObject item)
     {
-        TankScript othTank;
-        if (item != null && item.layer == LayerMask.NameToLayer("Tank"))//If item is in tank layer
+        if (item)
         {
-            item.TryGetComponent<TankScript>(out othTank);
-            if (othTank != null)//if tankscript not equal to null//If it is a tank
+            var unitC = item.GetComponent<UnitComponent>();
+            if (unitC && item.GetComponent<HealthScript>().currentHP > 0)//If it is an unit with health>0
             {
-                if (othTank.GetHealthScript().currentHP > 0)//if tankhealth>0
+                if (unitC.unitType == UnitType.TANK || unitC.unitType == UnitType.ARTILERY)//If it is an tank or artilery
                 {
-                    if (!othTank.CompareTag(tag))//if not on same team
-                    {
-                        return true;
-                    }
-                }
-
-            }
-            else { }//If it is an artilery
-            /*
-                if (item.GetComponent<ArtileryScript>() != null)//If artilery type 1
-                {
-                    if (item.GetComponent<ArtileryScript>().GetHealthScript().currentHP > 0)
-                    {
-                        if (!item.CompareTag(tag))//if not on same team
-                        {
-                            return true;
-
-                        }
-                    }
-                }
-                else//If artilery type 2
-                {
-                    if (item.GetComponent<Artilery_t1Script>().GetHealthScript().currentHP > 0)
-                    {
-                        if (!item.CompareTag(tag))//if not on same team
-                        {
-                            return true;
-                        }
-                    }
+                    //If same team or other and alive
+                    return !unitC.CompareTag(tag);//if not on same team
                 }
             }
-        }
-                */
         }
         return false;
     }
@@ -171,7 +153,6 @@ public class WatchTowerAIScript : MonoBehaviour
 
     void TakeDamage(Vector2 collPoint)
     {
-
         healthScript.Decrement(25);
         /*
         //Decrease HP Bar
