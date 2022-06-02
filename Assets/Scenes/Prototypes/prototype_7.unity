@@ -554,7 +554,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437190100}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af6f301b3084f104fad84fa8d8cf9a38, type: 3}
   m_Name: 
@@ -31566,6 +31566,7 @@ GameObject:
   - component: {fileID: 6368788054512506125}
   - component: {fileID: 6368788054512506124}
   - component: {fileID: 6368788054512506131}
+  - component: {fileID: 6368788054512506135}
   - component: {fileID: 6368788054512506130}
   - component: {fileID: 6368788054512506129}
   - component: {fileID: 564432360}
@@ -31576,6 +31577,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6368788054512506135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6368788054512506134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1119edfc443c9fa48a3cb55754148ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitType: 0
+  unitName: TANK
 --- !u!4 &6368788054838354120
 Transform:
   m_ObjectHideFlags: 0

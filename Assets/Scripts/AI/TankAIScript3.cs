@@ -64,7 +64,7 @@ public class TankAIScript3 : MonoBehaviour
         {
             foreach (var item in obsCheckScript.obstaclesInRange)
             {
-                if (CheckIfAnObsIsEnemy(item))//If item is an enemy add to enemy list
+                if (CheckIfObsIsAnActiveEnemy(item))//If item is an enemy add to enemy list
                 {
                     enemiesInSight.Add(item);
                 }
@@ -86,6 +86,7 @@ public class TankAIScript3 : MonoBehaviour
         prev0thEnemy = enemiesInSight[0];
     }
 
+    /*
     bool CheckIfAnObsIsEnemy(GameObject item)
     {
         TankScript othTank;
@@ -139,6 +140,23 @@ public class TankAIScript3 : MonoBehaviour
         return false;
     }
     */
+
+    bool CheckIfObsIsAnActiveEnemy(GameObject item)
+    {
+        if (item)
+        {
+            var unitC = item.GetComponent<UnitComponent>();
+            if (unitC && item.GetComponent<HealthScript>().currentHP > 0)//If it is an unit with health>0
+            {
+                if (unitC.unitType == UnitType.TANK || unitC.unitType == UnitType.ARTILERY)//If it is an tank or artilery
+                {
+                    //If same team or other and alive
+                    return !unitC.CompareTag(tag);//if not on same team
+                }
+            }
+        }
+        return false;
+    }
 
     void InitStateMachine()
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TankScript : MonoBehaviour
+public class TankScript : MonoBehaviour,IDamageable
 {
     public TankPropertiesSO tankProperty;
     public float projectileSpeed;
@@ -205,6 +205,10 @@ public class TankScript : MonoBehaviour
         }
     }
 
+    public void OnTakeDamage()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 
