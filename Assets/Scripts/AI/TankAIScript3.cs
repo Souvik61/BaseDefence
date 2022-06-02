@@ -1,25 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using cmplx_statemachine;
 
+/// <summary>
+/// Tank AI Component
+/// </summary>
 public class TankAIScript3 : MonoBehaviour
 {
+    [SerializeField]
+    cmplx_statemachine.TankAIStateMachine stateMachine;
+
     public ArmyBaseScript targetBase;
 
     [SerializeField]
     FOVObsCheckScript obsCheckScript;
-
-    cmplx_statemachine.TankAIStateMachine stateMachine;
     public List<GameObject> enemiesInSight;
-
-    public string currentStateName;
+    
+    //private
+    private GameObject prev0thEnemy;
 
     TankScript tankController;
 
     public Compass compass;
 
-    public PathSeekerScript pathSeeker;
+    SeekerModuleScript seekerModule;
 
     private void OnEnable()
     {
@@ -33,7 +36,8 @@ public class TankAIScript3 : MonoBehaviour
 
     private void Awake()
     {
-        stateMachine = GetComponent<cmplx_statemachine.TankAIStateMachine>();
+        //stateMachine = GetComponentInChildren<cmplx_statemachine.TankAIStateMachine>();
+        seekerModule = GetComponentInChildren<SeekerModuleScript>();
     }
 
     private void Start()
@@ -67,6 +71,19 @@ public class TankAIScript3 : MonoBehaviour
             }
         }
 
+        //Check with previous enemies
+        //Place common enemy in 0th position
+        if (prev0thEnemy == null) return;
+
+        int index = enemiesInSight.IndexOf(prev0thEnemy);
+
+        if (index != -1)//If 0th enemy already exists in array
+        {
+            var gm = enemiesInSight[0];
+            enemiesInSight[0] = enemiesInSight[index];//Swap with current
+            enemiesInSight[index] = gm;
+        }
+        prev0thEnemy = enemiesInSight[0];
     }
 
     bool CheckIfAnObsIsEnemy(GameObject item)
@@ -86,35 +103,42 @@ public class TankAIScript3 : MonoBehaviour
                 }
 
             }
-            else { }//If it is an artilery
-            /*
-                if (item.GetComponent<ArtileryScript>() != null)//If artilery type 1
-                {
-                    if (item.GetComponent<ArtileryScript>().GetHealthScript().currentHP > 0)
-                    {
-                        if (!item.CompareTag(tag))//if not on same team
-                        {
-                            return true;
+            else //If it is an artilery
+            {
+                //return CheckIfAnArtilery();
+            
+            }
+        }
+        return false;
+    }
 
-                        }
-                    }
-                }
-                else//If artilery type 2
+    /*
+    bool CheckIfAnArtilery(GameObject item)
+    {
+        if (item.GetComponent<ArtileryScript>() != null)//If artilery type 1
+        {
+            if (item.GetComponent<ArtileryScript>().GetHealthScript().currentHP > 0)
+            {
+                if (!item.CompareTag(tag))//if not on same team
                 {
-                    if (item.GetComponent<Artilery_t1Script>().GetHealthScript().currentHP > 0)
-                    {
-                        if (!item.CompareTag(tag))//if not on same team
-                        {
-                            return true;
-                        }
-                    }
+                    return true;
+
                 }
             }
         }
-                */
-        }   
+        else//If artilery type 2
+        {
+            if (item.GetComponent<Artilery_t1Script>().GetHealthScript().currentHP > 0)
+            {
+                if (!item.CompareTag(tag))//if not on same team
+                {
+                    return true;
+                }
+            }
+        }
         return false;
     }
+    */
 
     void InitStateMachine()
     {
@@ -127,7 +151,7 @@ public class TankAIScript3 : MonoBehaviour
 
     void OnGameOver()
     {
-        //stateMachine.ChangeState("GAME_OVR");
+        stateMachine.ChangeState("GAME_OVR");
     }
 
 }

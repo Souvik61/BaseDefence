@@ -40,7 +40,7 @@ public class TankScript : MonoBehaviour
         healthScript.OnHealthDepleted -= OnTankDestroyed;
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         isBeingAttacked = false;
         tankBodyTransform = transform.Find("tank_body");

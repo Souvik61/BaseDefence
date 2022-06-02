@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using Pathfinding;
 
-public class PathSeekerScript : MonoBehaviour
+public class SeekerModuleScript : MonoBehaviour
 {
-    [SerializeField]
     Seeker seeker;
 
     private void Awake()

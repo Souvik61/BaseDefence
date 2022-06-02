@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NewTankScript : TankScript
 {
@@ -10,6 +8,11 @@ public class NewTankScript : TankScript
     Vector2 forceBuff;
     float torqueBuff;
     bool hasToMove;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     protected override void Start()
     {
@@ -42,8 +45,7 @@ public class NewTankScript : TankScript
     public override void Rotate(int turn)
     {
         if (!isDestroyed)
-            torqueBuff += turn * tankProperty.rotateSpeed * rotateMultiplier;
-
+            torqueBuff = turn * tankProperty.rotateSpeed * rotateMultiplier;
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)
