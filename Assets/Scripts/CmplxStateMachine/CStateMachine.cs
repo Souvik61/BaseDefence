@@ -54,6 +54,10 @@ namespace cmplx_statemachine
             currentState.OnExit();
         }
 
+        protected void AddState(string key,BaseState state)
+        {
+            stateDict.Add(key, state);
+        }
 
         public void ChangeState(BaseState newState)//Change state
         {

@@ -26,7 +26,6 @@ namespace cmplx_statemachine
 
         public override void OnUpdate()
         {
-
             if (tankAIScript.enemiesInSight.Count > 0)//If there are enemies
             {
                 Transform currTarget = tankAIScript.enemiesInSight[0].transform;

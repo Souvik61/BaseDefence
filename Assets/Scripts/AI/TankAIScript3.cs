@@ -9,8 +9,9 @@ public class TankAIScript3 : MonoBehaviour
     [SerializeField]
     cmplx_statemachine.TankAIStateMachine stateMachine;
 
-    public ArmyBaseScript targetBase;
-
+    public ArmyBaseScript_pt1 targetBase;
+    [HideInInspector]
+    public UnitComponent unitComp;
     [SerializeField]
     FOVObsCheckScript obsCheckScript;
     public List<GameObject> enemiesInSight;
@@ -23,6 +24,11 @@ public class TankAIScript3 : MonoBehaviour
     public Compass compass;
 
     SeekerModuleScript seekerModule;
+
+    public SeekerModuleScript GetSeekerModule
+    {
+        get { return seekerModule; }
+    }
 
     private void OnEnable()
     {
@@ -37,6 +43,7 @@ public class TankAIScript3 : MonoBehaviour
     private void Awake()
     {
         //stateMachine = GetComponentInChildren<cmplx_statemachine.TankAIStateMachine>();
+        unitComp = GetComponent<UnitComponent>();
         seekerModule = GetComponentInChildren<SeekerModuleScript>();
     }
 
@@ -146,7 +153,7 @@ public class TankAIScript3 : MonoBehaviour
                 if (unitC.unitType == UnitType.TANK || unitC.unitType == UnitType.ARTILERY)//If it is an tank or artilery
                 {
                     //If same team or other and alive
-                    return !unitC.CompareTag(tag);//if not on same team
+                    return unitC.teamID != unitComp.teamID;//if not on same team
                 }
             }
         }

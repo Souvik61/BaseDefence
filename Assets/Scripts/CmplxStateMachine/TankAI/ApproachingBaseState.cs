@@ -13,7 +13,7 @@ namespace cmplx_statemachine
 
         float targetDistanceTolerance = 7;
         Vector2 dirToTarget;
-        ArmyBaseScript targetBase;
+        ArmyBaseScript_pt1 targetBase;
 
         Transform pathStartPoint;
 

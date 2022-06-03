@@ -10,15 +10,8 @@ namespace cmplx_statemachine
         Transform selfTransform;
         TankAIScript3 tankAIScript;
         NewTankScript tankController;
-        Path path;//For generation of local path
-        Transform localTarget;
-        int localCurrWaypoint;
-        bool hasReachedEndOfLocalPath;
-        float nextWPDistance;
 
         Vector2 dirToTarget;
-
-        bool isLocalTargetCoroutineRunning;
 
         int[] controlBits;
 
@@ -28,14 +21,12 @@ namespace cmplx_statemachine
             tankAIScript = tankAI;
             tankController = tankAI.GetComponent<NewTankScript>();
             selfTransform = tankAI.GetComponent<Transform>();
-            isLocalTargetCoroutineRunning = false;
             controlBits = new int[2];
         }
 
         public override void OnEnter()
         { 
             tankAIScript.StartCoroutine(MasterCoroutine());
-            
         }
 
         //------------------------
@@ -58,7 +49,7 @@ namespace cmplx_statemachine
         /// <returns></returns>
         public IEnumerator DestroyWatchTowers()
         {
-            List<WatchTowerAIScript> watchTowers = ((NewArmyBaseScript)tankAIScript.targetBase).watchTowers;
+            List<WatchTowerAIScript> watchTowers = (tankAIScript.targetBase).watchTowers;
 
             while (true)
             {
@@ -83,7 +74,7 @@ namespace cmplx_statemachine
 
         public IEnumerator ApproachNearCC()
         {
-            Transform a = ((NewArmyBaseScript)tankAIScript.targetBase).nearCCLandingZone;
+            Transform a = (tankAIScript.targetBase).nearCCLandingZone;
             float distance = 0;
             do
             { 
@@ -102,7 +93,7 @@ namespace cmplx_statemachine
 
         IEnumerator DestroyCommCenter()
         {
-            Transform ccT = ((NewArmyBaseScript)tankAIScript.targetBase).commandCenter.transform;
+            Transform ccT = (tankAIScript.targetBase).commandCenter.transform;
 
             while (ccT.GetComponent<HealthScript>().currentHP > 0)
             {

@@ -3,7 +3,7 @@ using Pathfinding;
 
 public class SeekerModuleScript : MonoBehaviour
 {
-    Seeker seeker;
+    public Seeker seeker;
 
     private void Awake()
     {
