@@ -29,6 +29,7 @@ public class TankScript : MonoBehaviour,IDamageable
     protected Collider2D selfCollider;
     protected Rigidbody2D rBody;
     protected bool isBeingAttacked;
+    protected UnitComponent unitC;
 
     private void OnEnable()
     {
@@ -45,6 +46,7 @@ public class TankScript : MonoBehaviour,IDamageable
         isBeingAttacked = false;
         tankBodyTransform = transform.Find("tank_body");
         muzzleTransform = transform.Find("tank_body/muzzle");
+        unitC = GetComponent<UnitComponent>();
         healthScript = GetComponent<HealthScript>();
         audioSrc = GetComponent<AudioSource>();
         selfCollider = GetComponent<BoxCollider2D>();
@@ -164,6 +166,7 @@ public class TankScript : MonoBehaviour,IDamageable
 
         //Instantiate projectile 
         GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoint.position, Quaternion.identity);
+        proj.tag = "tag_projectile" + unitC.teamID;
         proj.GetComponent<Rigidbody2D>().velocity = firePoint.up * projectileSpeed;
         Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
 

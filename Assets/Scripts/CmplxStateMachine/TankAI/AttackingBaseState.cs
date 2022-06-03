@@ -130,7 +130,7 @@ namespace cmplx_statemachine
             Vector2 dirT = (target.position - selfTransform.position).normalized;
 
 
-            if (IsFacingDirection(dirT, 7))
+            if (IsFacingDirection(dirT, 2))
             { controlBits[0] = 1; }
 
             SetControlBitsTowardsDir(dirT, controlBits);
@@ -203,20 +203,19 @@ namespace cmplx_statemachine
         WatchTowerAIScript FindNearestWatchTower(List<WatchTowerAIScript> list)
         {
             if (list.Count == 0) return null;
-            WatchTowerAIScript nearest = null;
-
+            WatchTowerAIScript nearest;
             nearest = list[0];
 
+            float nearestDist = Vector2.Distance(selfTransform.position, nearest.transform.position);
             for (int i = 1; i < list.Count; i++)
             {
-                float dist = Vector2.Distance(selfTransform.position, nearest.transform.position);//Find nearest distance
                 float distA = Vector2.Distance(selfTransform.position, list[i].transform.position);//Find current distance
 
-                if (distA < dist)
+                if (distA < nearestDist)
                 {
                     nearest = list[i];
+                    nearestDist = distA;
                 }
-
             }
             return nearest;
         }
@@ -244,7 +243,6 @@ namespace cmplx_statemachine
         List<WatchTowerAIScript> PickAliveWatchTowers(List<WatchTowerAIScript> list)
         {
             List<WatchTowerAIScript> output = new List<WatchTowerAIScript>();
-
             foreach (var item in list)
             {
                 if (item.GetComponent<HealthScript>().currentHP > 0)

@@ -7,6 +7,8 @@ TagManager:
   - tag_opponent2
   - tag_opponent1
   - tag_projectile
+  - tag_projectile1
+  - tag_projectile0
   layers:
   - Default
   - TransparentFX

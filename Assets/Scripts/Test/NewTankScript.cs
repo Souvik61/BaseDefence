@@ -7,7 +7,6 @@ public class NewTankScript : TankScript
 
     Vector2 forceBuff;
     float torqueBuff;
-    bool hasToMove;
 
     protected override void Awake()
     {
@@ -17,7 +16,6 @@ public class NewTankScript : TankScript
     protected override void Start()
     {
         base.Start();
-        hasToMove = false;
     }
 
     protected override void FixedUpdate()
@@ -51,10 +49,12 @@ public class NewTankScript : TankScript
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         // Debug.Log("Trigger Enter");
-        if (collision.CompareTag("tag_projectile"))
+        if (collision.tag.Contains("tag_projectile"))
         {
             Destroy(collision.gameObject);//Destroy the projectile
-            OnTakeDamage(collision.transform.position);
+
+            if (!collision.CompareTag("tag_projectile" + unitC.teamID))
+                OnTakeDamage(collision.transform.position);
         }
     }
 
