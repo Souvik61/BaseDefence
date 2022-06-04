@@ -166,6 +166,7 @@ public class TankScript : MonoBehaviour,IDamageable
 
         //Instantiate projectile 
         GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoint.position, Quaternion.identity);
+        proj.GetComponent<BulletScript>().damageAmmount = (int)tankProperty.shootDamage;
         proj.tag = "tag_projectile" + unitC.teamID;
         proj.GetComponent<Rigidbody2D>().velocity = firePoint.up * projectileSpeed;
         Destroy(proj, 3.0f);//Destroy projectile after 3 seconds

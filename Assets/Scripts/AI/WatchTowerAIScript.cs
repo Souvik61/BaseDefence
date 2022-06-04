@@ -19,6 +19,7 @@ public class WatchTowerAIScript : MonoBehaviour
     ProgressBarScript healthBar;
     [SerializeField]
     Collider2D selfCollider;
+    UnitComponent unitC;
 
     public bool isDestroyed;
     
@@ -46,6 +47,7 @@ public class WatchTowerAIScript : MonoBehaviour
     private void Awake()
     {
         healthScript = GetComponent<HealthScript>();
+        unitC = GetComponent<UnitComponent>();
         stateMachine = GetComponent<cmplx_statemachine.WatchTowerStateMachine>();
         obsCheckScript = GetComponentInChildren<FOVObsCheckScript>();
         selfCollider = GetComponent<Collider2D>();
@@ -66,7 +68,9 @@ public class WatchTowerAIScript : MonoBehaviour
         if (collision.tag.Contains("tag_projectile"))
         {
             Destroy(collision.gameObject);
-            TakeDamage(collision.transform.position);
+
+            if (!collision.CompareTag("tag_projectile" + unitC.teamID))
+                TakeDamage(collision.transform.position, collision.GetComponent<BulletScript>().damageAmmount);
         }
     }
 
@@ -151,9 +155,9 @@ public class WatchTowerAIScript : MonoBehaviour
 
     }
 
-    void TakeDamage(Vector2 collPoint)
+    void TakeDamage(Vector2 collPoint,int damAmmount)
     {
-        healthScript.Decrement(25);
+        healthScript.Decrement((uint)damAmmount);
         /*
         //Decrease HP Bar
         if (healthBar != null)
@@ -174,7 +178,10 @@ public class WatchTowerAIScript : MonoBehaviour
         {
             Instantiate(commonAsset.SmokePrefab, transform.position, Quaternion.identity, transform);
             selfCollider.enabled = false;
-            isDestroyed = true;  
+            isDestroyed = true; 
+            
+
+
         }
     }
 

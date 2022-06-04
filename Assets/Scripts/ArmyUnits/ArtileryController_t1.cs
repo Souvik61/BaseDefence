@@ -14,6 +14,7 @@ public class ArtileryController_t1 : ArtileryController
         {
             //Instantiate projectile 
             GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoints[i].position, Quaternion.identity);
+            proj.GetComponent<BulletScript>().damageAmmount = (int)selfProperties.shootDamage;
             proj.GetComponent<Rigidbody2D>().velocity = firePoints[i].up * projectileSpeed;
             Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
 
