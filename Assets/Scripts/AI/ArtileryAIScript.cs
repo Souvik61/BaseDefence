@@ -7,11 +7,10 @@ using UnityEngine;
 public class ArtileryAIScript : MonoBehaviour
 {
     [SerializeField]
-    cmplx_statemachine.TankAIStateMachine stateMachine;
+    cmplx_statemachine.ArtAIStateMachine stateMachine;
 
     [HideInInspector]
     public UnitComponent unitComp;
-    [SerializeField]
     FOVObsCheckScript obsCheckScript;
     public List<GameObject> enemiesInSight;
 
@@ -32,6 +31,7 @@ public class ArtileryAIScript : MonoBehaviour
     {
         //stateMachine = GetComponentInChildren<cmplx_statemachine.TankAIStateMachine>();
         unitComp = GetComponent<UnitComponent>();
+        obsCheckScript = GetComponentInChildren<FOVObsCheckScript>();
     }
 
     private void Start()
@@ -97,7 +97,7 @@ public class ArtileryAIScript : MonoBehaviour
         // stateMachine = new TankAIStateMachine2(this);
 
         //stateMachine.Initialize("APPR_BASE");
-        stateMachine.Initialize("APPR_BASE");
+        stateMachine.Initialize("IDLE");
 
     }
 

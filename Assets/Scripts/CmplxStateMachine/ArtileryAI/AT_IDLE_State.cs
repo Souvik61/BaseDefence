@@ -7,14 +7,31 @@ namespace cmplx_statemachine
     /// </summary>
     public class AT_IDLE_State : BaseState
     {
+        ArtileryAIScript artileryAI;
+
         public AT_IDLE_State(ArtAIStateMachine sTM, ArtileryAIScript artAI) : base(sTM)
         {
             stateName = "IDLE";
+            artileryAI = artAI;
         }
 
         public override void OnEnter()
         {
-            throw new System.NotImplementedException();
+            //Empty
+        }
+
+        public override void OnUpdate()
+        {
+            base.OnUpdate();
+
+            CheckStateTransition();
+        }
+
+        void CheckStateTransition()
+        {
+            if (artileryAI.enemiesInSight.Count > 0)
+                stateMachineInstance.ChangeState("ATTK");
+            
         }
     }
 }

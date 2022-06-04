@@ -53,7 +53,6 @@ namespace cmplx_statemachine
             {
                 tankController.Shoot();
             }
-
         }
 
         bool IsFacingTarget(Transform targTrans)

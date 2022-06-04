@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ArtileryController : MonoBehaviour
 {
-    ArtileryPropertiesSO selfProperties;
+    public ArtileryPropertiesSO selfProperties;
 
     HealthScript healthScript;
     [SerializeField]
@@ -12,15 +12,17 @@ public class ArtileryController : MonoBehaviour
     [SerializeField]
     Transform firePoint;
     [SerializeField]
-    CommonAssetSO commonAsset;
+    protected CommonAssetSO commonAsset;
     [SerializeField]
-    AudioSource audioSrc;
+    protected AudioSource audioSrc;
 
     public float projectileSpeed;
+    public float muzzleRotateSpeed;
 
     //private
     bool isDestroyed;
-    bool isShooting;
+    protected bool isShooting;
+    public Transform muzzleTransform;
 
 
     private void OnEnable()
@@ -35,32 +37,35 @@ public class ArtileryController : MonoBehaviour
 
     private void Awake()
     {
+        muzzleTransform = transform.Find("artbody_rotate");
         healthScript = GetComponent<HealthScript>();
         selfCollider = GetComponent<Collider2D>();
     }
 
-    public virtual IEnumerator ShootRoutine()
+    //------------------
+    //Utilities
+    //------------------
+
+    /// <summary>
+    /// Rotate the muzzle
+    /// </summary>
+    /// <param name="turn"></param>
+    public void MuzzleRotate(int turn)
     {
-        isShooting = true;
+        if (!isDestroyed)
+        {
+            muzzleTransform.Rotate(0, 0, -turn * Time.deltaTime * muzzleRotateSpeed, Space.Self);
+            //float newAngle = Vector2.SignedAngle(tankBodyTransform.up, muzzleTransform.up);
+        }
+    }
 
-        //Instantiate projectile 
-        GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoint.position, Quaternion.identity);
-        proj.GetComponent<Rigidbody2D>().velocity = firePoint.up * projectileSpeed;
-        Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
-
-        //Instantiate muzzle flash
-        Quaternion rot = firePoint.rotation * Quaternion.Euler(new Vector3(0, 0, 90));
-        GameObject mzlFlash = Instantiate(commonAsset.MuzzleFlashPrefab, firePoint.position, rot);
-        float size = Random.Range(0.6f, 0.9f);
-        mzlFlash.transform.localScale = new Vector2(size, size);
-        Destroy(mzlFlash, 0.05f);
-
-        //play shoot audio
-        audioSrc.Play();
-        //wait before shooting again
-        yield return new WaitForSeconds(selfProperties.shootDelay + Random.Range(-1f, 1f));
-
-        isShooting = false;
+    /// <summary>
+    /// Shoot!
+    /// </summary>
+    public virtual void Shoot()
+    {
+        if (!isShooting && !isDestroyed)
+        { StartCoroutine(nameof(ShootRoutine)); }
     }
 
     //-----------
@@ -112,6 +117,30 @@ public class ArtileryController : MonoBehaviour
     //-------------
     //Helpers
     //-------------
+
+    public virtual IEnumerator ShootRoutine()
+    {
+        isShooting = true;
+
+        //Instantiate projectile 
+        GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoint.position, Quaternion.identity);
+        proj.GetComponent<Rigidbody2D>().velocity = firePoint.up * projectileSpeed;
+        Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
+
+        //Instantiate muzzle flash
+        Quaternion rot = firePoint.rotation * Quaternion.Euler(new Vector3(0, 0, 90));
+        GameObject mzlFlash = Instantiate(commonAsset.MuzzleFlashPrefab, firePoint.position, rot);
+        float size = Random.Range(0.6f, 0.9f);
+        mzlFlash.transform.localScale = new Vector2(size, size);
+        Destroy(mzlFlash, 0.05f);
+
+        //play shoot audio
+        audioSrc.Play();
+        //wait before shooting again
+        yield return new WaitForSeconds(selfProperties.shootDelay + Random.Range(-1f, 1f));
+
+        isShooting = false;
+    }
 
     void SetBrOKenTextures()
     {
