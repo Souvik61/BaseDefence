@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseID: 0
   healthScript: {fileID: 0}
-  commonAsset: {fileID: 0}
+  commonAsset: {fileID: 11400000, guid: f549b273dc8d0ae49955f8107ae97914, type: 2}
 --- !u!1 &6872063107557850064
 GameObject:
   m_ObjectHideFlags: 0
