@@ -27,7 +27,7 @@ public class CommandCenterScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("tag_projectile"))
+        if (collision.tag.Contains("tag_projectile"))
         {
             Destroy(collision.gameObject);
             TakeDamage(collision.transform.position);
