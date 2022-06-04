@@ -19,6 +19,7 @@ public class WatchTowerAIScript : MonoBehaviour
     ProgressBarScript healthBar;
     [SerializeField]
     Collider2D selfCollider;
+    BrokenTextureScript brokenTexControl;
     UnitComponent unitC;
 
     public bool isDestroyed;
@@ -51,6 +52,7 @@ public class WatchTowerAIScript : MonoBehaviour
         stateMachine = GetComponent<cmplx_statemachine.WatchTowerStateMachine>();
         obsCheckScript = GetComponentInChildren<FOVObsCheckScript>();
         selfCollider = GetComponent<Collider2D>();
+        brokenTexControl = GetComponentInChildren<BrokenTextureScript>();
     }
 
     private void Start()
@@ -178,10 +180,8 @@ public class WatchTowerAIScript : MonoBehaviour
         {
             Instantiate(commonAsset.SmokePrefab, transform.position, Quaternion.identity, transform);
             selfCollider.enabled = false;
-            isDestroyed = true; 
-            
-
-
+            isDestroyed = true;
+            brokenTexControl.SetBroken = true;
         }
     }
 
