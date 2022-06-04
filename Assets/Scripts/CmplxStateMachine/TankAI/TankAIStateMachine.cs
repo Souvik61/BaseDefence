@@ -25,6 +25,7 @@
             //Valid states
             //stateDict.Add("APPR_BASE1", new ApproachingBaseState(this, tankAIScript));
 
+            AddState("NO_TARG", new TNK_NO_TARG_State(this, tankAIScript));//use
             AddState("APPR_BASE", new NewApproachingBaseState(this, tankAIScript));//use
             AddState("ATTK_ENEM", new AttackingEnemyState(this, tankAIScript));//use
 

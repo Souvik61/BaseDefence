@@ -165,7 +165,7 @@ public class TankAIScript3 : MonoBehaviour
        // stateMachine = new TankAIStateMachine2(this);
 
         //stateMachine.Initialize("APPR_BASE");
-        stateMachine.Initialize("APPR_BASE");
+        stateMachine.Initialize("NO_TARG");
 
     }
 
