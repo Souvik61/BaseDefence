@@ -54,7 +54,7 @@ public class NewTankScript : TankScript
             Destroy(collision.gameObject);//Destroy the projectile
 
             if (!collision.CompareTag("tag_projectile" + unitC.teamID))
-                OnTakeDamage(collision.transform.position);
+                OnTakeDamage(collision.transform.position, collision.GetComponent<BulletScript>().damageAmmount);
         }
     }
 

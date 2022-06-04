@@ -26,6 +26,10 @@ namespace cmplx_statemachine
         {
             if (tankAIScript.targetBase != null)
                 stateMachineInstance.ChangeState("APPR_BASE");
+
+            if (tankAIScript.enemiesInSight.Count > 0)
+                stateMachineInstance.ChangeState("ATTK_ENEM");
+
         }
 
     }

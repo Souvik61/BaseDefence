@@ -30,6 +30,7 @@ public class TankScript : MonoBehaviour,IDamageable
     protected Rigidbody2D rBody;
     protected bool isBeingAttacked;
     protected UnitComponent unitC;
+    BrokenTextureScript brokenTexCtrl;
 
     private void OnEnable()
     {
@@ -51,6 +52,7 @@ public class TankScript : MonoBehaviour,IDamageable
         audioSrc = GetComponent<AudioSource>();
         selfCollider = GetComponent<BoxCollider2D>();
         rBody = GetComponent<Rigidbody2D>();
+        brokenTexCtrl = GetComponentInChildren<BrokenTextureScript>();
 
         nextPosition = transform.position;
         nextRotation = rBody.rotation;
@@ -119,9 +121,9 @@ public class TankScript : MonoBehaviour,IDamageable
     public HealthScript GetHealthScript()
     { return healthScript; }
 
-    protected void OnTakeDamage(Vector2 collisionPoint)
+    protected void OnTakeDamage(Vector2 collisionPoint,int dAmount)
     {
-        healthScript.Decrement(25);
+        healthScript.Decrement((uint)dAmount);
         //Decrease HP Bar
         if (healthBar != null)
         {
@@ -143,11 +145,7 @@ public class TankScript : MonoBehaviour,IDamageable
             selfCollider.enabled = false;
             isDestroyed = true;
 
-            //Set broken textures
-            for (int i = 0; i < spriteRenderers.Length; i++)
-            {
-                spriteRenderers[i].sprite = tankProperty.destroyedSpriteArray[i];
-            }
+            brokenTexCtrl.SetBroken = true;//Set broken textures
 
             StartCoroutine(nameof(DissolveRoutine));
         }
@@ -205,7 +203,7 @@ public class TankScript : MonoBehaviour,IDamageable
         if (collision.CompareTag("tag_projectile"))
         {
             Destroy(collision.gameObject);//Destroy the projectile
-            OnTakeDamage(collision.transform.position);
+            OnTakeDamage(collision.transform.position, collision.GetComponent<BulletScript>().damageAmmount);
         }
     }
 

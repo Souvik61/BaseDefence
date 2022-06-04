@@ -66,9 +66,13 @@ namespace cmplx_statemachine
 
         void CheckStateTransition()
         {
+
             if (tankAIScript.enemiesInSight.Count == 0)
             {
-                stateMachineInstance.ChangeState("APPR_BASE");
+                if (tankAIScript.targetBase == null)
+                    stateMachineInstance.ChangeState("NO_TARG");
+                else
+                    stateMachineInstance.ChangeState("APPR_BASE");
             }
         }
 

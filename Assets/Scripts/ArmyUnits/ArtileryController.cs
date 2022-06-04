@@ -23,6 +23,7 @@ public class ArtileryController : MonoBehaviour
     bool isDestroyed;
     protected bool isShooting;
     public Transform muzzleTransform;
+    BrokenTextureScript brokenTexControl;
 
 
     private void OnEnable()
@@ -40,6 +41,7 @@ public class ArtileryController : MonoBehaviour
         muzzleTransform = transform.Find("artbody_rotate");
         healthScript = GetComponent<HealthScript>();
         selfCollider = GetComponent<Collider2D>();
+        brokenTexControl = GetComponentInChildren<BrokenTextureScript>();
     }
 
     //------------------
@@ -77,13 +79,13 @@ public class ArtileryController : MonoBehaviour
         if (collision.tag.Contains("tag_projectile"))
         {
             Destroy(collision.gameObject);//Destroy the projectile
-            OnTakeDamage(collision.transform.position);
+            OnTakeDamage(collision.transform.position, collision.GetComponent<BulletScript>().damageAmmount);
         }
     }
 
-    void OnTakeDamage(Vector2 collPoint)
+    void OnTakeDamage(Vector2 collPoint,int dAmount)
     {
-        healthScript.Decrement(25);
+        healthScript.Decrement((uint)dAmount);
         /*
         //Decrease HP bar
         if (healthBar != null)
@@ -146,10 +148,7 @@ public class ArtileryController : MonoBehaviour
     void SetBrOKenTextures()
     {
         //Set broken textures
-        //for (int i = 0; i < spriteRenderers.Length; i++)
-        //{
-        //    spriteRenderers[i].sprite = artileryProperties.destroyedSpriteArray[i];
-        //}
+        brokenTexControl.SetBroken = true;
     }
 
 }

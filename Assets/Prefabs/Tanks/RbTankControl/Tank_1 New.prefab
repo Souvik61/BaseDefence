@@ -1,5 +1,57 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &926563510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 926563511}
+  - component: {fileID: 926563512}
+  m_Layer: 8
+  m_Name: texchange_module
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &926563511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926563510}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2358070256253045226}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &926563512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926563510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a27779ded66ba4696f294da2d3e0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers:
+  - {fileID: 2358070257118450873}
+  - {fileID: 2358070256376815376}
+  - {fileID: 2358070257811326559}
+  brokenSprites:
+  - {fileID: 21300000, guid: 804db368a27a17a4aa7cb7f0f08d6614, type: 3}
+  - {fileID: 21300000, guid: 8e0b8484d8a1d3c479c8a12a7ac2149b, type: 3}
+  - {fileID: 21300000, guid: 9dad62eb8f9c28b4c8a3a6876899bafa, type: 3}
+  okSprites: []
 --- !u!1 &2358070256253045235
 GameObject:
   m_ObjectHideFlags: 0
@@ -18,7 +70,7 @@ GameObject:
   - component: {fileID: 2358070256253045236}
   m_Layer: 8
   m_Name: Tank_1 New
-  m_TagString: tag_opponent1
+  m_TagString: tag_opponent2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,6 +90,7 @@ Transform:
   - {fileID: 2358070257118450822}
   - {fileID: 2358070257498260600}
   - {fileID: 2358070257367149254}
+  - {fileID: 926563511}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
@@ -213,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitType: 0
   unitName: TANK
-  teamID: 0
+  teamID: 1
 --- !u!114 &2358070256253045239
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -697,6 +697,7 @@ Transform:
   - {fileID: 3580017627297523770}
   - {fileID: 3580017627044408724}
   - {fileID: 541413899923235419}
+  - {fileID: 5999073040239083261}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
@@ -963,3 +964,61 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8165665154564077400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5999073040239083261}
+  - component: {fileID: 3065263750441486941}
+  m_Layer: 8
+  m_Name: texchanger_module
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5999073040239083261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165665154564077400}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3580017627097784807}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3065263750441486941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165665154564077400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a27779ded66ba4696f294da2d3e0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers:
+  - {fileID: 3580017627297523771}
+  - {fileID: 3580017627044408725}
+  - {fileID: 3580017625547597460}
+  - {fileID: 3580017626361085250}
+  - {fileID: 3580017626958894310}
+  - {fileID: 3580017626715320094}
+  brokenSprites:
+  - {fileID: 21300000, guid: 728df2eb11a5fe446a16f9b30e7403d0, type: 3}
+  - {fileID: 21300000, guid: e4f602c8d4ce4364b833bf3f3c7b8b8e, type: 3}
+  - {fileID: 21300000, guid: 8a8b422c5f41d324da5edc391747ca93, type: 3}
+  - {fileID: 21300000, guid: 6d68201f202318b45be1cefe5a486b72, type: 3}
+  - {fileID: 21300000, guid: 8a8b422c5f41d324da5edc391747ca93, type: 3}
+  - {fileID: 21300000, guid: 6d68201f202318b45be1cefe5a486b72, type: 3}
+  okSprites: []
