@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
@@ -11,6 +12,9 @@ namespace cmplx_statemachine
         TankAIScript3 tankAIScript;
         NewTankScript tankController;
 
+        Collider2D[] colliders;
+        UnitComponent selfUnit;
+
         Vector2 dirToTarget;
 
         int[] controlBits;
@@ -22,6 +26,7 @@ namespace cmplx_statemachine
             tankController = tankAI.GetComponent<NewTankScript>();
             selfTransform = tankAI.GetComponent<Transform>();
             controlBits = new int[2];
+            colliders = new Collider2D[10];
         }
 
         public override void OnEnter()
@@ -70,6 +75,28 @@ namespace cmplx_statemachine
 
                 yield return null;//Pause here.
             }
+        }
+
+        public IEnumerator DestroyNearbyUnits()
+        {
+            List<GameObject> nearByEnemies;
+
+            while (true)
+            {
+                nearByEnemies = FindNearbyUnits(3); 
+
+                dirToTarget = (nearest.transform.position - selfTransform.position).normalized;
+
+                TryFaceTowardsDirection();
+
+                if (IsFacingTarget(nearest.transform))
+                {
+                    tankController.Shoot();
+                }
+
+                yield return null;//Pause here.
+            }
+
         }
 
         public IEnumerator ApproachNearCC()
@@ -251,6 +278,33 @@ namespace cmplx_statemachine
                 }
             }
             return output;
+        }
+
+        List<GameObject> FindNearbyUnits(float rad)
+        {
+            List<GameObject> nearbyEnemies = new List<GameObject>();
+
+            Array.Clear(colliders, 0, colliders.Length);
+
+            Physics2D.OverlapCircleNonAlloc(selfTransform.position, rad, colliders);
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                var item = colliders[i];
+
+                if (item != null)
+                {
+                    UnitComponent enemUnit = item.GetComponent<UnitComponent>();
+                    if (enemUnit.teamID != selfUnit.teamID)
+                    {
+                        nearbyEnemies.Add(item.gameObject);
+                    }
+                }
+                else
+                    break;
+            }
+            return nearbyEnemies;
+
         }
     }
 }

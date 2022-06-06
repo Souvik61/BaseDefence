@@ -30,14 +30,14 @@ public class CommandCenterScript : MonoBehaviour
         if (collision.tag.Contains("tag_projectile"))
         {
             Destroy(collision.gameObject);
-            TakeDamage(collision.transform.position);
+            TakeDamage(collision.transform.position, collision.GetComponent<BulletScript>().damageAmmount);
         }
     }
 
-    void TakeDamage(Vector2 collPoint)
+    void TakeDamage(Vector2 collPoint,int dAmmount)
     {
 
-        healthScript.Decrement(25);
+        healthScript.Decrement((uint)dAmmount);
         /*
         //Decrease HP Bar
         if (healthBar != null)
