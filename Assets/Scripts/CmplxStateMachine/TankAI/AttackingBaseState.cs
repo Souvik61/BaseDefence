@@ -25,6 +25,7 @@ namespace cmplx_statemachine
             tankAIScript = tankAI;
             tankController = tankAI.GetComponent<NewTankScript>();
             selfTransform = tankAI.GetComponent<Transform>();
+            selfUnit = selfTransform.GetComponent<UnitComponent>();
             controlBits = new int[2];
             colliders = new Collider2D[10];
         }
@@ -41,7 +42,8 @@ namespace cmplx_statemachine
         IEnumerator MasterCoroutine()
         {
             //Destroy Watchtowers
-            yield return tankAIScript.StartCoroutine(DestroyWatchTowers());
+            //yield return tankAIScript.StartCoroutine(DestroyWatchTowers());
+            yield return tankAIScript.StartCoroutine(DestroyNearbyUnits());
             //Destroy Artilery if any
             //Finally Destroy Command Center
             yield return tankAIScript.StartCoroutine(ApproachNearCC());
@@ -85,11 +87,11 @@ namespace cmplx_statemachine
             {
                 nearByEnemies = FindNearbyUnits(3); 
 
-                dirToTarget = (nearest.transform.position - selfTransform.position).normalized;
+                dirToTarget = (nearByEnemies[0].transform.position - selfTransform.position).normalized;
 
                 TryFaceTowardsDirection();
 
-                if (IsFacingTarget(nearest.transform))
+                if (IsFacingTarget(nearByEnemies[0].transform))
                 {
                     tankController.Shoot();
                 }
@@ -295,9 +297,12 @@ namespace cmplx_statemachine
                 if (item != null)
                 {
                     UnitComponent enemUnit = item.GetComponent<UnitComponent>();
-                    if (enemUnit.teamID != selfUnit.teamID)
+                    if (enemUnit != null)
                     {
-                        nearbyEnemies.Add(item.gameObject);
+                        if (enemUnit.teamID != selfUnit.teamID)
+                        {
+                            nearbyEnemies.Add(item.gameObject);
+                        }
                     }
                 }
                 else
