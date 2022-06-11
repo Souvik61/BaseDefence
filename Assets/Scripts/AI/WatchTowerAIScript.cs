@@ -7,6 +7,7 @@ using UnityEngine;
 public class WatchTowerAIScript : MonoBehaviour
 {
     public float shootDelay;
+    public float shootDamage;
     [SerializeField]
     HealthScript healthScript;
     [SerializeField]
@@ -145,6 +146,8 @@ public class WatchTowerAIScript : MonoBehaviour
         //Instantiate projectile 
         GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoint.position, Quaternion.identity);
         proj.layer = LayerMask.NameToLayer("~WatchTower");
+        proj.GetComponent<BulletScript>().damageAmmount = (int)shootDamage;
+        proj.tag = "tag_projectile" + unitC.teamID;
         proj.GetComponent<Rigidbody2D>().velocity = dir * 20;
         Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
 

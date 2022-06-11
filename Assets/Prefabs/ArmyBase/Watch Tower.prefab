@@ -619,6 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootDelay: 3
+  shootDamage: 10
   healthScript: {fileID: 0}
   firePoint: {fileID: 7589624127837834058}
   commonAsset: {fileID: 11400000, guid: f549b273dc8d0ae49955f8107ae97914, type: 2}

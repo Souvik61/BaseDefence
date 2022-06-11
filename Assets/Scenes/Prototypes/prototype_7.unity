@@ -579,6 +579,11 @@ PrefabInstance:
       propertyPath: targetBase
       value: 
       objectReference: {fileID: 1297733971}
+    - target: {fileID: 2358070256253045238, guid: a391f56fb8e803e4994219137ff329f4,
+        type: 3}
+      propertyPath: godMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2358070256779196135, guid: a391f56fb8e803e4994219137ff329f4,
         type: 3}
       propertyPath: targetMask.m_Bits
@@ -1926,6 +1931,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1511688360242333218, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511688360242333218, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511688360242333218, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -45
+      objectReference: {fileID: 0}
     - target: {fileID: 6875076348042644764, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}
       propertyPath: d.Array.size

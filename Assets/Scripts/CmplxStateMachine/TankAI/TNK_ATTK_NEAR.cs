@@ -62,6 +62,10 @@ namespace cmplx_statemachine
 
         void MoveLogic()
         {
+
+            if (Vector2.Distance(targetPt.position, selfTransform.position) <= 1)
+                return;
+
             dirToTarget = (targetPt.position - selfTransform.position).normalized;
 
             TryFaceTowardsDirection(dirToTarget,3.0f);
@@ -74,10 +78,18 @@ namespace cmplx_statemachine
 
         void AttackLogic()
         {
+            if (tankAI.enemiesInSight.Count > 0)
+            {
+                Transform target = tankAI.enemiesInSight[0].transform;
+                dirToTarget = (target.position - selfTransform.position).normalized;
 
+                TryFaceMuzzleTowardsDirection(dirToTarget);
 
-
-
+                if (IsMuzzleFacingTowardDir(dirToTarget, 3))
+                {
+                    tankController.Shoot();
+                }
+            }
 
         }
 
@@ -105,6 +117,24 @@ namespace cmplx_statemachine
                 { tankController.Rotate(-1); }
                 else { tankController.Rotate(1); }
             }
+        }
+
+        void TryFaceMuzzleTowardsDirection(Vector2 dir)
+        {
+            float angle = Vector2.SignedAngle(dir, tankController.muzzleTransform.up);
+            if (Mathf.Abs(angle) > 2)
+            {
+                if (angle > 0)
+                { tankController.MuzzleRotate(1); }
+                else { tankController.MuzzleRotate(-1); }
+            }
+        }
+
+        bool IsMuzzleFacingTowardDir(Vector2 dir,float tol)
+        {
+            float angle = Vector2.Angle(dir, tankController.muzzleTransform.up);
+            return angle < tol;
+
         }
     }
 }
