@@ -335,7 +335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277715304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.41, y: 4.68, z: 0}
+  m_LocalPosition: {x: 3.26, y: 4.68, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 835821405}
@@ -446,7 +446,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411657314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.41, y: -4.58, z: 0}
+  m_LocalPosition: {x: 3.2600002, y: -4.58, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 835821405}
@@ -579,6 +579,11 @@ PrefabInstance:
       propertyPath: targetBase
       value: 
       objectReference: {fileID: 1297733971}
+    - target: {fileID: 2358070256779196135, guid: a391f56fb8e803e4994219137ff329f4,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1280
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a391f56fb8e803e4994219137ff329f4, type: 3}
 --- !u!4 &523141660 stripped
@@ -646,7 +651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696098682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.41, y: 0, z: 0}
+  m_LocalPosition: {x: 3.2600002, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 835821405}
@@ -1921,6 +1926,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6875076348042644764, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: d.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875076348042644764, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: enemyLandingZones1.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875076348042644764, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: enemyLandingZones1.Array.data[0]
+      value: 
+      objectReference: {fileID: 696098683}
+    - target: {fileID: 6875076348042644764, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: enemyLandingZones1.Array.data[1]
+      value: 
+      objectReference: {fileID: 277715305}
+    - target: {fileID: 6875076348042644764, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: enemyLandingZones1.Array.data[2]
+      value: 
+      objectReference: {fileID: 411657315}
     - target: {fileID: 6875076348042644765, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}
       propertyPath: m_RootOrder

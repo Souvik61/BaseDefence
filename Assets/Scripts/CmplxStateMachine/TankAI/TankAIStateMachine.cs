@@ -31,7 +31,9 @@
 
             //AddState("REAC_BASE1", new ReachedBaseState(this, tankAIScript));
 
-            AddState("REAC_BASE", new AttackingBaseState(this, tankAIScript));//use
+            AddState("REAC_BASE", new TNK_ATTK_NEAR(this, tankAIScript));//use
+
+            //AddState("REAC_BASE", new AttackingBaseState(this, tankAIScript));//use
             AddState("GAME_OVER", new GameOverState(this, tankAIScript));//use
 
         }

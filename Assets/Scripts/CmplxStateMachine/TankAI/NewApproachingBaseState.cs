@@ -247,6 +247,7 @@ namespace cmplx_statemachine
         Transform PickRandomEnemyLandingZone()
         {
             int a = UnityEngine.Random.Range(0, 3);
+            tankAIScript.landZoneIndex = a;
             return (targetBase).enemyLandingZones[a];
         }
 

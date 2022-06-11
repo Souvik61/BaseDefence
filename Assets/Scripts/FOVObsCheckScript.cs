@@ -19,8 +19,8 @@ public class FOVObsCheckScript : MonoBehaviour
 
     private void Awake()
     {
-        obstaclesInRange = new GameObject[4];
-        collArray = new Collider2D[8];
+        obstaclesInRange = new GameObject[10];
+        collArray = new Collider2D[10];
     }
 
     private void Start()
@@ -162,7 +162,7 @@ public class FOVObsCheckScript : MonoBehaviour
         if (res > 0)//If resultant array is non zero.
         {
             int j = 0;
-            for (int i = 0; i < collArray.Length && j < 4; i++)
+            for (int i = 0; i < collArray.Length && j < obstaclesInRange.Length; i++)
             {
                 if (collArray[i] != null)//Check if element is not null.
                 {

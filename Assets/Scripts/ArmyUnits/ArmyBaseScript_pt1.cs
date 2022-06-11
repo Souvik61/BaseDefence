@@ -7,5 +7,7 @@ public class ArmyBaseScript_pt1 : MonoBehaviour
     public List<WatchTowerAIScript> watchTowers;
     public CommandCenterScript commandCenter;
     public List<Transform> enemyLandingZones;
+    public List<Transform> enemyLandingZones1;
     public Transform nearCCLandingZone;
+
 }
