@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace cmplx_statemachine
 {
@@ -53,6 +51,7 @@ namespace cmplx_statemachine
 
             CheckSubStateTransition();
 
+            CheckStateTransition();
         }
 
         //-------------------------
@@ -90,7 +89,12 @@ namespace cmplx_statemachine
                     tankController.Shoot();
                 }
             }
+        }
 
+        void CheckStateTransition()
+        {
+            if (Vector2.Distance(targetPt.position, selfTransform.position) <= 1)
+                stateMachineInstance.ChangeState("ST_ATTK_CC");
         }
 
         void CheckSubStateTransition()
