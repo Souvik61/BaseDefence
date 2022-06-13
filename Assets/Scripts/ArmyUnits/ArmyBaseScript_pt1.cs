@@ -10,4 +10,7 @@ public class ArmyBaseScript_pt1 : MonoBehaviour
     public List<Transform> enemyLandingZones1;
     public Transform nearCCLandingZone;
 
+    public List<Transform> tankSpawnPoints;
+    public List<Transform> artMountPoints;
+
 }

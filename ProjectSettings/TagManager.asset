@@ -43,14 +43,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: layer_ground
     uniqueID: 3427653987
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: layer_armybase
     uniqueID: 371677789
+    locked: 0
+  - name: layer_tooltip
+    uniqueID: 62742309
     locked: 0
   - name: layer_tanks
     uniqueID: 2001096189
