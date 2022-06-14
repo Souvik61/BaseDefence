@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   artileryName: Artilery 1
   shootDelay: 2
-  shootDamage: 0
+  shootDamage: 20
   maxHealth: 100
   destroyedSpriteArray:
   - {fileID: 21300000, guid: 8d920413b4a7546488db6e355ff2dd7d, type: 3}

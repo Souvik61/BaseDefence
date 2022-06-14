@@ -5,7 +5,7 @@ namespace cmplx_statemachine
     public class ST_ART_ATTK_LIN : BaseState
     {
         ArtileryAIScript artAIScript;
-        ArtileryController artController;
+        ArtileryControlBase artController;
         Transform selfTransform;
         Vector2 dirToTarget;
 
@@ -13,7 +13,7 @@ namespace cmplx_statemachine
         {
             stateName = "ATTK";
             artAIScript = artAI;
-            artController = artAI.GetComponent<ArtileryController>();
+            artController = artAI.GetComponent<ArtileryControlBase>();
             selfTransform = artAI.transform;
         }
 
