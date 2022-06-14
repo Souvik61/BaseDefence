@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 /// <summary>
 /// Tank AI Component
@@ -9,6 +10,10 @@ public class TankAIScript3 : MonoBehaviour
     [SerializeField]
     cmplx_statemachine.TankAIStateMachine stateMachine;
 
+    [SerializeField]
+    Vector2 PointA;
+    [SerializeField]
+    Transform endPoint;
     public ArmyBaseScript_pt1 targetBase;
     [HideInInspector]
     public UnitComponent unitComp;
@@ -23,6 +28,7 @@ public class TankAIScript3 : MonoBehaviour
     public Compass compass;
 
     SeekerModuleScript seekerModule;
+    Path currPath;
     public int landZoneIndex;
 
     public SeekerModuleScript GetSeekerModule
@@ -46,11 +52,23 @@ public class TankAIScript3 : MonoBehaviour
         tankController = GetComponent<NewTankScript>();
         unitComp = GetComponent<UnitComponent>();
         seekerModule = GetComponentInChildren<SeekerModuleScript>();
+
+        //Debug
+        currPath = new ABPath();
     }
 
     private void Start()
     {
         InitStateMachine();
+
+        //Debug
+        var lst = new List<Vector3>();
+
+        lst.Add(transform.position);
+        lst.Add(endPoint.position);
+
+        currPath.vectorPath = lst;
+
     }
 
     private void Update()
@@ -143,6 +161,16 @@ public class TankAIScript3 : MonoBehaviour
         return false;
     }
     */
+
+    public void SetPath(Path path)
+    {
+        currPath = path;
+    }
+
+    public Path GetPath()
+    {
+        return currPath;
+    }
 
     bool CheckIfObsIsAnActiveEnemy(GameObject item)
     {

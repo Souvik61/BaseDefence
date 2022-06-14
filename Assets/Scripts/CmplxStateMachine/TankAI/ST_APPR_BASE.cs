@@ -21,7 +21,7 @@ namespace cmplx_statemachine
         Path currPath;
         int currWaypoint;
         bool hasReachedEndOfPath;
-        float nextWpDistance;
+        float nextWpDistance = 0.5f;
 
         public ST_APPR_BASE(TankAIStateMachine stM, TankAIScript3 tankAIScript) : base(stM)
         {
@@ -39,13 +39,14 @@ namespace cmplx_statemachine
 
         public override void OnEnter()
         {
+            /*
             var lst = new List<Vector3>();
 
             lst.Add(selfTransform.position);
             lst.Add(targetBase.enemyLandingZones[0].position);
 
-            currPath = new ABPath();
-            currPath.vectorPath = lst;
+            currPath = new ABPath();*/
+            currPath = tankAIScript.GetPath();
         }
 
         public override void OnUpdate()
@@ -123,9 +124,6 @@ namespace cmplx_statemachine
 
             if (!hasReachedEndOfPath)//IF not reached end of path
             {
-                //Incase we skip a waypoint while local avoidance
-                if (HasSkippedCurrentWayPointNew() && !hasReachedEndOfPath) currWaypoint++;
-
                 Vector3 dir = (currPath.vectorPath[currWaypoint] - selfTransform.position).normalized;
 
                 HelperScript.DrawArrowDebug(selfTransform.position, selfTransform.position + dir, Color.blue);
@@ -145,13 +143,7 @@ namespace cmplx_statemachine
             SensorArrayScript.CollisionStatus collisionStatus = sensorArray.CheckCollisionArray();
 
             //Control forward movement
-
-            if (collisionStatus.RRay || collisionStatus.LRay)
-            {
-                controlBits[0] = 0;
-            }
-
-            if (collisionStatus.MRay && (collisionStatus.LRay || collisionStatus.RRay))
+            if (collisionStatus.MRay || (collisionStatus.LRay || collisionStatus.RRay))
             {
                 controlBits[0] = 0;
             }

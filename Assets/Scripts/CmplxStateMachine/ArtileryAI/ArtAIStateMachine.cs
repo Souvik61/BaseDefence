@@ -22,7 +22,7 @@ namespace cmplx_statemachine
             base.Update();
         }
 
-        void AddValidStates()
+        protected virtual void AddValidStates()
         {
             //Valid states
             AddState("IDLE", new AT_IDLE_State(this, artAIScript));//use
