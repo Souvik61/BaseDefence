@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
@@ -38,11 +39,13 @@ namespace cmplx_statemachine
 
         public override void OnEnter()
         {
+            var lst = new List<Vector3>();
+
+            lst.Add(selfTransform.position);
+            lst.Add(targetBase.enemyLandingZones[0].position);
+
             currPath = new ABPath();
-
-            
-            currPath.vectorPath[1] = tankAIScript.targetBase.enemyLandingZones[0].position;
-
+            currPath.vectorPath = lst;
         }
 
         public override void OnUpdate()
@@ -58,6 +61,13 @@ namespace cmplx_statemachine
             tankController.Rotate(controlBits[1]);
 
             CheckForStateTransition();
+
+            foreach (var item in currPath.vectorPath)
+            {
+                HelperScript.DrawPointDebug(item, Color.red);
+            }
+            Debug.DrawLine(currPath.vectorPath[0], currPath.vectorPath[1]);
+
         }
 
         //----------------------
