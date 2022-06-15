@@ -25,5 +25,6 @@ MonoBehaviour:
   TANK_2: {fileID: 0}
   TANK_3: {fileID: 0}
   TankShoot: {fileID: 8300000, guid: 19fd2e26f99eed4419a77d820195bbf2, type: 3}
+  Bgm: {fileID: 8300000, guid: 5b01019dbea1ca54c9048dec1a03cb64, type: 3}
   RedCross: {fileID: 5007491581516392812, guid: d53c27638ab8f4c46811220c3de05364,
     type: 3}
