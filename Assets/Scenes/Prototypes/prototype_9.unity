@@ -362,6 +362,44 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6875076346915869775}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &359543875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359543872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5cd22777ec8f14098936c412593bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &359543876
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359543872}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.64, y: 7.2}
+    newSize: {x: 10.64, y: 7.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10.64, y: 7.2}
+  m_EdgeRadius: 0
 --- !u!1 &383479359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,6 +1217,44 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6875076346915869775}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &714063023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714063020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5cd22777ec8f14098936c412593bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &714063024
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714063020}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.64, y: 7.2}
+    newSize: {x: 10.64, y: 7.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10.64, y: 7.2}
+  m_EdgeRadius: 0
 --- !u!1001 &738527426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1985,6 +2061,44 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6875076346915869775}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1053209560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053209557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5cd22777ec8f14098936c412593bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1053209561
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053209557}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.64, y: 7.2}
+    newSize: {x: 10.64, y: 7.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10.64, y: 7.2}
+  m_EdgeRadius: 0
 --- !u!1 &1148239235
 GameObject:
   m_ObjectHideFlags: 0
@@ -5297,17 +5411,17 @@ PrefabInstance:
     - target: {fileID: 3141536526590027688, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4591985290281423872, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4787359186769258357, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5584146076261428622, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}

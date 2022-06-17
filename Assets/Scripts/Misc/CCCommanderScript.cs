@@ -28,17 +28,6 @@ public class CCCommanderScript : MonoBehaviour
         
     }
 
-    public void ActiveHighLightTankSpawnPoints(int index)
-    {
-        tankSpawnPoints[index].GetComponent<SpriteRenderer>().enabled = true;
-    }
-
-    public void DeActiveHighLightTankSpawnPoints(int index)
-    {
-        tankSpawnPoints[index].GetComponent<SpriteRenderer>().enabled = false;
-    }
-
-
     void OnUICommand(string str)//Listens to UI commands
     {
         //If any tank select command is issued
@@ -54,7 +43,10 @@ public class CCCommanderScript : MonoBehaviour
         {
             OnRemoveCommand(str);
         }
-
+        else if (str.Contains("tap"))
+        {
+            OnScreenTap(str);
+        }
     
     }
 
@@ -76,6 +68,11 @@ public class CCCommanderScript : MonoBehaviour
     {
         currHighlightedState = HighlightedState.REMOVE;
         StartCoroutine(nameof(RemoveStateCoroutine));
+    }
+
+    void OnScreenTap(string str)
+    { 
+        
     }
 
     //-----------------------
@@ -115,4 +112,18 @@ public class CCCommanderScript : MonoBehaviour
         }
     }
 
+    //-------------------
+    //Others
+    //-------------------
+
+
+    public void ActiveHighLightTankSpawnPoints(int index)
+    {
+        tankSpawnPoints[index].GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    public void DeActiveHighLightTankSpawnPoints(int index)
+    {
+        tankSpawnPoints[index].GetComponent<SpriteRenderer>().enabled = false;
+    }
 }
