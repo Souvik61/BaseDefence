@@ -10,6 +10,10 @@ public class PanelManager : MonoBehaviour
     [SerializeField]
     GameObject panel_defend;
 
+    public delegate void ButtonCallback(string s);
+
+    public ButtonCallback OnButtonPressedCallback;
+
     enum PanelState { HOME, DEPLOY, DEFENSE };
 
     PanelState state;
@@ -68,6 +72,8 @@ public class PanelManager : MonoBehaviour
             default:
                 break;
         }
+
+        OnButtonPressedCallback?.Invoke(buttonName);
     }
 
     void EvaluateHomeState(string btName)

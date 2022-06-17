@@ -123,7 +123,7 @@ public class ArtileryControlBase : MonoBehaviour
         Destroy(mzlFlash, 0.05f);
 
         //play shoot audio
-        audioSrc.Play();
+        audioSrc.PlayOneShot(commonAsset.GRArtt2ShootSfx());
         //wait before shooting again
         yield return new WaitForSeconds(selfProperties.shootDelay + Random.Range(-1f, 1f));
 

@@ -24,7 +24,20 @@ MonoBehaviour:
   TANK_1: {fileID: 0}
   TANK_2: {fileID: 0}
   TANK_3: {fileID: 0}
-  TankShoot: {fileID: 8300000, guid: 19fd2e26f99eed4419a77d820195bbf2, type: 3}
-  Bgm: {fileID: 8300000, guid: 5b01019dbea1ca54c9048dec1a03cb64, type: 3}
   RedCross: {fileID: 5007491581516392812, guid: d53c27638ab8f4c46811220c3de05364,
     type: 3}
+  TankShoot: {fileID: 8300000, guid: 19fd2e26f99eed4419a77d820195bbf2, type: 3}
+  Bgm: {fileID: 8300000, guid: 5b01019dbea1ca54c9048dec1a03cb64, type: 3}
+  sfx_tankfire_small: {fileID: 8300000, guid: da12eacf2af81794a8e6e6b4638524af, type: 3}
+  sfx_tankfire1: {fileID: 8300000, guid: 688fb35993b652a499f5c4703cf7c810, type: 3}
+  sfx_tankfire2: {fileID: 8300000, guid: d9799bbfb7f43214fb35d6247e782e81, type: 3}
+  sfx_tankfire3: {fileID: 8300000, guid: e3f1125ef5b841c49a0168d8292843cb, type: 3}
+  sfx_tankfiret2_1: {fileID: 8300000, guid: 19fd2e26f99eed4419a77d820195bbf2, type: 3}
+  sfx_tankfiret2_2: {fileID: 8300000, guid: 04ad547145f8ef3488a3d55a3b49bdd8, type: 3}
+  sfx_tankfiret2_3: {fileID: 8300000, guid: 4ec378e8011de8142b44a0dc8d31f8fb, type: 3}
+  sfx_tankfire_cool1: {fileID: 8300000, guid: f3e0dd59d03376c44b622a43ff655086, type: 3}
+  sfx_tankfire_cool2: {fileID: 8300000, guid: 614cc40e45aaf0648b75fc494d423f8a, type: 3}
+  sfx_artfire1_t1: {fileID: 8300000, guid: 629fefaad98239747852d7c7a81ac68d, type: 3}
+  sfx_artfire1_t2: {fileID: 8300000, guid: c15db6fad4ce10f4ebddc2bec5d9e037, type: 3}
+  sfx_artfire2_t2: {fileID: 8300000, guid: fb2e7351f6e7bac46b9bef58b6c88df7, type: 3}
+  sfx_artfire3_t2: {fileID: 8300000, guid: 3d234c634f291f64097081543cc0ca51, type: 3}
