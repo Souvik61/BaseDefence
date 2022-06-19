@@ -150,35 +150,36 @@ public class CCCommanderScript : MonoBehaviour
         {
             Debug.Log("Defence state");
 
-            foreach (var item in ccScript.artSpawnPoints)
+            for (int i = 0; i < ccScript.artSpawnPoints.Count; i++)
             {
-                item.GetComponent<SpriteRenderer>().enabled = true;
-            }
+                Physics2D.OverlapBoxAll()
 
+
+            }
             //While in deploy active state --start
 
 
 
             //If touched on an area
-            //Deploy tank
+            //Deploy artillery
             if (commBuffer.Contains("tch"))
             {
-                if (commBuffer == "tch_deploy_0")
+                if (commBuffer == "tch_art_0")
                 {
-                    ccScript.DeployTank(0);
+                    ccScript.DeployArtillery(0);
                 }
-                else if (commBuffer == "tch_deploy_1")
+                else if (commBuffer == "tch_art_1")
                 {
-                    ccScript.DeployTank(1);
+                    ccScript.DeployArtillery(1);
                 }
-                else if (commBuffer == "tch_deploy_2")
+                else if (commBuffer == "tch_art_2")
                 {
-                    ccScript.DeployTank(2);
+                    ccScript.DeployArtillery(2);
                 }
                 break;
             }
 
-            if (commBuffer == "b_deploy_back")//back button pressed
+            if (commBuffer == "b_defend_back")//back button pressed
             {
                 break;
             }
@@ -187,11 +188,10 @@ public class CCCommanderScript : MonoBehaviour
             yield return null;
         }
 
-        foreach (var item in ccScript.tankSpawnPoints)
+        foreach (var item in ccScript.artSpawnPoints)
         {
             item.GetComponent<SpriteRenderer>().enabled = false;
         }
-        currHighlightedState = HighlightedState.NONE;
         currHighlightedState = HighlightedState.NONE;
     }
 
@@ -215,5 +215,12 @@ public class CCCommanderScript : MonoBehaviour
     {
         ccScript.tankSpawnPoints[index].GetComponent<SpriteRenderer>().enabled = value;
     }
+
+    bool IsArtilleryAreaAvailable(int a)
+    { 
+        Physics2D.OverlapBoxAll(ccScript.artSpawnPoints[a].transform.position,)
+    
+    }
+
 
 }

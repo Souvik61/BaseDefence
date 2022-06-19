@@ -24,6 +24,10 @@ MonoBehaviour:
   TANK_1: {fileID: 2358070256253045235, guid: a391f56fb8e803e4994219137ff329f4, type: 3}
   TANK_2: {fileID: 0}
   TANK_3: {fileID: 0}
+  PREFAB_ART_1: {fileID: 1424451668422179261, guid: 283e999c992f5cf45a3a8bbeea06ed93,
+    type: 3}
+  PREFAB_ART_2: {fileID: 0}
+  PREFAB_ART_3: {fileID: 0}
   RedCross: {fileID: 5007491581516392812, guid: d53c27638ab8f4c46811220c3de05364,
     type: 3}
   TankShoot: {fileID: 8300000, guid: 19fd2e26f99eed4419a77d820195bbf2, type: 3}
