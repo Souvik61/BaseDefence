@@ -109,8 +109,6 @@ public class CCCommanderScript : MonoBehaviour
 
             //While in deploy active state --start
 
-
-
             //If touched on an area
             //Deploy tank
             if (commBuffer.Contains("tch"))
@@ -150,11 +148,50 @@ public class CCCommanderScript : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log("Defence state");
+
+            foreach (var item in ccScript.artSpawnPoints)
+            {
+                item.GetComponent<SpriteRenderer>().enabled = true;
+            }
+
+            //While in deploy active state --start
 
 
 
+            //If touched on an area
+            //Deploy tank
+            if (commBuffer.Contains("tch"))
+            {
+                if (commBuffer == "tch_deploy_0")
+                {
+                    ccScript.DeployTank(0);
+                }
+                else if (commBuffer == "tch_deploy_1")
+                {
+                    ccScript.DeployTank(1);
+                }
+                else if (commBuffer == "tch_deploy_2")
+                {
+                    ccScript.DeployTank(2);
+                }
+                break;
+            }
+
+            if (commBuffer == "b_deploy_back")//back button pressed
+            {
+                break;
+            }
+
+            //While in deploy active state --end
             yield return null;
         }
+
+        foreach (var item in ccScript.tankSpawnPoints)
+        {
+            item.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        currHighlightedState = HighlightedState.NONE;
         currHighlightedState = HighlightedState.NONE;
     }
 

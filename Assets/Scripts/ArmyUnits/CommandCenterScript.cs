@@ -7,6 +7,7 @@ public class CommandCenterScript : MonoBehaviour
 
     public ArmyBaseScript_pt1 targetBase;
     public List<GameObject> tankSpawnPoints;
+    public List<GameObject> artSpawnPoints;
     [SerializeField]
     HealthScript healthScript;
     [SerializeField]
@@ -51,7 +52,18 @@ public class CommandCenterScript : MonoBehaviour
         tank.GetComponent<TankAIScript3>().endPoint = targetBase.enemyLandingZones[pos];
         tank.GetComponent<TankAIScript3>().targetBase = this.targetBase;
         tank.GetComponent<UnitComponent>().teamID = 0;
+    }
 
+    public void DeployArtillery(int pos)
+    {
+        //Deploy artillery at position pos
+        //Spawn artillery
+        Transform art = Instantiate<Transform>(commonAsset.PREFAB_ART_1.transform);
+        art.transform.position = artSpawnPoints[pos].transform.position;
+
+        art.transform.rotation = Quaternion.LookRotation(Vector3.forward, artSpawnPoints[pos].transform.right);
+        art.tag = "tag_opponent1";
+        art.GetComponent<UnitComponent>().teamID = 0;
     }
 
     void TakeDamage(Vector2 collPoint,int dAmmount)
