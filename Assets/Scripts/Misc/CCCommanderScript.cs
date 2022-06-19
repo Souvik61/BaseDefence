@@ -2,34 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Responsible for recieving UI events and send commands to command center.
+/// </summary>
 [RequireComponent(typeof(CommandCenterScript))]
 public class CCCommanderScript : MonoBehaviour
 {
     [SerializeField]
     UIManager uiManager;
 
-    public List<GameObject> tankSpawnPoints;
+    public CommandCenterScript ccScript;
 
     enum HighlightedState { NONE, DEPLOY, DEFENCE, REMOVE };
     HighlightedState currHighlightedState;
 
+    string commBuffer;
+
     private void OnEnable()
     {
         uiManager.OnUIButtonPressed += OnUICommand;
+        uiManager.OnTouchCallback += OnScreenTap;//Subscribe to all events touch callback
     }
 
     private void OnDisable()
     {
         uiManager.OnUIButtonPressed -= OnUICommand;
+        uiManager.OnTouchCallback -= OnScreenTap;
     }
 
-    private void Update()
+    private void Awake()
     {
-        
+        commBuffer = "";
     }
+
+    //------------------------------
+    //UI Callbacks
+    //------------------------------
 
     void OnUICommand(string str)//Listens to UI commands
     {
+        commBuffer = str;
         //If any tank select command is issued
         if (str.Contains("b_tank"))
         {
@@ -42,38 +54,43 @@ public class CCCommanderScript : MonoBehaviour
         else if (str.Contains("b_defend_rem"))//If remove command is issued
         {
             OnRemoveCommand(str);
-        }
-        else if (str.Contains("tap"))
-        {
-            OnScreenTap(str);
-        }
-    
+        } 
+    }
+
+    void OnScreenTap(string str)//Bound to allevents touch callback
+    {
+        commBuffer = str;
     }
 
     //Commands
 
     void OnDeployTankCommand(string str)
     {
-        currHighlightedState = HighlightedState.DEPLOY;
-        StartCoroutine(nameof(DeployStateCoroutine));
+        if (currHighlightedState == HighlightedState.NONE)
+        {
+            currHighlightedState = HighlightedState.DEPLOY;
+            StartCoroutine(nameof(DeployStateCoroutine));
+        }
     }
 
     void OnDefenceArtilleryCommand(string str)
     {
-        currHighlightedState = HighlightedState.DEFENCE;
-        StartCoroutine(nameof(DefenceStateCoroutine));
+        if (currHighlightedState == HighlightedState.NONE)
+        {
+            currHighlightedState = HighlightedState.DEFENCE;
+            StartCoroutine(nameof(DefenceStateCoroutine));
+        }
     }
 
     void OnRemoveCommand(string str)
     {
-        currHighlightedState = HighlightedState.REMOVE;
-        StartCoroutine(nameof(RemoveStateCoroutine));
+        if (currHighlightedState == HighlightedState.NONE)
+        {
+            currHighlightedState = HighlightedState.REMOVE;
+            StartCoroutine(nameof(RemoveStateCoroutine));
+        }
     }
 
-    void OnScreenTap(string str)
-    { 
-        
-    }
 
     //-----------------------
     //Coroutines-------------
@@ -83,11 +100,50 @@ public class CCCommanderScript : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log("Deploy state");
+
+            foreach (var item in ccScript.tankSpawnPoints)
+            {
+                item.GetComponent<SpriteRenderer>().enabled = true;
+            }
+
+            //While in deploy active state --start
 
 
 
+            //If touched on an area
+            //Deploy tank
+            if (commBuffer.Contains("tch"))
+            {
+                if (commBuffer == "tch_deploy_0")
+                {
+                    ccScript.DeployTank(0);
+                }
+                else if (commBuffer == "tch_deploy_1")
+                {
+                    ccScript.DeployTank(1);
+                }
+                else if (commBuffer == "tch_deploy_2")
+                {
+                    ccScript.DeployTank(2);
+                }
+                break;
+            }
+
+            if (commBuffer == "b_deploy_back")//back button pressed
+            {
+                break;
+            }
+
+            //While in deploy active state --end
             yield return null;
         }
+
+        foreach (var item in ccScript.tankSpawnPoints)
+        {
+            item.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        currHighlightedState = HighlightedState.NONE;
     }
 
     IEnumerator DefenceStateCoroutine()
@@ -99,6 +155,7 @@ public class CCCommanderScript : MonoBehaviour
 
             yield return null;
         }
+        currHighlightedState = HighlightedState.NONE;
     }
 
     IEnumerator RemoveStateCoroutine()
@@ -107,23 +164,19 @@ public class CCCommanderScript : MonoBehaviour
         {
 
 
-
+            
             yield return null;
         }
+        currHighlightedState = HighlightedState.NONE;
     }
 
     //-------------------
     //Others
     //-------------------
 
-
-    public void ActiveHighLightTankSpawnPoints(int index)
+    public void HighLightTankSpawnPoints(int index, bool value)
     {
-        tankSpawnPoints[index].GetComponent<SpriteRenderer>().enabled = true;
+        ccScript.tankSpawnPoints[index].GetComponent<SpriteRenderer>().enabled = value;
     }
 
-    public void DeActiveHighLightTankSpawnPoints(int index)
-    {
-        tankSpawnPoints[index].GetComponent<SpriteRenderer>().enabled = false;
-    }
 }

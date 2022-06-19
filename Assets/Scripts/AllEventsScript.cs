@@ -10,5 +10,6 @@ public class AllEventsScript : MonoBehaviour
     public delegate void Func1(int id);
     public static Func1 OnBaseDestroyed;
     public static BlankFunc OnGameOver;
+    public static ButtonCallback OnTouchCallback;
 
 }

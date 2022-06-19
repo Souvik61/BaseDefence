@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TouchInputScript : MonoBehaviour
 {
@@ -17,10 +18,10 @@ public class TouchInputScript : MonoBehaviour
 
     void PanCamera()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)&&!IsMouseOverUI())
             dragOrigin = target.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !IsMouseOverUI())
         {
             Vector3 diff = dragOrigin - target.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
 
@@ -29,8 +30,11 @@ public class TouchInputScript : MonoBehaviour
             //Clamp to screen
             float a = Mathf.Clamp(target.position.x, camNegativeXClampVal, camPositiveXClampVal);
             target.position = new Vector3(a, target.position.y, target.position.z);
-
         }
-    
+    }
+
+    bool IsMouseOverUI()
+    { 
+        return EventSystem.current.IsPointerOverGameObject();
     }
 }

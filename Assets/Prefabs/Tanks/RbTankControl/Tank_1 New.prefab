@@ -303,11 +303,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 8708825445068528435}
+  PointA: {x: 0, y: 0}
+  endPoint: {fileID: 0}
   targetBase: {fileID: 0}
   unitComp: {fileID: 0}
+  tankController: {fileID: 0}
   obsCheckScript: {fileID: 2358070256779196135}
   enemiesInSight: []
   compass: {fileID: 0}
+  landZoneIndex: 0
 --- !u!1 &2358070256376815390
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +473,7 @@ MonoBehaviour:
   collisionChecksEverySec: 10
   targetMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   isObstaclesInRange: 0
   obstaclesInRange: []
 --- !u!1 &2358070256865312412

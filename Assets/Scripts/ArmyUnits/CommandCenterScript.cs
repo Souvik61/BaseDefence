@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class CommandCenterScript : MonoBehaviour
 {
     public int baseID;
+
+    public ArmyBaseScript_pt1 targetBase;
+    public List<GameObject> tankSpawnPoints;
     [SerializeField]
     HealthScript healthScript;
     [SerializeField]
@@ -32,6 +36,22 @@ public class CommandCenterScript : MonoBehaviour
             Destroy(collision.gameObject);
             TakeDamage(collision.transform.position, collision.GetComponent<BulletScript>().damageAmmount);
         }
+    }
+
+    public void DeployTank(int pos)
+    {
+        //Deploy tank at position pos
+        //Spawn tank
+        Transform tank = Instantiate<Transform>(commonAsset.TANK_1.transform);
+        tank.transform.position = tankSpawnPoints[pos].transform.position;
+
+        tank.transform.rotation = Quaternion.LookRotation(Vector3.forward, tankSpawnPoints[pos].transform.right);
+
+        tank.tag = "tag_opponent1";
+        tank.GetComponent<TankAIScript3>().endPoint = targetBase.enemyLandingZones[pos];
+        tank.GetComponent<TankAIScript3>().targetBase = this.targetBase;
+        tank.GetComponent<UnitComponent>().teamID = 0;
+
     }
 
     void TakeDamage(Vector2 collPoint,int dAmmount)

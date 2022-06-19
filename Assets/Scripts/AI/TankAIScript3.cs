@@ -12,8 +12,8 @@ public class TankAIScript3 : MonoBehaviour
 
     [SerializeField]
     Vector2 PointA;
-    [SerializeField]
-    Transform endPoint;
+    
+    public Transform endPoint;
     public ArmyBaseScript_pt1 targetBase;
     [HideInInspector]
     public UnitComponent unitComp;
