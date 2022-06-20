@@ -2077,8 +2077,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2078133372}
-  camPositiveXClampVal: 23
-  camNegativeXClampVal: -23
+  camPositiveXClampVal: 25
+  camNegativeXClampVal: -25
 --- !u!4 &1148239237
 Transform:
   m_ObjectHideFlags: 0
@@ -5342,6 +5342,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 323075858294364659, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a0e215df753a8294ea4e057f382298e6,
+        type: 3}
+    - target: {fileID: 323075858294364659, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 323075858294364659, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 323075858294364659, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 323075858294364659, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -5357,6 +5378,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2874338134874123099, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a0e215df753a8294ea4e057f382298e6,
+        type: 3}
+    - target: {fileID: 2874338134874123099, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141536526590027688, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a020d31b0275834479e34a61b5800f93,
+        type: 3}
+    - target: {fileID: 3141536526590027688, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141536526590027688, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141536526590027688, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141536526590027688, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -5365,6 +5418,18 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 157242965}
+    - target: {fileID: 4591985290281423872, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a020d31b0275834479e34a61b5800f93,
+        type: 3}
+    - target: {fileID: 4787359186769258357, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a020d31b0275834479e34a61b5800f93,
+        type: 3}
     - target: {fileID: 5584146076261428622, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}
       propertyPath: m_IsActive
@@ -5540,6 +5605,12 @@ PrefabInstance:
       propertyPath: tankSpawnPoints.Array.data[2]
       value: 
       objectReference: {fileID: 1053209557}
+    - target: {fileID: 8425289152209242820, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a0e215df753a8294ea4e057f382298e6,
+        type: 3}
     - target: {fileID: 8425289152209242820, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}
       propertyPath: m_Enabled

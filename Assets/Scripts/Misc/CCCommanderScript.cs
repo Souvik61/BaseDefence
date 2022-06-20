@@ -152,9 +152,10 @@ public class CCCommanderScript : MonoBehaviour
 
             for (int i = 0; i < ccScript.artSpawnPoints.Count; i++)
             {
-                Physics2D.OverlapBoxAll()
-
-
+                if (IsArtilleryAreaAvailable(i))
+                {
+                    ccScript.artSpawnPoints[i].GetComponent<SpriteRenderer>().enabled = true;
+                }
             }
             //While in deploy active state --start
 
@@ -197,13 +198,45 @@ public class CCCommanderScript : MonoBehaviour
 
     IEnumerator RemoveStateCoroutine()
     {
+        for (int i = 0; i < ccScript.artSpawnPoints.Count; i++)
+        {
+            if (!IsArtilleryAreaAvailable(i))
+            {
+                ccScript.artSpawnPoints[i].GetComponent<SpriteRenderer>().enabled = true;
+                ccScript.artSpawnPoints[i].GetComponent<SpriteRenderer>().color = Color.red;
+            }
+        }
         while (true)
         {
 
+            //If touched on an area
+            //Remove artillery
+            if (commBuffer.Contains("tch"))
+            {
+                if (commBuffer == "tch_art_0")
+                {
+                    ccScript.RemoveArtilleryAt(0);
+                }
+                else if (commBuffer == "tch_art_1")
+                {
+                    ccScript.RemoveArtilleryAt(1);
+                }
+                else if (commBuffer == "tch_art_2")
+                {
+                    ccScript.RemoveArtilleryAt(2);
+                }
+                break;
+            }
 
-            
             yield return null;
         }
+
+        for (int i = 0; i < ccScript.artSpawnPoints.Count; i++)
+        {
+            ccScript.artSpawnPoints[i].GetComponent<SpriteRenderer>().enabled = false;
+            ccScript.artSpawnPoints[i].GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
         currHighlightedState = HighlightedState.NONE;
     }
 
@@ -217,9 +250,16 @@ public class CCCommanderScript : MonoBehaviour
     }
 
     bool IsArtilleryAreaAvailable(int a)
-    { 
-        Physics2D.OverlapBoxAll(ccScript.artSpawnPoints[a].transform.position,)
-    
+    {
+        var sP = ccScript.artSpawnPoints[a];
+        Collider2D[] coll = Physics2D.OverlapBoxAll(ccScript.artSpawnPoints[a].transform.position, sP.GetComponent<SpriteRenderer>().bounds.size, 0);
+
+        //Check if any Tank collider is there
+        foreach (var item in coll)
+            if (item.gameObject.layer == LayerMask.NameToLayer("Tank"))
+                return false;
+            
+        return true;
     }
 
 

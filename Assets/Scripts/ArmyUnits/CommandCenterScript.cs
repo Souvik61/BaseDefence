@@ -14,6 +14,7 @@ public class CommandCenterScript : MonoBehaviour
     CommonAssetSO commonAsset;
 
     bool isDestroyed;
+    GameObject[] currDeployedArtis = new GameObject[3];
 
     private void OnEnable()
     {
@@ -56,6 +57,9 @@ public class CommandCenterScript : MonoBehaviour
 
     public void DeployArtillery(int pos)
     {
+        if (currDeployedArtis[pos] != null)
+            return;
+
         //Deploy artillery at position pos
         //Spawn artillery
         Transform art = Instantiate<Transform>(commonAsset.PREFAB_ART_1.transform);
@@ -64,6 +68,15 @@ public class CommandCenterScript : MonoBehaviour
         art.transform.rotation = Quaternion.LookRotation(Vector3.forward, artSpawnPoints[pos].transform.right);
         art.tag = "tag_opponent1";
         art.GetComponent<UnitComponent>().teamID = 0;
+        currDeployedArtis[pos] = art.gameObject;
+    }
+
+    public void RemoveArtilleryAt(int pos)
+    {
+        if (currDeployedArtis[pos] == null)
+            return;
+        Destroy(currDeployedArtis[pos]);
+        currDeployedArtis[pos] = null;
     }
 
     void TakeDamage(Vector2 collPoint,int dAmmount)
