@@ -99,6 +99,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseID: 0
+  targetBase: {fileID: 0}
+  tankSpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  artSpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   healthScript: {fileID: 0}
   commonAsset: {fileID: 11400000, guid: f549b273dc8d0ae49955f8107ae97914, type: 2}
 --- !u!1 &6872063107557850064
@@ -677,7 +686,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 371677789
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a2259386fb84f544d837309b2f24f7b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

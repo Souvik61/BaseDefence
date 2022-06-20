@@ -50,6 +50,7 @@ public class CommandCenterScript : MonoBehaviour
         tank.transform.rotation = Quaternion.LookRotation(Vector3.forward, tankSpawnPoints[pos].transform.right);
 
         tank.tag = "tag_opponent1";
+        tank.GetComponent<UnitComponent>().teamID = GetComponent<UnitComponent>().teamID;//Set spawned tank unit id to self
         tank.GetComponent<TankAIScript3>().endPoint = targetBase.enemyLandingZones[pos];
         tank.GetComponent<TankAIScript3>().targetBase = this.targetBase;
         tank.GetComponent<UnitComponent>().teamID = 0;
