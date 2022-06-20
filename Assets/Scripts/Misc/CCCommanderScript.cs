@@ -105,6 +105,7 @@ public class CCCommanderScript : MonoBehaviour
             foreach (var item in ccScript.tankSpawnPoints)
             {
                 item.GetComponent<SpriteRenderer>().enabled = true;
+                item.GetComponent<SpriteRenderer>().color = Color.green;
             }
 
             //While in deploy active state --start
