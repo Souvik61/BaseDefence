@@ -15,6 +15,8 @@ public class CommonAssetSO : ScriptableObject
     public GameObject TANK_1;
     public GameObject TANK_2;
     public GameObject TANK_3;
+    public GameObject TANK_4;
+    public GameObject TANK_5;
 
     [Header("Artillery Prefabs")]
     //Artillery prefabs

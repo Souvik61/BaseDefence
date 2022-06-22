@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class DualFireTankScript : TankScript
+public class DualFireTankScript : NewTankScript
 {
     [SerializeField]
     Transform[] firePoints;
@@ -14,6 +14,8 @@ public class DualFireTankScript : TankScript
         {
             //Instantiate projectile 
             GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoints[i].position, Quaternion.identity);
+            proj.GetComponent<BulletScript>().damageAmmount = (int)tankProperty.shootDamage;
+            proj.tag = "tag_projectile" + unitC.teamID;
             proj.GetComponent<Rigidbody2D>().velocity = firePoints[i].up * projectileSpeed;
             Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
 

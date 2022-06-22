@@ -17,6 +17,7 @@ public class CCCommanderScript : MonoBehaviour
     HighlightedState currHighlightedState;
 
     string commBuffer;
+    int toBeSpawnedTankIndex;
 
     private void OnEnable()
     {
@@ -33,6 +34,7 @@ public class CCCommanderScript : MonoBehaviour
     private void Awake()
     {
         commBuffer = "";
+        toBeSpawnedTankIndex = -1;
     }
 
     //------------------------------
@@ -68,6 +70,7 @@ public class CCCommanderScript : MonoBehaviour
     {
         if (currHighlightedState == HighlightedState.NONE)
         {
+            toBeSpawnedTankIndex = (int)char.GetNumericValue(str[str.Length - 1]);
             currHighlightedState = HighlightedState.DEPLOY;
             StartCoroutine(nameof(DeployStateCoroutine));
         }
@@ -116,15 +119,15 @@ public class CCCommanderScript : MonoBehaviour
             {
                 if (commBuffer == "tch_deploy_0")
                 {
-                    ccScript.DeployTank(0);
+                    ccScript.DeployTank(0, toBeSpawnedTankIndex);
                 }
                 else if (commBuffer == "tch_deploy_1")
                 {
-                    ccScript.DeployTank(1);
+                    ccScript.DeployTank(1, toBeSpawnedTankIndex);
                 }
                 else if (commBuffer == "tch_deploy_2")
                 {
-                    ccScript.DeployTank(2);
+                    ccScript.DeployTank(2, toBeSpawnedTankIndex);
                 }
                 break;
             }
@@ -142,6 +145,7 @@ public class CCCommanderScript : MonoBehaviour
         {
             item.GetComponent<SpriteRenderer>().enabled = false;
         }
+        toBeSpawnedTankIndex = -1;
         currHighlightedState = HighlightedState.NONE;
     }
 

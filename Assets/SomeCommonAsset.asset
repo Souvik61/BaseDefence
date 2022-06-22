@@ -22,8 +22,10 @@ MonoBehaviour:
     type: 3}
   TankHitPrefab: {fileID: 100014, guid: a57a6829db3568c4d9bdc37e9e63c017, type: 3}
   TANK_1: {fileID: 2358070256253045235, guid: a391f56fb8e803e4994219137ff329f4, type: 3}
-  TANK_2: {fileID: 0}
-  TANK_3: {fileID: 0}
+  TANK_2: {fileID: 7483502652408154921, guid: 201104bfa0b83eb4d85fed90d2917dfd, type: 3}
+  TANK_3: {fileID: 9104258552408355312, guid: f1e668f161621e342a8eb3745d61cc1a, type: 3}
+  TANK_4: {fileID: 37189421028507867, guid: f98c0a6407611024d9a4992bed62ff98, type: 3}
+  TANK_5: {fileID: 8519312620987425580, guid: e7940f4378277d5449f31693b6b96507, type: 3}
   PREFAB_ART_1: {fileID: 1424451668422179261, guid: 283e999c992f5cf45a3a8bbeea06ed93,
     type: 3}
   PREFAB_ART_2: {fileID: 0}

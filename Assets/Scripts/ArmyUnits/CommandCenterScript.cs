@@ -44,11 +44,11 @@ public class CommandCenterScript : MonoBehaviour
     //Deploy functions
     //-------------------------
 
-    public void DeployTank(int pos)
+    public void DeployTank(int pos,int tankIndex)
     {
         //Deploy tank at position pos
         //Spawn tank
-        Transform tank = Instantiate<Transform>(commonAsset.TANK_1.transform);
+        Transform tank = Instantiate<Transform>(IndexToTankTransform(tankIndex));
         tank.transform.position = tankSpawnPoints[pos].transform.position;
 
         tank.transform.rotation = Quaternion.LookRotation(Vector3.forward, tankSpawnPoints[pos].transform.right);
@@ -83,8 +83,6 @@ public class CommandCenterScript : MonoBehaviour
         currDeployedArtis[pos] = null;
     }
 
-
-
     void TakeDamage(Vector2 collPoint,int dAmmount)
     {
 
@@ -112,6 +110,25 @@ public class CommandCenterScript : MonoBehaviour
             Instantiate(commonAsset.RedCross, transform.position, Quaternion.identity, transform);
             isDestroyed = true;
             AllEventsScript.OnBaseDestroyed?.Invoke(baseID);
+        }
+    }
+
+    Transform IndexToTankTransform(int index)
+    {
+        switch (index-1)
+        {
+            case 0:
+                return commonAsset.TANK_1.transform;
+            case 1:
+                return commonAsset.TANK_2.transform;
+            case 2:
+                return commonAsset.TANK_3.transform;
+            case 3:
+                return commonAsset.TANK_4.transform;
+            case 4:
+                return commonAsset.TANK_5.transform;
+            default:
+                return null;
         }
     }
 
