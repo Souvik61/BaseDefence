@@ -177,7 +177,7 @@ public class TankScript : MonoBehaviour,IDamageable
         Destroy(mzlFlash, 0.05f);
 
         //play shoot audio
-        audioSrc.PlayOneShot(commonAsset.GRTankCoolShootSfx());
+        audioSrc.PlayOneShot(tankProperty.GenerateRandomSfx());
         //wait before shooting again
         yield return new WaitForSeconds(tankProperty.shootDelay + Random.Range(-1f, 1f));
 

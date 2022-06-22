@@ -27,7 +27,7 @@ public class DualFireTankScript : NewTankScript
             Destroy(mzlFlash, 0.05f);
 
             //play shoot audio
-            audioSrc.Play();
+            audioSrc.PlayOneShot(tankProperty.GenerateRandomSfx());
             //wait before shooting again
             yield return new WaitForSeconds(0.2f);
 

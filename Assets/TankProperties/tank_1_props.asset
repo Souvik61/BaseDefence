@@ -23,3 +23,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 804db368a27a17a4aa7cb7f0f08d6614, type: 3}
   - {fileID: 21300000, guid: 8e0b8484d8a1d3c479c8a12a7ac2149b, type: 3}
   - {fileID: 21300000, guid: 9dad62eb8f9c28b4c8a3a6876899bafa, type: 3}
+  shootSfxList:
+  - {fileID: 8300000, guid: 688fb35993b652a499f5c4703cf7c810, type: 3}
+  - {fileID: 8300000, guid: d9799bbfb7f43214fb35d6247e782e81, type: 3}
+  - {fileID: 8300000, guid: e3f1125ef5b841c49a0168d8292843cb, type: 3}

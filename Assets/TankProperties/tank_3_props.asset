@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: tank_3_props
   m_EditorClassIdentifier: 
   tankName: Tank 3
-  driveSpeed: 5
+  driveSpeed: 4
   rotateSpeed: 45
   muzzRotateSpeed: 45
   shootDelay: 2
@@ -22,3 +22,7 @@ MonoBehaviour:
   destroyedSpriteArray:
   - {fileID: 21300000, guid: 88e57cc35bb87f6409e86d858cbbb2f8, type: 3}
   - {fileID: 21300000, guid: 1c32104191aa9dd4dbdb66bcc71c5dd1, type: 3}
+  shootSfxList:
+  - {fileID: 8300000, guid: 19fd2e26f99eed4419a77d820195bbf2, type: 3}
+  - {fileID: 8300000, guid: 4ec378e8011de8142b44a0dc8d31f8fb, type: 3}
+  - {fileID: 8300000, guid: 04ad547145f8ef3488a3d55a3b49bdd8, type: 3}

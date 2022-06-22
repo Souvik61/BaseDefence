@@ -13,5 +13,12 @@ public class TankPropertiesSO : ScriptableObject
 
     //Destroyed state sprites
     public Sprite[] destroyedSpriteArray;
+
+    public AudioClip[] shootSfxList;
+
+    public AudioClip GenerateRandomSfx()
+    {
+        return shootSfxList[Random.Range(0, shootSfxList.Length)];
+    }
 }
 
