@@ -40,6 +40,10 @@ public class CommandCenterScript : MonoBehaviour
         }
     }
 
+    //-------------------------
+    //Deploy functions
+    //-------------------------
+
     public void DeployTank(int pos)
     {
         //Deploy tank at position pos
@@ -53,7 +57,6 @@ public class CommandCenterScript : MonoBehaviour
         tank.GetComponent<UnitComponent>().teamID = GetComponent<UnitComponent>().teamID;//Set spawned tank unit id to self
         tank.GetComponent<TankAIScript3>().endPoint = targetBase.enemyLandingZones[pos];
         tank.GetComponent<TankAIScript3>().targetBase = this.targetBase;
-        tank.GetComponent<UnitComponent>().teamID = 0;
     }
 
     public void DeployArtillery(int pos)
@@ -68,7 +71,7 @@ public class CommandCenterScript : MonoBehaviour
 
         art.transform.rotation = Quaternion.LookRotation(Vector3.forward, artSpawnPoints[pos].transform.right);
         art.tag = "tag_opponent1";
-        art.GetComponent<UnitComponent>().teamID = 0;
+        art.GetComponent<UnitComponent>().teamID = GetComponent<UnitComponent>().teamID;
         currDeployedArtis[pos] = art.gameObject;
     }
 
@@ -79,6 +82,8 @@ public class CommandCenterScript : MonoBehaviour
         Destroy(currDeployedArtis[pos]);
         currDeployedArtis[pos] = null;
     }
+
+
 
     void TakeDamage(Vector2 collPoint,int dAmmount)
     {

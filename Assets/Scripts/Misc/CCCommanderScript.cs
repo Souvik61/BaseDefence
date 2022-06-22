@@ -155,6 +155,7 @@ public class CCCommanderScript : MonoBehaviour
             {
                 if (IsArtilleryAreaAvailable(i))
                 {
+                    ccScript.artSpawnPoints[i].GetComponent<SpriteRenderer>().color = Color.green;
                     ccScript.artSpawnPoints[i].GetComponent<SpriteRenderer>().enabled = true;
                 }
             }
