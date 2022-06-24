@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d937a78d29cff547a4010d69687333e, type: 3}
   m_Name: tank_5_props
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 3c49992ec02898f4f8145b8080e442fa, type: 3}
   tankName: Tank 5
   driveSpeed: 4
   rotateSpeed: 45
@@ -19,6 +20,8 @@ MonoBehaviour:
   shootDelay: 2
   shootDamage: 10
   maxHealth: 100
+  sDamage: 9
+  armour: 7
   destroyedSpriteArray:
   - {fileID: 21300000, guid: b95263c5689ef1740b1118046a7b5d4b, type: 3}
   - {fileID: 21300000, guid: 3756029acf0180a4bae999b77bfe1cd5, type: 3}

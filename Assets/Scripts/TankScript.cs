@@ -123,7 +123,8 @@ public class TankScript : MonoBehaviour,IDamageable
 
     protected void OnTakeDamage(Vector2 collisionPoint,int dAmount)
     {
-        healthScript.Decrement((uint)dAmount);
+        float actualDecrement = dAmount / (1 + (tankProperty.armour * 10) / dAmount);
+        healthScript.Decrement((uint)actualDecrement);
         //Decrease HP Bar
         if (healthBar != null)
         {
@@ -164,7 +165,7 @@ public class TankScript : MonoBehaviour,IDamageable
 
         //Instantiate projectile 
         GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoint.position, Quaternion.identity);
-        proj.GetComponent<BulletScript>().damageAmmount = (int)tankProperty.shootDamage;
+        proj.GetComponent<BulletScript>().damageAmmount = (int)(10 * tankProperty.sDamage);
         proj.tag = "tag_projectile" + unitC.teamID;
         proj.GetComponent<Rigidbody2D>().velocity = firePoint.up * projectileSpeed;
         Destroy(proj, 3.0f);//Destroy projectile after 3 seconds

@@ -14,7 +14,7 @@ public class DualFireTankScript : NewTankScript
         {
             //Instantiate projectile 
             GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoints[i].position, Quaternion.identity);
-            proj.GetComponent<BulletScript>().damageAmmount = (int)tankProperty.shootDamage;
+            proj.GetComponent<BulletScript>().damageAmmount = (int)(20 * tankProperty.sDamage);
             proj.tag = "tag_projectile" + unitC.teamID;
             proj.GetComponent<Rigidbody2D>().velocity = firePoints[i].up * projectileSpeed;
             Destroy(proj, 3.0f);//Destroy projectile after 3 seconds

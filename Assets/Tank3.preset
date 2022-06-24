@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tank3
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 9d937a78d29cff547a4010d69687333e,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: icon
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: tankName
+    value: Tank 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: driveSpeed
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rotateSpeed
+    value: 45
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: muzzRotateSpeed
+    value: 45
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: shootDelay
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: shootDamage
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: maxHealth
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: sDamage
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: armour
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: destroyedSpriteArray.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: destroyedSpriteArray.Array.data[0]
+    value: 
+    objectReference: {fileID: 21300000, guid: 88e57cc35bb87f6409e86d858cbbb2f8, type: 3}
+  - target: {fileID: 0}
+    propertyPath: destroyedSpriteArray.Array.data[1]
+    value: 
+    objectReference: {fileID: 21300000, guid: 1c32104191aa9dd4dbdb66bcc71c5dd1, type: 3}
+  - target: {fileID: 0}
+    propertyPath: shootSfxList.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: shootSfxList.Array.data[0]
+    value: 
+    objectReference: {fileID: 8300000, guid: 19fd2e26f99eed4419a77d820195bbf2, type: 3}
+  - target: {fileID: 0}
+    propertyPath: shootSfxList.Array.data[1]
+    value: 
+    objectReference: {fileID: 8300000, guid: 4ec378e8011de8142b44a0dc8d31f8fb, type: 3}
+  - target: {fileID: 0}
+    propertyPath: shootSfxList.Array.data[2]
+    value: 
+    objectReference: {fileID: 8300000, guid: 04ad547145f8ef3488a3d55a3b49bdd8, type: 3}
