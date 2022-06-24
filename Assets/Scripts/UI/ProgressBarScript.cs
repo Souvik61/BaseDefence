@@ -9,7 +9,9 @@ public class ProgressBarScript : MonoBehaviour
 
     private bool isVisible;
     private float progress;
-
+    /// <summary>
+    /// Range [0-1]
+    /// </summary>
     public float barProgress {
         get { return progress; }
         set

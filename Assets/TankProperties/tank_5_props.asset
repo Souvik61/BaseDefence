@@ -20,10 +20,11 @@ MonoBehaviour:
   shootDelay: 2
   shootDamage: 10
   maxHealth: 100
-  sDamage: 9
+  sDamage: 4
   armour: 7
   destroyedSpriteArray:
   - {fileID: 21300000, guid: b95263c5689ef1740b1118046a7b5d4b, type: 3}
   - {fileID: 21300000, guid: 3756029acf0180a4bae999b77bfe1cd5, type: 3}
   shootSfxList:
-  - {fileID: 8300000, guid: da12eacf2af81794a8e6e6b4638524af, type: 3}
+  - {fileID: 8300000, guid: f3e0dd59d03376c44b622a43ff655086, type: 3}
+  - {fileID: 8300000, guid: 614cc40e45aaf0648b75fc494d423f8a, type: 3}

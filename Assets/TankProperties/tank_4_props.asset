@@ -26,5 +26,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 85c3ef5f631ce9643a782b338d40145d, type: 3}
   - {fileID: 21300000, guid: d6ab0d89cdc240542a16b950ffa23e3b, type: 3}
   shootSfxList:
-  - {fileID: 8300000, guid: f3e0dd59d03376c44b622a43ff655086, type: 3}
-  - {fileID: 8300000, guid: 614cc40e45aaf0648b75fc494d423f8a, type: 3}
+  - {fileID: 8300000, guid: 688fb35993b652a499f5c4703cf7c810, type: 3}
+  - {fileID: 8300000, guid: d9799bbfb7f43214fb35d6247e782e81, type: 3}
+  - {fileID: 8300000, guid: e3f1125ef5b841c49a0168d8292843cb, type: 3}

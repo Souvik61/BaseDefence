@@ -20,7 +20,9 @@ public class HealthScript : MonoBehaviour
     public int currentHP;
     public bool godMode;
 
-    public AFunc OnHealthDepleted;
+    public AFunc OnHealthDepleted;//If is ded
+    public AFunc OnHealthDecrease;//If health decrease
+    public AFunc OnHealthIncrease;//If health increase
 
     /// <summary>
     /// Increment the HP of the entity.
@@ -28,6 +30,7 @@ public class HealthScript : MonoBehaviour
     public void Increment(uint value)
     {
         currentHP = Mathf.Clamp(currentHP + (int)value, 0, maxHP);
+        OnHealthIncrease?.Invoke();//Health increase event
     }
 
     /// <summary>
@@ -39,6 +42,8 @@ public class HealthScript : MonoBehaviour
         currentHP = Mathf.Clamp(currentHP - (int)value, 0, maxHP);
 
         if (godMode && currentHP == 0) { currentHP = 1; }
+
+        OnHealthDecrease?.Invoke();//Health decrease event
 
         if (currentHP == 0)
         {
