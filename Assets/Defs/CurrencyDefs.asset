@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76eee42bfdf72374d8133e6424ea402c, type: 3}
+  m_Name: CurrencyDefs
+  m_EditorClassIdentifier: 
+  tankName1: Tank 1
+  cost1: 15
+  tankName2: Tank 2
+  cost2: 25
+  tankName3: Tank 3
+  cost3: 50
+  tankName4: Tank 4
+  cost4: 75
+  tankName5: Tank 5
+  cost5: 100
+  costList: 0f00000019000000320000004b00000064000000
