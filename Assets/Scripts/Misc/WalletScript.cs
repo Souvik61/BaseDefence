@@ -31,9 +31,12 @@ public class WalletScript : MonoBehaviour
             return 1;
         }
 
-        currentCoins = (uint)Mathf.Clamp(currentCoins - (int)value, 0, maxCoins);
+        if (elonMode)
+        {
+            return 0; 
+        }
 
-        if (elonMode && currentCoins == 0) { currentCoins = 1; }//god mode check
+        currentCoins = (uint)Mathf.Clamp(currentCoins - value, 0, maxCoins);
 
         OnCoinDecrease?.Invoke();//Health decrease event
 

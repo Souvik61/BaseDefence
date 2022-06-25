@@ -416,8 +416,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxCoins: 10000
-  currentCoins: 100
-  elonMode: 0
+  currentCoins: 1000
+  elonMode: 1
 --- !u!1 &359543872 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2894751790422974255, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
@@ -1311,9 +1311,54 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8855633456840183329, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+        type: 3}
+      propertyPath: m_ChildAlignment
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855633456840183343, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855633456840183343, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855633456840183343, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855633456840183343, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855633456840183343, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855633456840183343, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8855633456840183343, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
         type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855633456840183343, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855633456840183343, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8855633457026770532, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
@@ -2179,6 +2224,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64ad32d79c95f74aa1dcb326ab4d842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1104528130 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9139578429851188325, guid: 9e668474a0c9853498951c4343131b20,
+    type: 3}
+  m_PrefabInstance: {fileID: 2416241486030614720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1104528132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2193,8 +2244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 4925114381960726227}
   ccScript: {fileID: 1104528129}
-  walletScript: {fileID: 0}
-  currencyTerms: {fileID: 0}
+  walletScript: {fileID: 1916985672}
+  currencyTerms: {fileID: 11400000, guid: 09e6647ddd217944690ca1d0df16206f, type: 2}
 --- !u!1 &1135391807
 GameObject:
   m_ObjectHideFlags: 0
@@ -3579,6 +3630,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1916985670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1916985671}
+  - component: {fileID: 1916985672}
+  m_Layer: 0
+  m_Name: Wallet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1916985671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916985670}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1104528130}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1916985672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916985670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fba84a270beeb1469b79a982b3b3f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCoins: 10000
+  currentCoins: 1000
+  elonMode: 1
 --- !u!4 &1934576624 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6875076347727716613, guid: a2211f5fae91ce447ba9bc8e8892f6f1,

@@ -73,17 +73,8 @@ public class CCCommanderScript : MonoBehaviour
         if (currHighlightedState == HighlightedState.NONE)
         {
             toBeSpawnedTankIndex = (int)char.GetNumericValue(str[str.Length - 1]);
-
-            if (BuyTank(toBeSpawnedTankIndex))
-            {
-                currHighlightedState = HighlightedState.DEPLOY;
-                StartCoroutine(nameof(DeployStateCoroutine));
-            }
-            else
-            {
-                uiManager.PromptMessage("No coins bro");
-            }
-                
+            currHighlightedState = HighlightedState.DEPLOY;
+            StartCoroutine(nameof(DeployStateCoroutine));
         }
     }
 
@@ -130,15 +121,15 @@ public class CCCommanderScript : MonoBehaviour
             {
                 if (commBuffer == "tch_deploy_0")
                 {
-                    ccScript.DeployTank(0, toBeSpawnedTankIndex);
+                    BuyAndDeployTank(0, toBeSpawnedTankIndex);
                 }
                 else if (commBuffer == "tch_deploy_1")
                 {
-                    ccScript.DeployTank(1, toBeSpawnedTankIndex);
+                    BuyAndDeployTank(1, toBeSpawnedTankIndex);
                 }
                 else if (commBuffer == "tch_deploy_2")
                 {
-                    ccScript.DeployTank(2, toBeSpawnedTankIndex);
+                    BuyAndDeployTank(2, toBeSpawnedTankIndex);
                 }
                 break;
             }
@@ -293,6 +284,17 @@ public class CCCommanderScript : MonoBehaviour
             return true;
         }
         return true;
+    }
+
+    void BuyAndDeployTank(int pos,int tankIndex)
+    {
+        if (BuyTank(tankIndex))//if tank bought succesfully
+        {
+            ccScript.DeployTank(pos, tankIndex);
+        }
+        else
+            uiManager.PromptMessage("No coins bro!");
+
     }
 
 }
