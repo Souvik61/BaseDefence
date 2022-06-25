@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7483502652408154918}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &658805977018134982
 MonoBehaviour:
@@ -195,6 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4816185636449237084}
+  - component: {fileID: 209670367229391227}
   m_Layer: 8
   m_Name: UI
   m_TagString: Untagged
@@ -215,8 +216,23 @@ Transform:
   m_Children:
   - {fileID: 5492824103249142856}
   m_Father: {fileID: 7483502652408154918}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &209670367229391227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4816185636449237083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238def8346a6cf642bb2a91479cc35f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpScript: {fileID: 7483502652408154925}
+  healthBar: {fileID: 5492824103349712686}
+  hpShowDuration: 3
 --- !u!1 &4816185636584534500
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +265,7 @@ Transform:
   - {fileID: 4816185636394305896}
   - {fileID: 4816185636016737802}
   m_Father: {fileID: 7483502652408154918}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4816185636584534502
 MonoBehaviour:
@@ -331,7 +347,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7483502652408154918}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4816185637723613443
 MonoBehaviour:
@@ -759,7 +775,7 @@ Transform:
   m_Children:
   - {fileID: 7483502652927765709}
   m_Father: {fileID: 7483502652408154918}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7483502651965221633
 SpriteRenderer:
@@ -846,11 +862,11 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4816185636027524829}
+  - {fileID: 4816185636449237084}
   - {fileID: 7483502651965221632}
   - {fileID: 658805977018134983}
   - {fileID: 4816185636584534501}
   - {fileID: 4816185637723613442}
-  - {fileID: 4816185636449237084}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
