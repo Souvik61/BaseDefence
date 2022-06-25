@@ -7,7 +7,7 @@ public class WalletScript : MonoBehaviour
     public uint maxCoins = 10000;
 
     public uint currentCoins;
-    public bool elonMuskMode;
+    public bool elonMode;
 
     public AFunc OnCoinDecrease;//If coin decrease
     public AFunc OnCoinIncrease;//If health increase
@@ -24,12 +24,19 @@ public class WalletScript : MonoBehaviour
         OnCoinIncrease?.Invoke();//Coin increase event
     }
 
-    public void Withdraw(uint value)
+    public int Withdraw(uint value)
     {
+        if (value > currentCoins)
+        {
+            return 1;
+        }
+
         currentCoins = (uint)Mathf.Clamp(currentCoins - (int)value, 0, maxCoins);
 
-        if (elonMuskMode && currentCoins == 0) { currentCoins = 1; }//god mode check
+        if (elonMode && currentCoins == 0) { currentCoins = 1; }//god mode check
 
         OnCoinDecrease?.Invoke();//Health decrease event
+
+        return 0;
     }
 }

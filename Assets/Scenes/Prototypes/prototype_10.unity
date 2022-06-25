@@ -372,6 +372,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &343812168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343812169}
+  - component: {fileID: 343812170}
+  m_Layer: 0
+  m_Name: Wallet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &343812169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343812168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6875076346915869777}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &343812170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343812168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fba84a270beeb1469b79a982b3b3f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCoins: 10000
+  currentCoins: 100
+  elonMode: 0
 --- !u!1 &359543872 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2894751790422974255, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
@@ -1440,6 +1486,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8855633457409423375, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b699ed9d0ab5c2d4089103e66d5e4ebc, type: 3}
 --- !u!1 &764078467
@@ -2075,6 +2126,26 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6875076346915869775}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1074922135 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8855633456840183340, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+    type: 3}
+  m_PrefabInstance: {fileID: 738527426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1074922140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074922135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f140f189f7fd2f4e913ffc22ad1e2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currencyText: {fileID: 1677199655}
+  walletScript: {fileID: 343812170}
 --- !u!1 &1104528127 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9139578429851188326, guid: 9e668474a0c9853498951c4343131b20,
@@ -2122,6 +2193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 4925114381960726227}
   ccScript: {fileID: 1104528129}
+  walletScript: {fileID: 0}
+  currencyTerms: {fileID: 0}
 --- !u!1 &1135391807
 GameObject:
   m_ObjectHideFlags: 0
@@ -2868,6 +2941,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2416241486030614720}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1677199655 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8855633457409423375, guid: b699ed9d0ab5c2d4089103e66d5e4ebc,
+    type: 3}
+  m_PrefabInstance: {fileID: 738527426}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1688541305
 GameObject:
   m_ObjectHideFlags: 0
@@ -10363,6 +10448,17 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 157242965}
+    - target: {fileID: 3951827921610557848, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: walletScript
+      value: 
+      objectReference: {fileID: 343812170}
+    - target: {fileID: 3951827921610557848, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: currencyTerms
+      value: 
+      objectReference: {fileID: 11400000, guid: 09e6647ddd217944690ca1d0df16206f,
+        type: 2}
     - target: {fileID: 4591985290281423872, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}
       propertyPath: m_Sprite
@@ -10566,6 +10662,12 @@ PrefabInstance:
 --- !u!4 &6875076346915869776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7421789349985726642, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6875076346915869775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6875076346915869777 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 15575131349308079, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
     type: 3}
   m_PrefabInstance: {fileID: 6875076346915869775}
   m_PrefabAsset: {fileID: 0}

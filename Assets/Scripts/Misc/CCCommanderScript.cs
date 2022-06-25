@@ -12,6 +12,8 @@ public class CCCommanderScript : MonoBehaviour
     UIManager uiManager;
 
     public CommandCenterScript ccScript;
+    public WalletScript walletScript;
+    public CurrencyDefsSO currencyTerms;
 
     enum HighlightedState { NONE, DEPLOY, DEFENCE, REMOVE };
     HighlightedState currHighlightedState;
@@ -71,8 +73,17 @@ public class CCCommanderScript : MonoBehaviour
         if (currHighlightedState == HighlightedState.NONE)
         {
             toBeSpawnedTankIndex = (int)char.GetNumericValue(str[str.Length - 1]);
-            currHighlightedState = HighlightedState.DEPLOY;
-            StartCoroutine(nameof(DeployStateCoroutine));
+
+            if (BuyTank(toBeSpawnedTankIndex))
+            {
+                currHighlightedState = HighlightedState.DEPLOY;
+                StartCoroutine(nameof(DeployStateCoroutine));
+            }
+            else
+            {
+                uiManager.PromptMessage("No coins bro");
+            }
+                
         }
     }
 
@@ -268,5 +279,20 @@ public class CCCommanderScript : MonoBehaviour
         return true;
     }
 
+    bool BuyTank(int index)
+    {
+        uint cost = currencyTerms.costList[index-1];
+
+        if (cost > walletScript.currentCoins)
+        {
+            return false;
+        }
+        else if (cost <= walletScript.currentCoins)
+        {
+            walletScript.Withdraw(cost);
+            return true;
+        }
+        return true;
+    }
 
 }
