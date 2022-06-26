@@ -608,52 +608,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 415815139}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &430459677
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 430459679}
-  - component: {fileID: 430459678}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &430459678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430459677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a49823c34370d4badaa53823a6b1af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waves: []
-  spawnPoints: []
-  timeBetweenWaves: 5
---- !u!4 &430459679
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430459677}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &521098171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2276,6 +2230,23 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2416241486030614720}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1104528131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104528127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58914eb99329d7d49a7df10ed495164b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
+  ccScript: {fileID: 1104528129}
+  walletScript: {fileID: 1916985672}
+  currencyTerms: {fileID: 11400000, guid: 09e6647ddd217944690ca1d0df16206f, type: 2}
+  waveSpawner: {fileID: 0}
 --- !u!114 &1104528132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2285,13 +2256,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1104528127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d847f96f6162644995748c34c7a69e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 48a49823c34370d4badaa53823a6b1af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiManager: {fileID: 4925114381960726227}
-  ccScript: {fileID: 1104528129}
-  walletScript: {fileID: 1916985672}
-  currencyTerms: {fileID: 11400000, guid: 09e6647ddd217944690ca1d0df16206f, type: 2}
+  waves:
+  - name: 
+    enemy: {fileID: 0}
+    count: 0
+    rate: 0
+  - name: 
+    enemy: {fileID: 0}
+    count: 0
+    rate: 0
+  - name: 
+    enemy: {fileID: 0}
+    count: 0
+    rate: 0
+  - name: 
+    enemy: {fileID: 0}
+    count: 0
+    rate: 0
+  - name: 
+    enemy: {fileID: 0}
+    count: 0
+    rate: 0
+  spawnPoints: []
+  timeBetweenWaves: 5
 --- !u!1 &1135391807
 GameObject:
   m_ObjectHideFlags: 0
