@@ -15,6 +15,7 @@ public class CommandCenterScript : MonoBehaviour
 
     bool isDestroyed;
     GameObject[] currDeployedArtis = new GameObject[3];
+    List<GameObject> currDeployedTanks = new List<GameObject>();
 
     private void OnEnable()
     {
@@ -29,6 +30,11 @@ public class CommandCenterScript : MonoBehaviour
     private void Awake()
     {
         healthScript = GetComponent<HealthScript>();
+    }
+
+    private void Start()
+    {
+        InvokeRepeating(nameof(AutoRemoveDeadTroops), 0, 1);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -57,6 +63,7 @@ public class CommandCenterScript : MonoBehaviour
         tank.GetComponent<UnitComponent>().teamID = GetComponent<UnitComponent>().teamID;//Set spawned tank unit id to self
         tank.GetComponent<TankAIScript3>().endPoint = targetBase.enemyLandingZones[pos];
         tank.GetComponent<TankAIScript3>().targetBase = this.targetBase;
+        currDeployedTanks.Add(tank.gameObject);
     }
 
     public void DeployArtillery(int pos)
@@ -82,6 +89,7 @@ public class CommandCenterScript : MonoBehaviour
         Destroy(currDeployedArtis[pos]);
         currDeployedArtis[pos] = null;
     }
+
 
     void TakeDamage(Vector2 collPoint,int dAmmount)
     {
@@ -135,5 +143,16 @@ public class CommandCenterScript : MonoBehaviour
     void OnGameOver()
     {
         //stateMachine.ChangeState("GAME_OVR");
+    }
+
+    void AutoRemoveDeadTroops()
+    {
+        for (int i = currDeployedTanks.Count - 1; i >= 0; i--)
+        {
+            if (currDeployedTanks[i] == null || currDeployedTanks[i].GetComponent<HealthScript>().currentHP == 0)//If element null or dead
+            {
+                currDeployedTanks.RemoveAt(i);
+            }
+        }
     }
 }

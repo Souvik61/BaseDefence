@@ -10,7 +10,7 @@ public class WaveSpawner : MonoBehaviour
 	public class Wave
 	{
 		public string name;
-		public Transform enemy;
+		public int[] tankIndexes;
 		public int count;
 		public float rate;
 	}
@@ -22,7 +22,7 @@ public class WaveSpawner : MonoBehaviour
 		get { return nextWave + 1; }
 	}
 
-	public Transform[] spawnPoints;
+	//public Transform[] spawnPoints;
 
 	public float timeBetweenWaves = 5f;
 	private float waveCountdown;
@@ -31,7 +31,7 @@ public class WaveSpawner : MonoBehaviour
 		get { return waveCountdown; }
 	}
 
-	public EventHandler OnSpawnEnemy;
+	public event EventHandler OnSpawnEnemy;
 
 	private float searchCountdown = 1f;
 
@@ -43,11 +43,6 @@ public class WaveSpawner : MonoBehaviour
 
 	void Start()
 	{
-		if (spawnPoints.Length == 0)
-		{
-			Debug.LogError("No spawn points referenced.");
-		}
-
 		waveCountdown = timeBetweenWaves;
 	}
 
@@ -117,9 +112,11 @@ public class WaveSpawner : MonoBehaviour
 
 		for (int i = 0; i < _wave.count; i++)
 		{
-			SpawnEnemy(_wave.enemy);
+			SpawnEnemy(null);
 			yield return new WaitForSeconds(1f / _wave.rate);
 		}
+
+		
 
 		state = SpawnState.WAITING;
 
@@ -128,9 +125,9 @@ public class WaveSpawner : MonoBehaviour
 
 	void SpawnEnemy(Transform _enemy)
 	{
-		Debug.Log("Spawning Enemy: " + _enemy.name);
+		Debug.Log("Spawning Enemy: ");
 
-		
+		OnSpawnEnemy?.Invoke(this, EventArgs.Empty);
 
 	}
 

@@ -2242,7 +2242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58914eb99329d7d49a7df10ed495164b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiManager: {fileID: 0}
+  uiManager: {fileID: 4925114381960726227}
   ccScript: {fileID: 1104528129}
   walletScript: {fileID: 1916985672}
   currencyTerms: {fileID: 11400000, guid: 09e6647ddd217944690ca1d0df16206f, type: 2}
@@ -2260,27 +2260,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - name: 
-    enemy: {fileID: 0}
-    count: 0
-    rate: 0
-  - name: 
-    enemy: {fileID: 0}
-    count: 0
-    rate: 0
-  - name: 
-    enemy: {fileID: 0}
-    count: 0
-    rate: 0
-  - name: 
-    enemy: {fileID: 0}
-    count: 0
-    rate: 0
-  - name: 
-    enemy: {fileID: 0}
-    count: 0
-    rate: 0
-  spawnPoints: []
+  - name: Wave 1
+    tankIndexes: 0000000001000000
+    count: 4
+    rate: 1
+  - name: Wave 2
+    tankIndexes: 
+    count: 6
+    rate: 1
+  - name: Wave 3
+    tankIndexes: 
+    count: 10
+    rate: 1
+  - name: Wave 4
+    tankIndexes: 
+    count: 11
+    rate: 2
   timeBetweenWaves: 5
 --- !u!1 &1135391807
 GameObject:
