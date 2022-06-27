@@ -14,7 +14,7 @@ public class ArtileryController_t1 : ArtileryController
         {
             //Instantiate projectile 
             GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoints[i].position, Quaternion.identity);
-            proj.GetComponent<BulletScript>().damageAmmount = (int)selfProperties.shootDamage;
+            proj.GetComponent<BulletScript>().damageAmmount = (int)(10 * selfProperties.sDamage);
             proj.GetComponent<Rigidbody2D>().velocity = firePoints[i].up * projectileSpeed;
             Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
 
@@ -26,7 +26,7 @@ public class ArtileryController_t1 : ArtileryController
             Destroy(mzlFlash, 0.05f);
 
             //play shoot audio
-            audioSrc.Play();
+            audioSrc.PlayOneShot(commonAsset.GRArtt1ShootSfx());
         }
 
         //wait for second round
@@ -36,7 +36,7 @@ public class ArtileryController_t1 : ArtileryController
         {
             //Instantiate projectile 
             GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoints[i].position, Quaternion.identity);
-            proj.GetComponent<BulletScript>().damageAmmount = (int)selfProperties.shootDamage;
+            proj.GetComponent<BulletScript>().damageAmmount = (int)(10 * selfProperties.sDamage);
             proj.GetComponent<Rigidbody2D>().velocity = firePoints[i].up * projectileSpeed;
             Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
 
@@ -48,7 +48,7 @@ public class ArtileryController_t1 : ArtileryController
             Destroy(mzlFlash, 0.05f);
 
             //play shoot audio
-            audioSrc.Play();
+            audioSrc.PlayOneShot(commonAsset.GRArtt1ShootSfx());
         }
 
         yield return new WaitForSeconds(selfProperties.shootDelay + Random.Range(-1f, 1f));

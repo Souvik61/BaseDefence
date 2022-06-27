@@ -2246,7 +2246,7 @@ MonoBehaviour:
   ccScript: {fileID: 1104528129}
   walletScript: {fileID: 1916985672}
   currencyTerms: {fileID: 11400000, guid: 09e6647ddd217944690ca1d0df16206f, type: 2}
-  waveSpawner: {fileID: 0}
+  waveSpawner: {fileID: 1104528132}
 --- !u!114 &1104528132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2259,24 +2259,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a49823c34370d4badaa53823a6b1af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ccScript: {fileID: 1104528129}
   waves:
   - name: Wave 1
     tankIndexes: 0000000001000000
-    count: 4
-    rate: 1
+    count: 5
+    delayBetweenSpwns: 4
   - name: Wave 2
-    tankIndexes: 
+    tankIndexes: 0100000002000000
     count: 6
-    rate: 1
+    delayBetweenSpwns: 4
   - name: Wave 3
-    tankIndexes: 
+    tankIndexes: 010000000200000003000000
     count: 10
-    rate: 1
+    delayBetweenSpwns: 6
   - name: Wave 4
-    tankIndexes: 
+    tankIndexes: 040000000300000002000000
     count: 11
-    rate: 2
+    delayBetweenSpwns: 3
   timeBetweenWaves: 5
+--- !u!114 &1104528133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104528127}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d847f96f6162644995748c34c7a69e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 4925114381960726227}
+  ccScript: {fileID: 1104528129}
+  walletScript: {fileID: 1916985672}
+  currencyTerms: {fileID: 11400000, guid: 09e6647ddd217944690ca1d0df16206f, type: 2}
 --- !u!1 &1135391807
 GameObject:
   m_ObjectHideFlags: 0
@@ -5114,6 +5131,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416241484465253813, guid: 9e668474a0c9853498951c4343131b20,
+        type: 3}
+      propertyPath: godMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2416241484465253814, guid: 9e668474a0c9853498951c4343131b20,
         type: 3}
@@ -10774,6 +10796,11 @@ PrefabInstance:
       propertyPath: tankSpawnPoints.Array.data[2]
       value: 
       objectReference: {fileID: 1053209557}
+    - target: {fileID: 6875076348338029439, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
+        type: 3}
+      propertyPath: godMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8425289152209242820, guid: a2211f5fae91ce447ba9bc8e8892f6f1,
         type: 3}
       propertyPath: m_Sprite

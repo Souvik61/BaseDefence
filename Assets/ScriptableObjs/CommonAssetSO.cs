@@ -97,6 +97,11 @@ public class CommonAssetSO : ScriptableObject
         return null;
     }
 
+    public AudioClip GRArtt1ShootSfx()
+    {
+        return sfx_artfire1_t1;
+    }
+
     public AudioClip GRArtt2ShootSfx()
     {
         switch (Random.Range(0, 3))

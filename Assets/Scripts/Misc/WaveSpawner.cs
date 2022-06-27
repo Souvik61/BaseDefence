@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 using UnityEngine;
 using System.Collections;
@@ -6,13 +7,15 @@ public class WaveSpawner : MonoBehaviour
 {
 	public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
+	public CommandCenterScript ccScript;
+
 	[System.Serializable]
 	public class Wave
 	{
 		public string name;
 		public int[] tankIndexes;
 		public int count;
-		public float rate;
+		public float delayBetweenSpwns;
 	}
 
 	public Wave[] waves;
@@ -34,6 +37,8 @@ public class WaveSpawner : MonoBehaviour
 	public event EventHandler OnSpawnEnemy;
 
 	private float searchCountdown = 1f;
+
+	bool latestResponse;
 
 	private SpawnState state = SpawnState.COUNTING;
 	public SpawnState State
@@ -97,10 +102,12 @@ public class WaveSpawner : MonoBehaviour
 		if (searchCountdown <= 0f)
 		{
 			searchCountdown = 1f;
-			if (GameObject.FindGameObjectWithTag("Enemy") == null)
-			{
+			//if (GameObject.FindGameObjectWithTag("Enemy") == null)
+			//{
+			//	return false;
+			//}
+			if (!CheckEnemyAlive())
 				return false;
-			}
 		}
 		return true;
 	}
@@ -112,23 +119,50 @@ public class WaveSpawner : MonoBehaviour
 
 		for (int i = 0; i < _wave.count; i++)
 		{
-			SpawnEnemy(null);
-			yield return new WaitForSeconds(1f / _wave.rate);
+			if (SpawnEnemy(_wave))
+			{
+				
+			}
+			else
+				i--;
+			yield return new WaitForSeconds(_wave.delayBetweenSpwns);
 		}
-
-		
 
 		state = SpawnState.WAITING;
 
 		yield break;
 	}
 
-	void SpawnEnemy(Transform _enemy)
+	bool SpawnEnemy(Wave wave)
 	{
+		latestResponse = false;
 		Debug.Log("Spawning Enemy: ");
 
-		OnSpawnEnemy?.Invoke(this, EventArgs.Empty);
+		TankSpawnInfoEventArgs spnEvent = new TankSpawnInfoEventArgs();
 
+		spnEvent.position = UnityEngine.Random.Range(0, 3);
+		int a = UnityEngine.Random.Range(0, wave.tankIndexes.Length);
+		spnEvent.tankIndex = wave.tankIndexes[a];
+
+		OnSpawnEnemy?.Invoke(this, spnEvent);
+
+		return latestResponse;
 	}
 
+	bool CheckEnemyAlive()
+	{
+		return ccScript.currDeployedTanks.Count > 0;
+	}
+
+	public void OnSpawnEventResponse(bool response)
+	{
+		latestResponse = response;
+	}
+
+}
+
+public class TankSpawnInfoEventArgs: EventArgs
+{
+	public int tankIndex;
+	public int position;
 }

@@ -26,6 +26,7 @@ public class CCCommanderAIScript : MonoBehaviour
     {
         uiManager.OnUIButtonPressed += OnUICommand;
         uiManager.OnTouchCallback += OnScreenTap;//Subscribe to all events touch callback
+        waveSpawner.OnSpawnEnemy += WaveSpawner_OnSpawnEnemy;
     }
 
     private void OnDisable()
@@ -259,6 +260,18 @@ public class CCCommanderAIScript : MonoBehaviour
         ccScript.tankSpawnPoints[index].GetComponent<SpriteRenderer>().enabled = value;
     }
 
+    bool IsSpawnAreaAvailable(int index)
+    {
+        Collider2D[] coll = new Collider2D[10];
+        var pt = ccScript.tankSpawnPoints[index].transform.position;
+        Vector2 size = ccScript.tankSpawnPoints[index].transform.GetComponent<SpriteRenderer>().bounds.size;
+        coll = Physics2D.OverlapBoxAll(pt, size, 0, LayerMask.GetMask("Tank"));
+
+        HelperScript.DrawBoundDebug(new Bounds(pt, size), Color.green);
+
+        return coll.Length == 0;
+    }
+
     bool IsArtilleryAreaAvailable(int a)
     {
         var sP = ccScript.artSpawnPoints[a];
@@ -272,7 +285,7 @@ public class CCCommanderAIScript : MonoBehaviour
         return true;
     }
 
-    bool BuyTank(int index)
+    bool BuyTank(int index)//Watch out! index starts from 1
     {
         uint cost = currencyTerms.costList[index-1];
 
@@ -288,15 +301,31 @@ public class CCCommanderAIScript : MonoBehaviour
         return true;
     }
 
-    void BuyAndDeployTank(int pos,int tankIndex)
+    bool BuyAndDeployTank(int pos,int tankIndex)
     {
-        if (BuyTank(tankIndex))//if tank bought succesfully
+        if (IsSpawnAreaAvailable(pos))
         {
-            ccScript.DeployTank(pos, tankIndex);
+            if (BuyTank(tankIndex))//if tank bought succesfully
+            {
+                ccScript.DeployTank(pos, tankIndex);
+                return true;
+            }
+            else
+                uiManager.PromptMessage("No coins bro!");
         }
-        else
-            uiManager.PromptMessage("No coins bro!");
+        return false;
+    }
 
+    //--------------------
+    //Events
+    //--------------------
+
+    void WaveSpawner_OnSpawnEnemy(object sender, System.EventArgs e)
+    {
+        var e1 = (TankSpawnInfoEventArgs)e;
+        bool ret = BuyAndDeployTank(e1.position, e1.tankIndex + 1);
+
+        ((WaveSpawner)sender).OnSpawnEventResponse(ret);
     }
 
 }

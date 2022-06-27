@@ -15,7 +15,7 @@ public class CommandCenterScript : MonoBehaviour
 
     bool isDestroyed;
     GameObject[] currDeployedArtis = new GameObject[3];
-    List<GameObject> currDeployedTanks = new List<GameObject>();
+    public List<GameObject> currDeployedTanks = new List<GameObject>();
 
     private void OnEnable()
     {
