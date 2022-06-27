@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 3580017627097784801}
   - component: {fileID: 3580017627097784800}
   m_Layer: 8
-  m_Name: artilery_t1
+  m_Name: artilery_t1_AI
   m_TagString: tag_opponent1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

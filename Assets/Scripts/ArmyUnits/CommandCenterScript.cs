@@ -50,7 +50,7 @@ public class CommandCenterScript : MonoBehaviour
     //Deploy functions
     //-------------------------
 
-    public void DeployTank(int pos,int tankIndex)
+    public void DeployTank(int pos, int tankIndex)
     {
         //Deploy tank at position pos
         //Spawn tank
@@ -82,6 +82,22 @@ public class CommandCenterScript : MonoBehaviour
         currDeployedArtis[pos] = art.gameObject;
     }
 
+    public void DeployArtillery(int pos, int artIndex)
+    {
+        if (currDeployedArtis[pos] != null)
+            return;
+
+        //Deploy artillery at position pos
+        //Spawn artillery
+        Transform art = Instantiate<Transform>(IndexToArtTransform(artIndex));
+        art.transform.position = artSpawnPoints[pos].transform.position;
+
+        art.transform.rotation = Quaternion.LookRotation(Vector3.forward, artSpawnPoints[pos].transform.right);
+        art.tag = "tag_opponent1";
+        art.GetComponent<UnitComponent>().teamID = GetComponent<UnitComponent>().teamID;
+        currDeployedArtis[pos] = art.gameObject;
+    }
+
     public void RemoveArtilleryAt(int pos)
     {
         if (currDeployedArtis[pos] == null)
@@ -91,7 +107,7 @@ public class CommandCenterScript : MonoBehaviour
     }
 
 
-    void TakeDamage(Vector2 collPoint,int dAmmount)
+    void TakeDamage(Vector2 collPoint, int dAmmount)
     {
 
         healthScript.Decrement((uint)dAmmount);
@@ -121,9 +137,9 @@ public class CommandCenterScript : MonoBehaviour
         }
     }
 
-    Transform IndexToTankTransform(int index)
+    Transform IndexToTankTransform(int index)//Watch out! index starts from 1
     {
-        switch (index-1)
+        switch (index - 1)
         {
             case 0:
                 return commonAsset.TANK_1.transform;
@@ -135,6 +151,19 @@ public class CommandCenterScript : MonoBehaviour
                 return commonAsset.TANK_4.transform;
             case 4:
                 return commonAsset.TANK_5.transform;
+            default:
+                return null;
+        }
+    }
+
+    Transform IndexToArtTransform(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return commonAsset.PREFAB_ART_1.transform;
+            case 1:
+                return commonAsset.PREFAB_ART_2.transform;
             default:
                 return null;
         }

@@ -28,7 +28,8 @@ MonoBehaviour:
   TANK_5: {fileID: 37189421028507867, guid: f98c0a6407611024d9a4992bed62ff98, type: 3}
   PREFAB_ART_1: {fileID: 1424451668422179261, guid: 283e999c992f5cf45a3a8bbeea06ed93,
     type: 3}
-  PREFAB_ART_2: {fileID: 0}
+  PREFAB_ART_2: {fileID: 3580017627097784806, guid: 0980128f9f6a563489508854d973f3a9,
+    type: 3}
   PREFAB_ART_3: {fileID: 0}
   RedCross: {fileID: 5007491581516392812, guid: d53c27638ab8f4c46811220c3de05364,
     type: 3}

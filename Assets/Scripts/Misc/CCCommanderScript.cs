@@ -19,7 +19,9 @@ public class CCCommanderScript : MonoBehaviour
     HighlightedState currHighlightedState;
 
     string commBuffer;
+
     int toBeSpawnedTankIndex;
+    int toBeSpawnedArtIndex;
 
     private void OnEnable()
     {
@@ -82,6 +84,7 @@ public class CCCommanderScript : MonoBehaviour
     {
         if (currHighlightedState == HighlightedState.NONE)
         {
+            toBeSpawnedArtIndex = (int)char.GetNumericValue(str[str.Length - 1]);
             currHighlightedState = HighlightedState.DEFENCE;
             StartCoroutine(nameof(DefenceStateCoroutine));
         }
@@ -175,15 +178,15 @@ public class CCCommanderScript : MonoBehaviour
             {
                 if (commBuffer == "tch_art_0")
                 {
-                    ccScript.DeployArtillery(0);
+                    ccScript.DeployArtillery(0, toBeSpawnedArtIndex);
                 }
                 else if (commBuffer == "tch_art_1")
                 {
-                    ccScript.DeployArtillery(1);
+                    ccScript.DeployArtillery(1, toBeSpawnedArtIndex);
                 }
                 else if (commBuffer == "tch_art_2")
                 {
-                    ccScript.DeployArtillery(2);
+                    ccScript.DeployArtillery(2, toBeSpawnedArtIndex);
                 }
                 break;
             }
