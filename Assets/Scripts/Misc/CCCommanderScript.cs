@@ -178,15 +178,15 @@ public class CCCommanderScript : MonoBehaviour
             {
                 if (commBuffer == "tch_art_0")
                 {
-                    ccScript.DeployArtillery(0, toBeSpawnedArtIndex);
+                    ccScript.DeployArtillery(0, toBeSpawnedArtIndex - 1);
                 }
                 else if (commBuffer == "tch_art_1")
                 {
-                    ccScript.DeployArtillery(1, toBeSpawnedArtIndex);
+                    ccScript.DeployArtillery(1, toBeSpawnedArtIndex - 1);
                 }
                 else if (commBuffer == "tch_art_2")
                 {
-                    ccScript.DeployArtillery(2, toBeSpawnedArtIndex);
+                    ccScript.DeployArtillery(2, toBeSpawnedArtIndex - 1);
                 }
                 break;
             }
@@ -290,6 +290,33 @@ public class CCCommanderScript : MonoBehaviour
     }
 
     void BuyAndDeployTank(int pos,int tankIndex)
+    {
+        if (BuyTank(tankIndex))//if tank bought succesfully
+        {
+            ccScript.DeployTank(pos, tankIndex);
+        }
+        else
+            uiManager.PromptMessage("No coins bro!");
+
+    }
+
+    bool BuyArtillery(int index)
+    {
+        uint cost = currencyTerms.costList[index - 1];
+
+        if (cost > walletScript.currentCoins)
+        {
+            return false;
+        }
+        else if (cost <= walletScript.currentCoins)
+        {
+            walletScript.Withdraw(cost);
+            return true;
+        }
+        return true;
+    }
+
+    void BuyAndDeployArtillery(int pos, int tankIndex)
     {
         if (BuyTank(tankIndex))//if tank bought succesfully
         {
