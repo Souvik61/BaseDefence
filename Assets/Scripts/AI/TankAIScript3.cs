@@ -92,19 +92,23 @@ public class TankAIScript3 : MonoBehaviour
             }
         }
 
-        //Check with previous enemies
-        //Place common enemy in 0th position
-        if (prev0thEnemy == null) return;
-
-        int index = enemiesInSight.IndexOf(prev0thEnemy);
-
-        if (index != -1)//If 0th enemy already exists in array
+        if (enemiesInSight.Count != 0)
         {
-            var gm = enemiesInSight[0];
-            enemiesInSight[0] = enemiesInSight[index];//Swap with current
-            enemiesInSight[index] = gm;
+            //Check with previous enemies
+            //Place common enemy in 0th position
+            if (prev0thEnemy != null)
+            {
+                int index = enemiesInSight.IndexOf(prev0thEnemy);
+
+                if (index != -1)//If 0th enemy already exists in array
+                {
+                    var gm = enemiesInSight[0];
+                    enemiesInSight[0] = enemiesInSight[index];//Swap with current
+                    enemiesInSight[index] = gm;
+                }
+            }
+            prev0thEnemy = enemiesInSight[0];
         }
-        prev0thEnemy = enemiesInSight[0];
     }
 
     /*

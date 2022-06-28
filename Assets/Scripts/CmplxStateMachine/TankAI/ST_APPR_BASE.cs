@@ -56,7 +56,7 @@ namespace cmplx_statemachine
             // ShowWayPoints();
             FollowWayPoints();
             AvoidLocalObstacles();
-
+            MuzzleFaceForward();
             //Apply controlls
             tankController.Move(controlBits[0]);
             tankController.Rotate(controlBits[1]);
@@ -155,6 +155,16 @@ namespace cmplx_statemachine
 
         }
 
+        void MuzzleFaceForward()
+        {
+            Vector2 dir = tankController.tankBodyTransform.up;
+
+            if (!IsMuzzleFacingDirection(dir, 1))
+            {
+                TryFaceMuzzleTowardsDirection(dir, 1);
+            }
+        }
+
         bool IsFacingDirection(Vector2 dir, float tolerance)
         {
             float angle = Vector2.Angle(dir, selfTransform.up);
@@ -163,6 +173,27 @@ namespace cmplx_statemachine
                 return true;
             }
             return false;
+        }
+
+        bool IsMuzzleFacingDirection(Vector2 dir, float tolerance)
+        {
+            float angle = Vector2.Angle(dir, tankController.muzzleTransform.up);
+            if (Mathf.Abs(angle) < tolerance)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        void TryFaceMuzzleTowardsDirection(Vector2 dir,float tol)
+        {
+            float angle = Vector2.SignedAngle(dir, tankController.muzzleTransform.up);
+            if (Mathf.Abs(angle) > tol)
+            {
+                if (angle > 0)
+                { tankController.MuzzleRotate(1); }
+                else { tankController.MuzzleRotate(-1); }
+            }
         }
 
         void SetControlBitsTowardsDir(Vector2 dir, int[] cBits)
