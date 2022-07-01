@@ -27,10 +27,23 @@ public class CurrencyDefsSO : ScriptableObject
     public uint[] costList;
 
     public Dictionary<string,uint> costDict;
+    public Dictionary<string,uint> buybackDict;
+
+    [System.Serializable]
+    public struct TankCurrency
+    {
+        public string name;
+        public uint cost;
+        public uint buybackCost;
+    }
+    
+    [Header("Tank Currencies List")]
+    public TankCurrency[] tankCurrencies;
 
     private void OnEnable()
     {
         costDict = new Dictionary<string, uint>();
+        buybackDict = new Dictionary<string, uint>();
 
         //Validate dictionary
         costDict.Add(tankName1, cost1);
@@ -38,6 +51,12 @@ public class CurrencyDefsSO : ScriptableObject
         costDict.Add(tankName3, cost3);
         costDict.Add(tankName4, cost4);
         costDict.Add(tankName5, cost5);
+
+        foreach (var item in tankCurrencies)
+        {
+            buybackDict.Add(item.name, item.buybackCost);
+        }
+
     }
 
 

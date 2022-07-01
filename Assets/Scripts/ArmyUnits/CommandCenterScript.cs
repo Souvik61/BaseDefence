@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable] public class OneParamEvent : UnityEvent<string> { }
 
 public class CommandCenterScript : MonoBehaviour
 {
@@ -16,6 +19,8 @@ public class CommandCenterScript : MonoBehaviour
     bool isDestroyed;
     GameObject[] currDeployedArtis = new GameObject[3];
     public List<GameObject> currDeployedTanks = new List<GameObject>();
+
+    [SerializeField] OneParamEvent OnATankDestroyed;
 
     private void OnEnable()
     {
@@ -180,7 +185,9 @@ public class CommandCenterScript : MonoBehaviour
         {
             if (currDeployedTanks[i] == null || currDeployedTanks[i].GetComponent<HealthScript>().currentHP == 0)//If element null or dead
             {
+                var a = currDeployedTanks[i];
                 currDeployedTanks.RemoveAt(i);
+                OnATankDestroyed?.Invoke(a.GetComponent<UnitComponent>().unitName);
             }
         }
     }

@@ -23,3 +23,19 @@ MonoBehaviour:
   tankName5: Tank 5
   cost5: 100
   costList: 0f00000019000000320000004b00000064000000
+  tankCurrencies:
+  - name: TANK_1
+    cost: 15
+    buybackCost: 20
+  - name: TANK_2
+    cost: 25
+    buybackCost: 30
+  - name: TANK_3
+    cost: 50
+    buybackCost: 60
+  - name: TANK_4
+    cost: 75
+    buybackCost: 85
+  - name: TANK_5
+    cost: 100
+    buybackCost: 120

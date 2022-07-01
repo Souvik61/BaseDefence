@@ -765,7 +765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitType: 0
-  unitName: TANK
+  unitName: TANK_1
   teamID: 1
 --- !u!114 &8519312620987425581
 MonoBehaviour:
