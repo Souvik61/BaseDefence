@@ -22,6 +22,8 @@ MonoBehaviour:
     type: 3}
   ProjectilePrefab_RPG: {fileID: 6663801711976423964, guid: a2c2136bf42e63a42a80e41088ee7c9d,
     type: 3}
+  ProjectilePrefab1_RPG: {fileID: 5597980347808920640, guid: 19b24f300d53eea4a96fd243094b140e,
+    type: 3}
   TankHitPrefab: {fileID: 100014, guid: a57a6829db3568c4d9bdc37e9e63c017, type: 3}
   TANK_1: {fileID: 8519312620987425580, guid: e7940f4378277d5449f31693b6b96507, type: 3}
   TANK_2: {fileID: 7483502652408154921, guid: 201104bfa0b83eb4d85fed90d2917dfd, type: 3}
@@ -32,7 +34,10 @@ MonoBehaviour:
     type: 3}
   PREFAB_ART_2: {fileID: 3580017627097784806, guid: 0980128f9f6a563489508854d973f3a9,
     type: 3}
-  PREFAB_ART_3: {fileID: 0}
+  PREFAB_ART_3: {fileID: 8639119007128795719, guid: 82f5d1c66dd1d0b48b06f551adbce769,
+    type: 3}
+  PREFAB_ART_4: {fileID: 1507877387969487473, guid: 2b312f7b904dac54d88fa637e8342d41,
+    type: 3}
   RedCross: {fileID: 5007491581516392812, guid: d53c27638ab8f4c46811220c3de05364,
     type: 3}
   TankShoot: {fileID: 8300000, guid: 19fd2e26f99eed4419a77d820195bbf2, type: 3}

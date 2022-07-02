@@ -169,6 +169,10 @@ public class CommandCenterScript : MonoBehaviour
                 return commonAsset.PREFAB_ART_1.transform;
             case 1:
                 return commonAsset.PREFAB_ART_2.transform;
+            case 2:
+                return commonAsset.PREFAB_ART_3.transform;
+            case 3:
+                return commonAsset.PREFAB_ART_4.transform;
             default:
                 return null;
         }

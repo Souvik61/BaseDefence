@@ -9,6 +9,7 @@ public class CommonAssetSO : ScriptableObject
     public GameObject MuzzleFlashPrefab;
     public GameObject ProjectilePrefab;
     public GameObject ProjectilePrefab_RPG;
+    public GameObject ProjectilePrefab1_RPG;
     public GameObject TankHitPrefab;
 
     [Header("Tank Prefabs")]
@@ -24,6 +25,7 @@ public class CommonAssetSO : ScriptableObject
     public GameObject PREFAB_ART_1;
     public GameObject PREFAB_ART_2;
     public GameObject PREFAB_ART_3;
+    public GameObject PREFAB_ART_4;
 
     //Miscelleneous
     [Header("Miscellaneous Prefabs")]
