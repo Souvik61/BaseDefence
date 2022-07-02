@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
 
     void OnTouchEvent(string str)//For touch events outside UI
     {
-        Debug.Log(str);
+        //Debug.Log(str);
         OnTouchCallback?.Invoke(str);
     }
 

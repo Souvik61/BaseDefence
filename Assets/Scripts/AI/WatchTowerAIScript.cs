@@ -21,7 +21,7 @@ public class WatchTowerAIScript : MonoBehaviour
     [SerializeField]
     Collider2D selfCollider;
     BrokenTextureScript brokenTexControl;
-    UnitComponent unitC;
+    UnitComponent unitComp;
 
     public bool isDestroyed;
     
@@ -49,7 +49,7 @@ public class WatchTowerAIScript : MonoBehaviour
     private void Awake()
     {
         healthScript = GetComponent<HealthScript>();
-        unitC = GetComponent<UnitComponent>();
+        unitComp = GetComponent<UnitComponent>();
         stateMachine = GetComponent<cmplx_statemachine.WatchTowerStateMachine>();
         obsCheckScript = GetComponentInChildren<FOVObsCheckScript>();
         selfCollider = GetComponent<Collider2D>();
@@ -72,7 +72,7 @@ public class WatchTowerAIScript : MonoBehaviour
         {
             Destroy(collision.gameObject);
 
-            if (!collision.CompareTag("tag_projectile" + unitC.teamID))
+            if (!collision.CompareTag("tag_projectile" + unitComp.teamID))
                 TakeDamage(collision.transform.position, collision.GetComponent<BulletScript>().damageAmmount);
         }
     }
@@ -119,7 +119,7 @@ public class WatchTowerAIScript : MonoBehaviour
                 if (unitC.unitType == UnitType.TANK || unitC.unitType == UnitType.ARTILERY)//If it is an tank or artilery
                 {
                     //If same team or other and alive
-                    return !unitC.CompareTag(tag);//if not on same team
+                    return unitC.teamID != unitComp.teamID;//if not on same team
                 }
             }
         }
@@ -144,11 +144,11 @@ public class WatchTowerAIScript : MonoBehaviour
         isShooting = true;
 
         //Instantiate projectile 
-        GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoint.position, Quaternion.identity);
+        GameObject proj = Instantiate(commonAsset.ProjectilePrefab_RPG, firePoint.position, Quaternion.identity);
         proj.layer = LayerMask.NameToLayer("~WatchTower");
         proj.GetComponent<BulletScript>().damageAmmount = (int)shootDamage;
-        proj.tag = "tag_projectile" + unitC.teamID;
-        proj.GetComponent<Rigidbody2D>().velocity = dir * 20;
+        proj.tag = "tag_projectile" + unitComp.teamID;
+        proj.GetComponent<Rigidbody2D>().velocity = dir * 10;
         Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
 
         //play shoot audio

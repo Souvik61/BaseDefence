@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c68e9c8399800b4b9a149cff15f2125, type: 3}
+  m_Name: art_3_props
+  m_EditorClassIdentifier: 
+  artileryName: Artilery 3
+  shootDelay: 2
+  shootDamage: 5
+  maxHealth: 100
+  sDamage: 2
+  armour: 0
+  destroyedSpriteArray: []
