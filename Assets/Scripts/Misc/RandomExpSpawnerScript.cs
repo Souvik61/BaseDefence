@@ -2,8 +2,10 @@
 
 public class RandomExpSpawnerScript : MonoBehaviour
 {
+    [Header("Rect described by lowerleftPoint and upper upperrightPoint")]
     public Transform lowerLeftCorner;
     public Transform upperRightCorner;
+
     public float delay;
 
     public CommonAssetSO commAsset;
@@ -22,6 +24,5 @@ public class RandomExpSpawnerScript : MonoBehaviour
         a.y = Random.Range(lowerLeftCorner.position.y, upperRightCorner.position.y);
         var b = Instantiate(explosionPrefab);
         b.transform.position = a;
-    
     }
 }
