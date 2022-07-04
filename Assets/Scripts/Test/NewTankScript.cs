@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NewTankScript : TankScript
 {
@@ -9,12 +7,15 @@ public class NewTankScript : TankScript
 
     Vector2 forceBuff;
     float torqueBuff;
-    bool hasToMove;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     protected override void Start()
     {
         base.Start();
-        hasToMove = false;
     }
 
     protected override void FixedUpdate()
@@ -34,7 +35,7 @@ public class NewTankScript : TankScript
         if (!isDestroyed)
         {
             //rBody.MovePosition(transform.position+ (forward * driveSpeed * transform.up));
-            forceBuff += (Vector2)(forward * moveMultiplier * tankProperty.driveSpeed * transform.up);
+            forceBuff = (Vector2)(forward * moveMultiplier * tankProperty.driveSpeed * transform.up);
             //rBody.AddForce(force * multiplier, ForceMode2D.Impulse);
         }
     }
@@ -42,18 +43,24 @@ public class NewTankScript : TankScript
     public override void Rotate(int turn)
     {
         if (!isDestroyed)
-            torqueBuff += turn * tankProperty.rotateSpeed * rotateMultiplier;
-
+            torqueBuff = turn * tankProperty.rotateSpeed * rotateMultiplier;
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        // Debug.Log("Trigger Enter");
+        if (collision.tag.Contains("tag_projectile"))
+        {
+            Destroy(collision.gameObject);//Destroy the projectile
+
+            if (!collision.CompareTag("tag_projectile" + unitC.teamID))
+                OnTakeDamage(collision.transform.position, collision.GetComponent<BulletScript>().damageAmmount);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        //Debug.Log("Collision Enter");
     }
 
 }

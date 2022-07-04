@@ -1,0 +1,45 @@
+<CustomInspectorTemplate>
+using UnityEngine;
+using UnityEditor;
+using System.Collections;
+
+// Script created by Custom Inspector Generator
+[CustomEditor(typeof(<ScriptName/>))]
+public class <EditorScriptName/> : Editor 
+{
+	// The target script in serialized and non-serialized form
+	<ScriptName/> targetScript;
+	SerializedObject serializedTargetScript;
+	
+	// The serialized properties of the target script
+	<ForEachField>
+	SerializedProperty <FieldName/>;
+	</ForEachField>
+
+	// Initialization
+	void OnEnable() {
+		// Get a reference to the target script and serialize it
+		targetScript = (<ScriptName/>)target;
+		serializedTargetScript = new SerializedObject(targetScript);
+		
+		// Find serialized properties
+		<ForEachField>
+		<FieldName/> = serializedTargetScript.FindProperty("<FieldName/>");
+		</ForEachField>
+	}
+	
+	// Drawing the Custom Inspector
+    public override void OnInspectorGUI() {
+    	// Update the serializedProperty - always do this in the beginning of OnInspectorGUI.
+		serializedTargetScript.Update();
+		
+		// Draw serialized properties
+		<ForEachField>
+		EditorGUILayout.PropertyField(<FieldName/>, new GUIContent("<FieldName/>"));
+		</ForEachField>
+	
+		// Apply changes to the serializedProperty - always do this in the end of OnInspectorGUI.
+		serializedTargetScript.ApplyModifiedProperties();
+	}
+}
+</CustomInspectorTemplate>

@@ -7,6 +7,8 @@ public class ArtileryPropertiesSO : ScriptableObject
     public float shootDelay;
     public float shootDamage;
     public uint maxHealth;
+    public uint sDamage;//Damage and attack values ranges from [1-10]
+    public uint armour;
 
     //Destroyed state sprites
     public Sprite[] destroyedSpriteArray;

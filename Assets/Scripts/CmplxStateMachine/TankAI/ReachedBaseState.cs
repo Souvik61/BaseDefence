@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace cmplx_statemachine
 {
@@ -8,7 +6,7 @@ namespace cmplx_statemachine
     {
         Transform selfTransform;
         TankScript tankController;
-        ArmyBaseScript targetBase;
+        ArmyBaseScript_pt1 targetBase;
         Vector2 dirToTarget;
 
         public ReachedBaseState(TankAIStateMachine stM, TankAIScript3 tankAIScript) : base(stM)
@@ -31,6 +29,9 @@ namespace cmplx_statemachine
             TryFaceMuzzleTowardsDirection(dirToTarget);
 
             TryShootAtBase();
+
+            //Attack units
+            //Attack base
 
         }
 

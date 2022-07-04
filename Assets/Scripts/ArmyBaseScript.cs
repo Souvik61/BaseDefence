@@ -93,7 +93,7 @@ public class ArmyBaseScript : MonoBehaviour
         
     }
 
-    void OnHealthZero()
+    protected virtual void OnHealthZero()
     {
         if (!isDestroyed)
         {
@@ -104,8 +104,8 @@ public class ArmyBaseScript : MonoBehaviour
             Vector3 pos = transform.Find("wf_spawnpoint").position;
             Instantiate(commAsset.WhiteFlagPrefab, pos, Quaternion.identity);
 
-            AllEventsScript.OnBaseDestroyed?.Invoke(baseId);
             isDestroyed = true;
+            AllEventsScript.OnBaseDestroyed?.Invoke(baseId);
         }
     }
 

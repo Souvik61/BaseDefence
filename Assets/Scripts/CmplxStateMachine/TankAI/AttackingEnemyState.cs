@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace cmplx_statemachine
 {
@@ -26,7 +24,6 @@ namespace cmplx_statemachine
 
         public override void OnUpdate()
         {
-
             if (tankAIScript.enemiesInSight.Count > 0)//If there are enemies
             {
                 Transform currTarget = tankAIScript.enemiesInSight[0].transform;
@@ -56,7 +53,6 @@ namespace cmplx_statemachine
             {
                 tankController.Shoot();
             }
-
         }
 
         bool IsFacingTarget(Transform targTrans)
@@ -70,9 +66,13 @@ namespace cmplx_statemachine
 
         void CheckStateTransition()
         {
+
             if (tankAIScript.enemiesInSight.Count == 0)
             {
-                stateMachineInstance.ChangeState("APPR_BASE");
+                if (tankAIScript.targetBase == null)
+                    stateMachineInstance.ChangeState("NO_TARG");
+                else
+                    stateMachineInstance.ChangeState("APPR_BASE");
             }
         }
 

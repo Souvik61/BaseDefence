@@ -12,13 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d937a78d29cff547a4010d69687333e, type: 3}
   m_Name: tank_3_props
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 3d53982894167844da7a0b377ce30fdc, type: 3}
   tankName: Tank 3
-  driveSpeed: 5
+  driveSpeed: 4
   rotateSpeed: 45
   muzzRotateSpeed: 45
   shootDelay: 2
   shootDamage: 10
   maxHealth: 100
+  sDamage: 5
+  armour: 5
   destroyedSpriteArray:
   - {fileID: 21300000, guid: 88e57cc35bb87f6409e86d858cbbb2f8, type: 3}
   - {fileID: 21300000, guid: 1c32104191aa9dd4dbdb66bcc71c5dd1, type: 3}
+  shootSfxList:
+  - {fileID: 8300000, guid: 19fd2e26f99eed4419a77d820195bbf2, type: 3}
+  - {fileID: 8300000, guid: 4ec378e8011de8142b44a0dc8d31f8fb, type: 3}
+  - {fileID: 8300000, guid: 04ad547145f8ef3488a3d55a3b49bdd8, type: 3}

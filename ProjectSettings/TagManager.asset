@@ -7,6 +7,8 @@ TagManager:
   - tag_opponent2
   - tag_opponent1
   - tag_projectile
+  - tag_projectile1
+  - tag_projectile0
   layers:
   - Default
   - TransparentFX
@@ -18,9 +20,9 @@ TagManager:
   - 
   - Tank
   - Obstacle
-  - 
-  - 
-  - 
+  - WatchTower
+  - ~WatchTower
+  - EnemyLayer
   - 
   - 
   - 
@@ -41,14 +43,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: layer_ground
     uniqueID: 3427653987
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: layer_armybase
     uniqueID: 371677789
+    locked: 0
+  - name: layer_tooltip
+    uniqueID: 62742309
     locked: 0
   - name: layer_tanks
     uniqueID: 2001096189

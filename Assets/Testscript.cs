@@ -11,7 +11,6 @@ public class Testscript : MonoBehaviour
 
     public Transform endPoint;
 
-
     // Start is called before the first frame update
     void Start()
     {

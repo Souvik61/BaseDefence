@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TankScript : MonoBehaviour
+public class TankScript : MonoBehaviour,IDamageable
 {
     public TankPropertiesSO tankProperty;
     public float projectileSpeed;
@@ -29,6 +29,8 @@ public class TankScript : MonoBehaviour
     protected Collider2D selfCollider;
     protected Rigidbody2D rBody;
     protected bool isBeingAttacked;
+    protected UnitComponent unitC;
+    BrokenTextureScript brokenTexCtrl;
 
     private void OnEnable()
     {
@@ -40,15 +42,17 @@ public class TankScript : MonoBehaviour
         healthScript.OnHealthDepleted -= OnTankDestroyed;
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         isBeingAttacked = false;
         tankBodyTransform = transform.Find("tank_body");
         muzzleTransform = transform.Find("tank_body/muzzle");
+        unitC = GetComponent<UnitComponent>();
         healthScript = GetComponent<HealthScript>();
         audioSrc = GetComponent<AudioSource>();
         selfCollider = GetComponent<BoxCollider2D>();
         rBody = GetComponent<Rigidbody2D>();
+        brokenTexCtrl = GetComponentInChildren<BrokenTextureScript>();
 
         nextPosition = transform.position;
         nextRotation = rBody.rotation;
@@ -117,9 +121,10 @@ public class TankScript : MonoBehaviour
     public HealthScript GetHealthScript()
     { return healthScript; }
 
-    protected void OnTakeDamage(Vector2 collisionPoint)
+    protected void OnTakeDamage(Vector2 collisionPoint,int dAmount)
     {
-        healthScript.Decrement(25);
+        float actualDecrement = dAmount / (1 + (tankProperty.armour * 10) / dAmount);
+        healthScript.Decrement((uint)actualDecrement);
         //Decrease HP Bar
         if (healthBar != null)
         {
@@ -141,11 +146,7 @@ public class TankScript : MonoBehaviour
             selfCollider.enabled = false;
             isDestroyed = true;
 
-            //Set broken textures
-            for (int i = 0; i < spriteRenderers.Length; i++)
-            {
-                spriteRenderers[i].sprite = tankProperty.destroyedSpriteArray[i];
-            }
+            brokenTexCtrl.SetBroken = true;//Set broken textures
 
             StartCoroutine(nameof(DissolveRoutine));
         }
@@ -164,6 +165,8 @@ public class TankScript : MonoBehaviour
 
         //Instantiate projectile 
         GameObject proj = Instantiate(commonAsset.ProjectilePrefab, firePoint.position, Quaternion.identity);
+        proj.GetComponent<BulletScript>().damageAmmount = (int)(10 * tankProperty.sDamage);
+        proj.tag = "tag_projectile" + unitC.teamID;
         proj.GetComponent<Rigidbody2D>().velocity = firePoint.up * projectileSpeed;
         Destroy(proj, 3.0f);//Destroy projectile after 3 seconds
 
@@ -175,7 +178,7 @@ public class TankScript : MonoBehaviour
         Destroy(mzlFlash, 0.05f);
 
         //play shoot audio
-        audioSrc.Play();
+        audioSrc.PlayOneShot(tankProperty.GenerateRandomSfx());
         //wait before shooting again
         yield return new WaitForSeconds(tankProperty.shootDelay + Random.Range(-1f, 1f));
 
@@ -201,10 +204,14 @@ public class TankScript : MonoBehaviour
         if (collision.CompareTag("tag_projectile"))
         {
             Destroy(collision.gameObject);//Destroy the projectile
-            OnTakeDamage(collision.transform.position);
+            OnTakeDamage(collision.transform.position, collision.GetComponent<BulletScript>().damageAmmount);
         }
     }
 
+    public void OnTakeDamage()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 

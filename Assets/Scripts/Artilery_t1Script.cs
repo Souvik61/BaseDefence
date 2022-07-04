@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class Artilery_t1Script : MonoBehaviour
 {
     public ArtileryPropertiesSO artileryProperties;
@@ -200,6 +201,7 @@ public class Artilery_t1Script : MonoBehaviour
         healthBar.barVisible = false;
     }
     */
+    /*
     IEnumerator ShootRoutine()
     {
         isShooting = true;
@@ -278,3 +280,4 @@ public class Artilery_t1Script : MonoBehaviour
         }
     }
 }
+*/

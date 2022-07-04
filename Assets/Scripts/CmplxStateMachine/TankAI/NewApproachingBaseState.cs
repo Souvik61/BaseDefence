@@ -12,11 +12,11 @@ namespace cmplx_statemachine
 
         float targetDistanceTolerance = 7;
         Vector2 dirToTarget;
-        ArmyBaseScript targetBase;
+        ArmyBaseScript_pt1 targetBase;
 
         Transform pathStartPoint;
 
-        public float nextWayPointDistance = 0.7f;
+        public float nextWayPointDistance = 1.5f;
 
         //Path seeker settings
         Path path;
@@ -32,14 +32,16 @@ namespace cmplx_statemachine
 
         SensorArrayScript sensorArray;
 
+        Transform landingZoneTarget;
+
         int[] controlBits = new int[2];//Used to control tank movement
 
         public NewApproachingBaseState(TankAIStateMachine stM, TankAIScript3 tankAIScript) : base(stM)
         {
-            stateName = "APPR_BASE1";
+            stateName = "APPR_BASE";
             this.tankAIScript = tankAIScript;
             selfTransform = tankAIScript.transform;
-            tankController = tankAIScript.GetComponent<TankScript>();
+            tankController = tankAIScript.GetComponent<NewTankScript>();
             targetBase = tankAIScript.targetBase;
             pathStartPoint = selfTransform.Find("tank_body/muzzle/firepoint");
             pathUpdateRate = 1.0f;
@@ -52,7 +54,7 @@ namespace cmplx_statemachine
         public override void OnEnter()
         {
             lastTimeCheckedPosition = selfTransform.position;
-            seeker = tankAIScript.GetComponent<Seeker>();
+            seeker = tankAIScript.GetSeekerModule.seeker;
 
             timer = pathUpdateRate;
 
@@ -63,13 +65,17 @@ namespace cmplx_statemachine
         {
             Array.Clear(controlBits, 0, 2);//Clear control bits
 
-            ShowWayPoints();
+           // ShowWayPoints();
             FollowWayPoints();
             AvoidLocalObstacles();
+
+            //TryFaceMuzzleTowardsDirection();//While moving try face towards movement
 
             //Apply controlls
             tankController.Move(controlBits[0]);
             tankController.Rotate(controlBits[1]);
+
+            CheckForStateTransition();
         }
 
         //----------------------
@@ -79,15 +85,13 @@ namespace cmplx_statemachine
         //----------------------
         //Path functions
         //----------------------
-        void TryUpdatePath()
-        {
-            UpdatePath();
-        }
-
+        
         void UpdatePath()
         {
+            landingZoneTarget = PickRandomEnemyLandingZone();
+
             if (seeker.IsDone())
-                seeker.StartPath((Vector2)selfTransform.position + tankAIScript.compass.startPoint, targetBase.transform.position, OnPathComplete);
+                seeker.StartPath((Vector2)selfTransform.position, landingZoneTarget.position, OnPathComplete);
         }
 
         void OnPathComplete(Path p)
@@ -107,16 +111,15 @@ namespace cmplx_statemachine
         void FollowWayPoints()
         {
             if (path == null)
-            {
-                // We have no path to follow yet, so don't do anything
                 return;
-            }
+
             hasReachedEndOfPath = false;
             // The distance to the next waypoint in the path
             float distanceToWaypoint;
+            //Check which waypoint we are in
             while (true)
             {
-                distanceToWaypoint = Vector3.Distance(selfTransform.position, path.vectorPath[currWaypoint]);
+                distanceToWaypoint = Vector2.Distance(selfTransform.position, path.vectorPath[currWaypoint]);
                 if (distanceToWaypoint < nextWayPointDistance)
                 {
                     if (currWaypoint + 1 < path.vectorPath.Count)
@@ -135,20 +138,22 @@ namespace cmplx_statemachine
                 }
             }
 
-            //Incase we skip a waypoint while local avoidance
-            if (HasSkippedCurrentWayPoint()) currWaypoint++;
 
-            Vector3 dir = (path.vectorPath[currWaypoint] - selfTransform.position).normalized;
+            if (!hasReachedEndOfPath)//IF not reached end of path
+            {
+                //Incase we skip a waypoint while local avoidance
+                if (HasSkippedCurrentWayPointNew() && !hasReachedEndOfPath) currWaypoint++;
 
-            HelperScript.DrawArrowDebug(selfTransform.position, selfTransform.position + dir, Color.blue);
+                Vector3 dir = (path.vectorPath[currWaypoint] - selfTransform.position).normalized;
 
-
-            if (IsFacingDirection(dir, 7))
-            { controlBits[0] = 1; }
-
-            SetControlBitsTowardsDir(dir, controlBits);
+                HelperScript.DrawArrowDebug(selfTransform.position, selfTransform.position + dir, Color.blue);
 
 
+                if (IsFacingDirection(dir, 7))
+                { controlBits[0] = 1; }
+
+                SetControlBitsTowardsDir(dir, controlBits);
+            }
         }
 
         void AvoidLocalObstacles()
@@ -199,48 +204,6 @@ namespace cmplx_statemachine
 
         }
 
-        void DriveTank()
-        {
-            
-
-        }
-
-        void CheckLocalCollision()
-        {
-            sensorArray = selfTransform.GetComponentInChildren<SensorArrayScript>();
-
-            SensorArrayScript.CollisionStatus collisionStatus = sensorArray.CheckCollisionArray();
-
-            
-
-        }
-
-        void CheckForTransition()
-        {
-            if (tankAIScript.enemiesInSight.Count > 0)
-            {
-                stateMachineInstance.ChangeState("ATTK_ENEM");
-            }
-
-            float distance = Vector2.Distance(selfTransform.position, targetBase.transform.position);
-
-            if (distance < targetDistanceTolerance)
-            {
-                stateMachineInstance.ChangeState("REAC_BASE");
-            }
-
-        }
-
-        bool IsFacingDirection(Vector2 dir)
-        {
-            float angle = Vector2.SignedAngle(dir, selfTransform.up);
-            if (Mathf.Abs(angle) > 7)
-            {
-                return true;
-            }
-            return false;
-        }
-
         bool IsFacingDirection(Vector2 dir, float tolerance)
         {
             float angle = Vector2.Angle(dir, selfTransform.up);
@@ -251,17 +214,6 @@ namespace cmplx_statemachine
             return false;
         }
 
-        void TryFaceTowardsDirection(Vector2 dir)
-        {
-            float angle = Vector2.SignedAngle(dir, selfTransform.up);
-            if (Mathf.Abs(angle) > 7)
-            {
-                if (angle > 0)
-                { controlBits[1] = -1; }
-                else { controlBits[1] = 1; }
-            }
-        }
-
         void SetControlBitsTowardsDir(Vector2 dir,int [] cBits)
         {
             float angle = Vector2.SignedAngle(dir, selfTransform.up);
@@ -270,6 +222,80 @@ namespace cmplx_statemachine
                 if (angle > 0)
                 { cBits[1] = -1; }
                 else { cBits[1] = 1; }
+            }
+        }
+
+        bool HasSkippedCurrentWayPointNew()
+        {
+            if (currWaypoint < path.vectorPath.Count-1)
+            {
+                Vector2 dir = (path.vectorPath[currWaypoint + 1] - path.vectorPath[currWaypoint]).normalized;
+                float a = Vector2.Dot(dir, Vector2.right);
+
+                if (a > 0)//Facing right
+                {
+                    return selfTransform.position.x > path.vectorPath[currWaypoint].x;
+                }
+                else if (a < 0)//Facing left
+                {
+                    return selfTransform.position.x < path.vectorPath[currWaypoint].x;
+                }
+            }
+            return false;
+        }
+
+        Transform PickRandomEnemyLandingZone()
+        {
+            int a = UnityEngine.Random.Range(0, 3);
+            tankAIScript.landZoneIndex = a;
+            return (targetBase).enemyLandingZones[a];
+        }
+
+        void CheckForStateTransition()
+        {
+            if (tankAIScript.enemiesInSight.Count > 0)
+            {
+                stateMachineInstance.ChangeState("ATTK_ENEM");
+            }
+
+            //float distance = Vector2.Distance(selfTransform.position, .position);
+
+            //if (distance < targetDistanceTolerance)
+            //{
+            //    stateMachineInstance.ChangeState("REAC_BASE");
+            //}
+            if (hasReachedEndOfPath)
+            {
+                stateMachineInstance.ChangeState("REAC_BASE");
+            }
+        }
+
+        //--------------------------
+        //Helper functions
+        //--------------------------
+        void ShowWayPoints()
+        {
+            if (path!= null) {
+                for (int i = 0; i < path.vectorPath.Count; i++)
+                {
+                    HelperScript.DrawPointDebug(path.vectorPath[i], Color.red);
+                }
+            }
+        
+        }
+
+        //--------------------------
+        //Garbage functions--might delete later
+        //--------------------------
+
+        void TryFaceTowardsDirection(Vector2 dir)
+        {
+            float angle = Vector2.SignedAngle(dir, selfTransform.up);
+            if (Mathf.Abs(angle) > 7)
+            {
+                if (angle > 0)
+                { controlBits[1] = -1; }
+                else { controlBits[1] = 1; }
             }
         }
 
@@ -292,24 +318,14 @@ namespace cmplx_statemachine
 
         }
 
-        bool HasSkippedCurrentWayPoint()
+        bool IsFacingDirection(Vector2 dir)
         {
-            return selfTransform.position.x > path.vectorPath[currWaypoint].x;
-        }
-
-        //--------------------------
-        //Helper functions
-        //--------------------------
-        void ShowWayPoints()
-        {
-            if (path!= null) {
-                for (int i = 0; i < path.vectorPath.Count; i++)
-                {
-                    HelperScript.DrawPointDebug(path.vectorPath[i], Color.red);
-                }
+            float angle = Vector2.SignedAngle(dir, selfTransform.up);
+            if (Mathf.Abs(angle) > 7)
+            {
+                return true;
             }
-        
+            return false;
         }
-
     }
 }

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace cmplx_statemachine
+﻿namespace cmplx_statemachine
 {
     public abstract class BaseState
     {
@@ -16,7 +12,7 @@ namespace cmplx_statemachine
 
         public abstract void OnEnter();
 
-        public abstract void OnUpdate();
+        public virtual void OnUpdate() { }
 
         public virtual void OnPhysicsUpdate() { }
 
