@@ -71,6 +71,7 @@ public class CommandCenterScript : MonoBehaviour
         currDeployedTanks.Add(tank.gameObject);
     }
 
+    //Deprecated
     public void DeployArtillery(int pos)
     {
         if (currDeployedArtis[pos] != null)
@@ -111,6 +112,10 @@ public class CommandCenterScript : MonoBehaviour
         currDeployedArtis[pos] = null;
     }
 
+    public bool IsArtilleryAreaAvailable(int pos)
+    {
+        return currDeployedArtis[pos] == null;
+    }
 
     void TakeDamage(Vector2 collPoint, int dAmmount)
     {

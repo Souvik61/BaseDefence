@@ -162,7 +162,7 @@ public class CCCommanderScript : MonoBehaviour
 
             for (int i = 0; i < ccScript.artSpawnPoints.Count; i++)
             {
-                if (IsArtilleryAreaAvailable(i))
+                if (IsArtilleryAreaAvailableNew(i))
                 {
                     ccScript.artSpawnPoints[i].GetComponent<SpriteRenderer>().color = Color.green;
                     ccScript.artSpawnPoints[i].GetComponent<SpriteRenderer>().enabled = true;
@@ -211,7 +211,7 @@ public class CCCommanderScript : MonoBehaviour
     {
         for (int i = 0; i < ccScript.artSpawnPoints.Count; i++)
         {
-            if (!IsArtilleryAreaAvailable(i))
+            if (!IsArtilleryAreaAvailableNew(i))
             {
                 ccScript.artSpawnPoints[i].GetComponent<SpriteRenderer>().enabled = true;
                 ccScript.artSpawnPoints[i].GetComponent<SpriteRenderer>().color = Color.red;
@@ -273,7 +273,12 @@ public class CCCommanderScript : MonoBehaviour
         return true;
     }
 
-    bool BuyTank(int index)
+    bool IsArtilleryAreaAvailableNew(int a)
+    {
+        return ccScript.IsArtilleryAreaAvailable(a);
+    }
+
+        bool BuyTank(int index)
     {
         uint cost = currencyTerms.costList[index-1];
 
