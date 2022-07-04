@@ -514,8 +514,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a27779ded66ba4696f294da2d3e0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderers: []
-  brokenSprites: []
+  spriteRenderers:
+  - {fileID: 1424451667489841803}
+  - {fileID: 1424451668021331756}
+  - {fileID: 1424451667146374195}
+  brokenSprites:
+  - {fileID: 21300000, guid: 8d920413b4a7546488db6e355ff2dd7d, type: 3}
+  - {fileID: 21300000, guid: f3d62b13411e5024b8aa795bd3616301, type: 3}
+  - {fileID: 21300000, guid: c9f252ec65c39254bab7c8de40db1f91, type: 3}
   okSprites: []
 --- !u!1 &7643960859730948447
 GameObject:
