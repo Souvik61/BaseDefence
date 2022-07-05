@@ -311,7 +311,7 @@ public class CCCommanderAIScript : MonoBehaviour
                 return true;
             }
             else
-                uiManager.PromptMessage("No coins bro!");
+                uiManager.PromptMessage("Not enough coins!");
         }
         return false;
     }
