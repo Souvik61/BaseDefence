@@ -16,6 +16,6 @@ MonoBehaviour:
   shootDelay: 2
   shootDamage: 5
   maxHealth: 100
-  sDamage: 3
-  armour: 10
+  sDamage: 4
+  armour: 9
   destroyedSpriteArray: []

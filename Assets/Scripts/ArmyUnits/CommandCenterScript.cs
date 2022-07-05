@@ -119,17 +119,8 @@ public class CommandCenterScript : MonoBehaviour
 
     void TakeDamage(Vector2 collPoint, int dAmmount)
     {
-
         healthScript.Decrement((uint)dAmmount);
-        /*
-        //Decrease HP Bar
-        if (healthBar != null)
-        {
-            healthBar.barProgress = healthScript.currentHP / (float)healthScript.maxHP;
-            if (!healthBar.barVisible)
-            { StartCoroutine(nameof(HealthbarShowRoutine)); }
-        }
-        */
+    
         //Add hit explosion
         GameObject gm = Instantiate(commonAsset.TankHitPrefab, collPoint, Quaternion.identity);
         Destroy(gm, 3);

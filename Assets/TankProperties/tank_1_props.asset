@@ -20,7 +20,7 @@ MonoBehaviour:
   shootDelay: 2
   shootDamage: 10
   maxHealth: 100
-  sDamage: 5
+  sDamage: 3
   armour: 1
   destroyedSpriteArray:
   - {fileID: 21300000, guid: 804db368a27a17a4aa7cb7f0f08d6614, type: 3}
