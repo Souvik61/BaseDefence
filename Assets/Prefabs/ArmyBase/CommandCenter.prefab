@@ -426,7 +426,6 @@ GameObject:
   - component: {fileID: 25260237}
   - component: {fileID: 25260238}
   - component: {fileID: 4930191636966244063}
-  - component: {fileID: 9106207107078432229}
   m_Layer: 0
   m_Name: CommandCenter
   m_TagString: tag_opponent1
@@ -547,21 +546,6 @@ MonoBehaviour:
   unitType: 3
   unitName: 
   teamID: 0
---- !u!114 &9106207107078432229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6872063107297337630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1119edfc443c9fa48a3cb55754148ff3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitType: 3
-  unitName: 
-  teamID: 1
 --- !u!1 &6872063107557850064
 GameObject:
   m_ObjectHideFlags: 0
