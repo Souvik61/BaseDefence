@@ -104,6 +104,11 @@ public class CommandCenterScript : MonoBehaviour
         currDeployedArtis[pos] = art.gameObject;
     }
 
+    public GameObject GetArtilleryAt(int pos)
+    {
+        return currDeployedArtis[pos];
+    }
+
     public void RemoveArtilleryAt(int pos)
     {
         if (currDeployedArtis[pos] == null)

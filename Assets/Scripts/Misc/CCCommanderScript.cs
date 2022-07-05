@@ -178,15 +178,18 @@ public class CCCommanderScript : MonoBehaviour
             {
                 if (commBuffer == "tch_art_0")
                 {
-                    ccScript.DeployArtillery(0, toBeSpawnedArtIndex - 1);
+                    //ccScript.DeployArtillery(0, toBeSpawnedArtIndex - 1);
+                    BuyAndDeployArtillery(0, toBeSpawnedArtIndex - 1);
                 }
                 else if (commBuffer == "tch_art_1")
                 {
-                    ccScript.DeployArtillery(1, toBeSpawnedArtIndex - 1);
+                    //ccScript.DeployArtillery(1, toBeSpawnedArtIndex - 1);
+                    BuyAndDeployArtillery(1, toBeSpawnedArtIndex - 1);
                 }
                 else if (commBuffer == "tch_art_2")
                 {
-                    ccScript.DeployArtillery(2, toBeSpawnedArtIndex - 1);
+                    //ccScript.DeployArtillery(2, toBeSpawnedArtIndex - 1);
+                    BuyAndDeployArtillery(2, toBeSpawnedArtIndex - 1);
                 }
                 break;
             }
@@ -226,15 +229,18 @@ public class CCCommanderScript : MonoBehaviour
             {
                 if (commBuffer == "tch_art_0")
                 {
-                    ccScript.RemoveArtilleryAt(0);
+                    //ccScript.RemoveArtilleryAt(0);
+                    RemoveArtilleryAt(0);
                 }
                 else if (commBuffer == "tch_art_1")
                 {
-                    ccScript.RemoveArtilleryAt(1);
+                    //ccScript.RemoveArtilleryAt(1);
+                    RemoveArtilleryAt(1);
                 }
                 else if (commBuffer == "tch_art_2")
                 {
-                    ccScript.RemoveArtilleryAt(2);
+                    //ccScript.RemoveArtilleryAt(2);
+                    RemoveArtilleryAt(2);
                 }
                 break;
             }
@@ -278,7 +284,7 @@ public class CCCommanderScript : MonoBehaviour
         return ccScript.IsArtilleryAreaAvailable(a);
     }
 
-        bool BuyTank(int index)
+    bool BuyTank(int index)
     {
         uint cost = currencyTerms.costList[index-1];
 
@@ -301,13 +307,13 @@ public class CCCommanderScript : MonoBehaviour
             ccScript.DeployTank(pos, tankIndex);
         }
         else
-            uiManager.PromptMessage("No coins bro!");
+            uiManager.PromptMessage("Not enough coins!");
 
     }
 
     bool BuyArtillery(int index)
     {
-        uint cost = currencyTerms.costList[index - 1];
+        uint cost = currencyTerms.artilleryCurrencies[index].cost;
 
         if (cost > walletScript.currentCoins)
         {
@@ -321,15 +327,34 @@ public class CCCommanderScript : MonoBehaviour
         return true;
     }
 
-    void BuyAndDeployArtillery(int pos, int tankIndex)
+    void BuyAndDeployArtillery(int pos, int artIndex)
     {
-        if (BuyTank(tankIndex))//if tank bought succesfully
+        if (BuyArtillery(artIndex))//if art bought succesfully
         {
-            ccScript.DeployTank(pos, tankIndex);
+            ccScript.DeployArtillery(pos, artIndex);
         }
         else
-            uiManager.PromptMessage("No coins bro!");
+            uiManager.PromptMessage("Not enough coins!");
 
+    }
+
+    //Remove and sell artillery
+    void RemoveArtilleryAt(int pos)
+    { 
+        GameObject art = ccScript.GetArtilleryAt(pos);
+        if (art)
+        {
+            string artName = art.GetComponent<UnitComponent>().unitName;
+            SellArtillery(artName);
+            ccScript.RemoveArtilleryAt(pos);
+        }
+    
+    }
+
+    void SellArtillery(string artName)
+    {
+        uint ammount = currencyTerms.buybackDict[artName];
+        walletScript.Deposit(ammount);
     }
 
 }

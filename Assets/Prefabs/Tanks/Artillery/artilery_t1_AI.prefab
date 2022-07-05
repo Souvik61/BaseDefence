@@ -916,7 +916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitType: 1
-  unitName: ART_1
+  unitName: ART_2
   teamID: 0
 --- !u!114 &3580017627097784801
 MonoBehaviour:
