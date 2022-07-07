@@ -300,6 +300,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2214612b45243f43bbc13b9c00f04fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2138055378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2138055380}
+  - component: {fileID: 2138055379}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2138055379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138055378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c0547a23c84ad409f2cf1a9dadf497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ccScript: {fileID: 0}
+  waves: []
+  timeBetweenWaves: 5
+--- !u!4 &2138055380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138055378}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &881077452524757862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -372,6 +418,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank_5 AI_UI
       objectReference: {fileID: 0}
+    - target: {fileID: 8519312620987425580, guid: e7940f4378277d5449f31693b6b96507,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7940f4378277d5449f31693b6b96507, type: 3}
 --- !u!1001 &7643960860561332182
@@ -385,6 +436,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: artilery_1_AI_UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424451668422179261, guid: 283e999c992f5cf45a3a8bbeea06ed93,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1424451668422179262, guid: 283e999c992f5cf45a3a8bbeea06ed93,
         type: 3}

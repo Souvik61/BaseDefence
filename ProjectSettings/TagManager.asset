@@ -55,6 +55,9 @@ TagManager:
   - name: layer_tooltip
     uniqueID: 62742309
     locked: 0
+  - name: layer_tanks_broken
+    uniqueID: 776182209
+    locked: 0
   - name: layer_tanks
     uniqueID: 2001096189
     locked: 0

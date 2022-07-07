@@ -55,7 +55,7 @@ public class CommandCenterScript : MonoBehaviour
     //Deploy functions
     //-------------------------
 
-    public void DeployTank(int pos, int tankIndex)
+    public void DeployTank(int pos, int tankIndex)//Watch out index starts from 1
     {
         //Deploy tank at position pos
         //Spawn tank
@@ -120,6 +120,17 @@ public class CommandCenterScript : MonoBehaviour
     public bool IsArtilleryAreaAvailable(int pos)
     {
         return currDeployedArtis[pos] == null;
+    }
+
+    public bool IsTankSpwnAreaAvailable(int index)
+    {
+        Vector2 size = tankSpawnPoints[index].GetComponent<SpriteRenderer>().bounds.size;
+        var res = Physics2D.OverlapBox(tankSpawnPoints[index].transform.position, size, 0, LayerMask.GetMask("Tank"));
+
+        Bounds bounds = new Bounds(tankSpawnPoints[index].transform.position, size);
+
+        HelperScript.DrawBoundDebug(bounds, Color.red);
+        return res == null;
     }
 
     void TakeDamage(Vector2 collPoint, int dAmmount)
