@@ -22,6 +22,8 @@ public class CommandCenterScript : MonoBehaviour
 
     [SerializeField] OneParamEvent OnATankDestroyed;
 
+    BrokenTextureScript textureScript;
+
     private void OnEnable()
     {
         healthScript.OnHealthDepleted += this.OnHealthZero;
@@ -35,6 +37,7 @@ public class CommandCenterScript : MonoBehaviour
     private void Awake()
     {
         healthScript = GetComponent<HealthScript>();
+        textureScript = GetComponentInChildren<BrokenTextureScript>();
     }
 
     private void Start()
@@ -148,8 +151,11 @@ public class CommandCenterScript : MonoBehaviour
         Debug.Log("Command center destroyed");
         if (!isDestroyed)
         {
-            Instantiate(commonAsset.RedCross, transform.position, Quaternion.identity, transform);
+            //Instantiate(commonAsset.RedCross, transform.position, Quaternion.identity, transform);
             isDestroyed = true;
+            if (textureScript)
+                textureScript.SetBrokenFunc(true);//added
+            
             AllEventsScript.OnBaseDestroyed?.Invoke(baseID);
         }
     }

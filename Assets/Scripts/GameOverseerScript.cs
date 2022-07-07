@@ -37,7 +37,8 @@ public class GameOverseerScript : MonoBehaviour
         {
             //Display game over panel
             Transform gameWinTr = gameOverPanel.transform.Find("GameWinText");
-            gameWinTr.GetComponent<TMP_Text>().text = "Base " + Invert(destoyedBaseId) + " wins !";
+            //gameWinTr.GetComponent<TMP_Text>().text = "Base " + Invert(destoyedBaseId) + " wins !";
+            gameWinTr.GetComponent<TMP_Text>().text = "You " + IdToName(destoyedBaseId);
             gameOverPanel.SetActive(true);
         }
 
@@ -54,5 +55,11 @@ public class GameOverseerScript : MonoBehaviour
     {
         return input == 0 ? 1 : 0;
     }
+
+    string IdToName(int id)
+    {
+        return id == 0 ? "Lose" : "Win!";
+    }
+
 
 }
