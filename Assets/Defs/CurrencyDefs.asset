@@ -39,3 +39,16 @@ MonoBehaviour:
   - name: TANK_5
     cost: 100
     buybackCost: 120
+  artilleryCurrencies:
+  - name: ART_1
+    cost: 20
+    buybackCost: 10
+  - name: ART_2
+    cost: 30
+    buybackCost: 15
+  - name: ART_3
+    cost: 40
+    buybackCost: 20
+  - name: ART_4
+    cost: 80
+    buybackCost: 40

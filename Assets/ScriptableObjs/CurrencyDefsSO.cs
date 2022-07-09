@@ -40,6 +40,9 @@ public class CurrencyDefsSO : ScriptableObject
     [Header("Tank Currencies List")]
     public TankCurrency[] tankCurrencies;
 
+    [Header("Artillery Currencies List")]
+    public TankCurrency[] artilleryCurrencies;
+
     private void OnEnable()
     {
         costDict = new Dictionary<string, uint>();
@@ -53,6 +56,12 @@ public class CurrencyDefsSO : ScriptableObject
         costDict.Add(tankName5, cost5);
 
         foreach (var item in tankCurrencies)
+        {
+            buybackDict.Add(item.name, item.buybackCost);
+        }
+
+        //Add artilleries to dictionary
+        foreach (var item in artilleryCurrencies)
         {
             buybackDict.Add(item.name, item.buybackCost);
         }

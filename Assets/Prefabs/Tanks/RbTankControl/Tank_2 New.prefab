@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8342514b202728142af66df2e0d25a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 7
-  angle: 75
-  collisionChecksEverySec: 5
+  radius: 6.9
+  angle: 45
+  collisionChecksEverySec: 4
   targetMask:
     serializedVersion: 2
     m_Bits: 256
@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a27779ded66ba4696f294da2d3e0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeToSortingLayer: layer_tanks_broken
   spriteRenderers:
   - {fileID: 7483502651965221633}
   - {fileID: 7483502652927765706}
@@ -831,7 +832,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2001096189
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d1cec980909cdb944b4b74b87050dd68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1174,7 +1175,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2001096189
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1290bebbab4a7a84bb42ffb234a732b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

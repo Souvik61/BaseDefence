@@ -85,16 +85,8 @@ public class ArtileryController : MonoBehaviour
 
     void OnTakeDamage(Vector2 collPoint,int dAmount)
     {
-        healthScript.Decrement((uint)dAmount);
-        /*
-        //Decrease HP bar
-        if (healthBar != null)
-        {
-            healthBar.barProgress = healthScript.currentHP / (float)healthScript.maxHP;
-            if (!healthBar.barVisible)
-            { StartCoroutine(nameof(HealthbarShowRoutine)); }
-        }
-        */
+        float actualDecrement = dAmount / (1 + (selfProperties.armour * 10) / dAmount);
+        healthScript.Decrement((uint)actualDecrement);
 
         //Add hit explosion
         GameObject gm = Instantiate(commonAsset.TankHitPrefab, collPoint, Quaternion.identity);

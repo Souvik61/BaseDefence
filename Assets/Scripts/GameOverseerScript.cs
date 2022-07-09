@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameOverseerScript : MonoBehaviour
 {
@@ -37,11 +39,11 @@ public class GameOverseerScript : MonoBehaviour
         {
             //Display game over panel
             Transform gameWinTr = gameOverPanel.transform.Find("GameWinText");
-            gameWinTr.GetComponent<TMP_Text>().text = "Base " + Invert(destoyedBaseId) + " wins !";
+            //gameWinTr.GetComponent<TMP_Text>().text = "Base " + Invert(destoyedBaseId) + " wins !";
+            gameWinTr.GetComponent<TMP_Text>().text = "You " + IdToName(destoyedBaseId);
             gameOverPanel.SetActive(true);
         }
-
-        
+        StartCoroutine(nameof(AutoBackRoutine));
     }
 
     void OnABaseDestroyed(int id)
@@ -53,6 +55,24 @@ public class GameOverseerScript : MonoBehaviour
     int Invert(int input)
     {
         return input == 0 ? 1 : 0;
+    }
+
+    string IdToName(int id)
+    {
+        return id == 0 ? "Lose" : "Win!";
+    }
+
+    IEnumerator AutoBackRoutine()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(0);
+    }
+
+    //callbacks
+    public void OnBackButtonPressed()
+    {
+        StopCoroutine(nameof(AutoBackRoutine));
+        SceneManager.LoadScene(0);
     }
 
 }

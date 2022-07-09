@@ -11,12 +11,19 @@ public class RPGScript : BulletScript
         trail.rotation = Quaternion.LookRotation(-rb.velocity, Vector3.up);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
+        if (!gameObject.scene.isLoaded) return;
+        // Instantiate objects here
         GameObject gm = new GameObject("test_autodelete");
         var audSrc = gm.AddComponent<AudioSource>();
         audSrc.playOnAwake = false;
         audSrc.PlayOneShot(commAsset.sfx_tankfire_small);
         Destroy(gm, 3);
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 }

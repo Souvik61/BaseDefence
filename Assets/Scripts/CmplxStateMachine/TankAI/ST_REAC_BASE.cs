@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace cmplx_statemachine
 {
     public class ST_REAC_BASE : BaseState
     {
-        Transform selfTransform;
-        TankAIScript3 tankAI;
-        NewTankScript tankController;
-        Transform CCTransform;
-        Vector2 dirToTarget;
+        public Transform selfTransform;
+        public TankAIScript3 tankAI;
+        public NewTankScript tankController;
+        public Transform CCTransform;
+        public Vector2 dirToTarget;
 
         public ST_REAC_BASE(TankAIStateMachine stM, TankAIScript3 tankAIScript) : base(stM)
         {
@@ -34,7 +32,7 @@ namespace cmplx_statemachine
             CheckForTransition();
         }
 
-        void AttackLogic()
+        protected virtual void AttackLogic()
         {
             Transform target = CCTransform;
             dirToTarget = (target.position - selfTransform.position).normalized;
@@ -55,7 +53,7 @@ namespace cmplx_statemachine
 
         }
 
-        void TryFaceMuzzleTowardsDirection(Vector2 dir)
+        protected void TryFaceMuzzleTowardsDirection(Vector2 dir)
         {
             float angle = Vector2.SignedAngle(dir, tankController.muzzleTransform.up);
             if (Mathf.Abs(angle) > 2)
@@ -66,7 +64,7 @@ namespace cmplx_statemachine
             }
         }
 
-        bool IsMuzzleFacingTowardDir(Vector2 dir, float tol)
+        protected bool IsMuzzleFacingTowardDir(Vector2 dir, float tol)
         {
             float angle = Vector2.Angle(dir, tankController.muzzleTransform.up);
             return angle < tol;

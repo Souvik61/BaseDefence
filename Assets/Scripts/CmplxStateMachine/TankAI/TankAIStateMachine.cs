@@ -34,7 +34,7 @@
 
             //AddState("REAC_BASE", new TNK_ATTK_NEAR(this, tankAIScript));//use
             
-            AddState("REAC_BASE", new ST_REAC_BASE(this, tankAIScript));//use
+            AddState("REAC_BASE", new ST_REAC_BASE2(this, tankAIScript));//use
             //AddState("ST_ATTK_CC", new ST_ATTK_CC(this, tankAIScript));//use
 
             //AddState("REAC_BASE", new AttackingBaseState(this, tankAIScript));//use

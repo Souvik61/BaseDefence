@@ -22,6 +22,8 @@ public class CommandCenterScript : MonoBehaviour
 
     [SerializeField] OneParamEvent OnATankDestroyed;
 
+    BrokenTextureScript textureScript;
+
     private void OnEnable()
     {
         healthScript.OnHealthDepleted += this.OnHealthZero;
@@ -35,6 +37,7 @@ public class CommandCenterScript : MonoBehaviour
     private void Awake()
     {
         healthScript = GetComponent<HealthScript>();
+        textureScript = GetComponentInChildren<BrokenTextureScript>();
     }
 
     private void Start()
@@ -55,7 +58,7 @@ public class CommandCenterScript : MonoBehaviour
     //Deploy functions
     //-------------------------
 
-    public void DeployTank(int pos, int tankIndex)
+    public void DeployTank(int pos, int tankIndex)//Watch out index starts from 1
     {
         //Deploy tank at position pos
         //Spawn tank
@@ -71,6 +74,7 @@ public class CommandCenterScript : MonoBehaviour
         currDeployedTanks.Add(tank.gameObject);
     }
 
+    //Deprecated
     public void DeployArtillery(int pos)
     {
         if (currDeployedArtis[pos] != null)
@@ -103,6 +107,11 @@ public class CommandCenterScript : MonoBehaviour
         currDeployedArtis[pos] = art.gameObject;
     }
 
+    public GameObject GetArtilleryAt(int pos)
+    {
+        return currDeployedArtis[pos];
+    }
+
     public void RemoveArtilleryAt(int pos)
     {
         if (currDeployedArtis[pos] == null)
@@ -111,20 +120,26 @@ public class CommandCenterScript : MonoBehaviour
         currDeployedArtis[pos] = null;
     }
 
+    public bool IsArtilleryAreaAvailable(int pos)
+    {
+        return currDeployedArtis[pos] == null;
+    }
+
+    public bool IsTankSpwnAreaAvailable(int index)
+    {
+        Vector2 size = tankSpawnPoints[index].GetComponent<SpriteRenderer>().bounds.size;
+        var res = Physics2D.OverlapBox(tankSpawnPoints[index].transform.position, size, 0, LayerMask.GetMask("Tank"));
+
+        Bounds bounds = new Bounds(tankSpawnPoints[index].transform.position, size);
+
+        HelperScript.DrawBoundDebug(bounds, Color.red);
+        return res == null;
+    }
 
     void TakeDamage(Vector2 collPoint, int dAmmount)
     {
-
         healthScript.Decrement((uint)dAmmount);
-        /*
-        //Decrease HP Bar
-        if (healthBar != null)
-        {
-            healthBar.barProgress = healthScript.currentHP / (float)healthScript.maxHP;
-            if (!healthBar.barVisible)
-            { StartCoroutine(nameof(HealthbarShowRoutine)); }
-        }
-        */
+    
         //Add hit explosion
         GameObject gm = Instantiate(commonAsset.TankHitPrefab, collPoint, Quaternion.identity);
         Destroy(gm, 3);
@@ -136,8 +151,11 @@ public class CommandCenterScript : MonoBehaviour
         Debug.Log("Command center destroyed");
         if (!isDestroyed)
         {
-            Instantiate(commonAsset.RedCross, transform.position, Quaternion.identity, transform);
+            //Instantiate(commonAsset.RedCross, transform.position, Quaternion.identity, transform);
             isDestroyed = true;
+            if (textureScript)
+                textureScript.SetBrokenFunc(true);//added
+            
             AllEventsScript.OnBaseDestroyed?.Invoke(baseID);
         }
     }
