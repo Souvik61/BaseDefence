@@ -344,8 +344,9 @@ public class CCCommanderScript : MonoBehaviour
         GameObject art = ccScript.GetArtilleryAt(pos);
         if (art)
         {
-            string artName = art.GetComponent<UnitComponent>().unitName;
-            SellArtillery(artName);
+            //string artName = art.GetComponent<UnitComponent>().unitName;
+            //SellArtillery(artName);
+            SellArtillery(art);
             ccScript.RemoveArtilleryAt(pos);
         }
     
@@ -355,6 +356,16 @@ public class CCCommanderScript : MonoBehaviour
     {
         uint ammount = currencyTerms.buybackDict[artName];
         walletScript.Deposit(ammount);
+    }
+
+    void SellArtillery(GameObject art)
+    {
+        if (art.GetComponent<HealthScript>().IsAlive)
+        {
+            string name = art.GetComponent<UnitComponent>().unitName;
+            uint ammount = currencyTerms.buybackDict[name];
+            walletScript.Deposit(ammount);
+        }
     }
 
 }

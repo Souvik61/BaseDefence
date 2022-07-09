@@ -19,7 +19,7 @@ public class CCAIScript : MonoBehaviour
 	}
 
 	public Wave[] waves;
-	private int nextWave = 0;
+	public int nextWave = 0;
 	public int NextWave
 	{
 		get { return nextWave + 1; }
@@ -133,12 +133,12 @@ public class CCAIScript : MonoBehaviour
 		Debug.Log("Spawning Enemy: ");
 		Debug.Log("Spawn Enemy");
 
-		int a = UnityEngine.Random.Range(0, 3);
-		int b = UnityEngine.Random.Range(0, wave.tankIndexes.Length);
+		int a = Random.Range((int)0, 3);
+		int b = Random.Range((int)0, wave.tankIndexes.Length);
 
 		if (ccScript.IsTankSpwnAreaAvailable(a))
 		{
-			ccScript.DeployTank(a, b + 1);
+			ccScript.DeployTank(a, wave.tankIndexes[b] + 1);
 			return true;
 		}
 		return false;
@@ -146,7 +146,7 @@ public class CCAIScript : MonoBehaviour
 
 	void SpawnEnemy2(int pos, Wave wave)
 	{
-		int b = UnityEngine.Random.Range(0, wave.tankIndexes.Length);
+		int b = Random.Range(0, wave.tankIndexes.Length);
 
 		if (ccScript.IsTankSpwnAreaAvailable(pos))
 		{

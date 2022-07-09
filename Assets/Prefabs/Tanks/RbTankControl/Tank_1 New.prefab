@@ -1184,9 +1184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8342514b202728142af66df2e0d25a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 6.91
+  radius: 6.9
   angle: 45
-  collisionChecksEverySec: 10
+  collisionChecksEverySec: 4
   targetMask:
     serializedVersion: 2
     m_Bits: 1280
