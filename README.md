@@ -7,7 +7,7 @@ Made with **Unity**.
  
  *This game can be played 
  [here](https://souvik-2000.itch.io/base-defence).
-
+*Playable versions are in Assets/Scenes/Prototypes
 
 ## Screenshots
 ![Screenshot 2022-07-08 151304](https://user-images.githubusercontent.com/35128994/178094754-97e6a84a-93ad-4b7e-a8b3-d7d4062848fb.png)
