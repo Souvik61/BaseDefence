@@ -3,11 +3,12 @@
 Inspired by flash game "Age Of War".
 
 Deploy enough tanks to hold back your opponent. To defend your headquarters, you can set up artilleries.</br>
-Made with **Unity**.
- 
- *This game can be played 
- [here](https://souvik-2000.itch.io/base-defence).</br>
+Made with **Unity**.</br>
+
 *Playable versions are in Assets/Scenes/Prototypes
+ 
+*This game can be played 
+ [here](https://souvik-2000.itch.io/base-defence).</br>
 
 ## Screenshots
 ![Screenshot 2022-07-08 151304](https://user-images.githubusercontent.com/35128994/178094754-97e6a84a-93ad-4b7e-a8b3-d7d4062848fb.png)
