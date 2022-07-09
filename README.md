@@ -2,7 +2,7 @@
 
 Inspired by flash game "Age Of War".
 
-Deploy enough tanks to hold back your opponent. To defend your headquarters, you can set up artilleries.
+Deploy enough tanks to hold back your opponent. To defend your headquarters, you can set up artilleries.</br>
 Made with **Unity**.
  
  *This game can be played 
