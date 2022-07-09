@@ -6,7 +6,7 @@ Deploy enough tanks to hold back your opponent. To defend your headquarters, you
 Made with **Unity**.
  
  *This game can be played 
- [here](https://souvik-2000.itch.io/base-defence).
+ [here](https://souvik-2000.itch.io/base-defence).</br>
 *Playable versions are in Assets/Scenes/Prototypes
 
 ## Screenshots
